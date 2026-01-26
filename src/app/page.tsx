@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Globe, Code2, Server, Cpu, Terminal, Database, Award, Heart, X, Github } from 'lucide-react';
+import { Sun, Moon, Globe, Code2, Server, Cpu, Terminal, Database, Award, Heart, X, Github, Menu } from 'lucide-react';
 import { translations } from '../data/translations';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -18,6 +18,7 @@ export default function Home() {
   const [language, setLanguage] = useState<'fr' | 'en'>('fr');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const t = translations;
 
@@ -83,6 +84,11 @@ export default function Home() {
     }
   };
 
+  const handlePageChange = (page: PageName) => {
+    setCurrentPage(page);
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className={`min-h-screen transition-colors duration-500 font-sans selection:bg-zinc-500/30 ${bgClass}`}>
       {/* Flashlight Effect */}
@@ -97,7 +103,7 @@ export default function Home() {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 lg:px-12 backdrop-blur-sm">
-        <button onClick={() => setCurrentPage('home')} className="text-2xl font-black tracking-tighter hover:scale-105 transition-transform">
+        <button onClick={() => handlePageChange('home')} className="text-2xl font-black tracking-tighter hover:scale-105 transition-transform">
           BS<span className="text-zinc-500">.</span>
         </button>
 
@@ -106,7 +112,7 @@ export default function Home() {
             {pageNames.map((page) => (
               <button
                 key={page}
-                onClick={() => setCurrentPage(page)}
+                onClick={() => handlePageChange(page)}
                 className={`hover:text-zinc-500 transition-colors relative group ${currentPage === page ? 'text-zinc-500' : ''}`}
               >
                 {t[language].nav[page]}
@@ -128,9 +134,38 @@ export default function Home() {
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2 rounded-full hover:bg-zinc-500/10 transition-colors"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className={`fixed inset-0 z-40 lg:hidden ${bgClass} flex flex-col items-center justify-center gap-8`}
+          >
+            {pageNames.map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`text-3xl font-black uppercase tracking-tighter hover:text-zinc-500 transition-colors ${currentPage === page ? 'text-zinc-500' : ''}`}
+              >
+                {t[language].nav[page]}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence mode="wait">
         <motion.div
