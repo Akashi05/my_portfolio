@@ -51,7 +51,7 @@ export const translations = {
             form_send: 'Envoyer le message',
         },
         experience: {
-            title: 'Expérience Professionnelle',
+            title: 'Expérience',
             subtitle: 'Parcours',
             period: 'Période',
             location: 'Lieu'
@@ -66,6 +66,21 @@ export const translations = {
             designed: 'Conçu avec'
         },
         projects_data: [
+            {
+                title: 'Chocolatine',
+                role: 'Ingénieur DevOps',
+                description: 'Mise en place de GitHub Actions pour automatiser des tâches (GitHub Technologie).',
+                highlights: [
+                    'Vérification de l\'existence des fichiers et du building effectif du projet',
+                    'Mirroring de répertoire GitHub'
+                ],
+                tech: ['GitHub Actions', 'CI/CD', 'Bash'],
+                category: 'DevOps',
+                period: '2024',
+                date: '2024-01',
+                github: 'https://github.com/Akashi05/CHOCOLATINE_PROJET',
+                media: '/cholatine.png'
+            },
             {
                 title: 'JEB Incubator',
                 role: 'Développeur Backend',
@@ -217,7 +232,7 @@ export const translations = {
             github: 'View on GitHub'
         },
         experience: {
-            title: 'Professional Experience',
+            title: 'Experience',
             subtitle: 'Journey',
             period: 'Period',
             location: 'Location'
@@ -241,6 +256,21 @@ export const translations = {
             designed: 'Designed with'
         },
         projects_data: [
+            {
+                title: 'Chocolatine',
+                role: 'DevOps Engineer',
+                description: 'Implementation of GitHub Actions to automate tasks (GitHub Technology).',
+                highlights: [
+                    'Verification of file existence and effective project building',
+                    'Mirroring GitHub repository'
+                ],
+                tech: ['GitHub Actions', 'CI/CD', 'Bash'],
+                category: 'DevOps',
+                period: '2024',
+                date: '2024-01',
+                github: 'https://github.com/Akashi05/CHOCOLATINE_PROJET',
+                media: '/cholatine.png'
+            },
             {
                 title: 'JEB Incubator',
                 role: 'Backend Developer',

@@ -209,8 +209,8 @@ export default function Home() {
               <h4 className="font-bold mb-4">{t[language].footer.contact}</h4>
               <ul className="space-y-2 text-sm text-zinc-500">
                 <li><a href="mailto:sessouberenger@gmail.com" className="hover:text-zinc-900 dark:hover:text-white transition-colors">sessouberenger@gmail.com</a></li>
-                <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">LinkedIn</a></li>
-                <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/b%C3%A9renger-sessou-b36ab1314/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">LinkedIn</a></li>
+                <li><a href="https://github.com/Akashi05" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">GitHub</a></li>
               </ul>
             </div>
           </div>
