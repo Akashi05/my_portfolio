@@ -18,6 +18,15 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
     const textSecondary = darkMode ? 'text-gray-400' : 'text-gray-600';
     const textTertiary = darkMode ? 'text-gray-500' : 'text-gray-500';
 
+    const [isColor, setIsColor] = React.useState(false);
+
+    React.useEffect(() => {
+        if (isColor) {
+            const timer = setTimeout(() => setIsColor(false), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [isColor]);
+
     return (
         <div className="min-h-screen flex items-center justify-center px-6 lg:px-12 relative overflow-hidden pt-24 lg:pt-0">
             {/* Background Glows */}
@@ -33,13 +42,13 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="lg:w-1/3 flex justify-center"
                     >
-                        <div className="relative group">
+                        <div className="relative group cursor-pointer" onClick={() => setIsColor(true)}>
                             <div className="absolute -inset-4 bg-zinc-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
                             <div className="relative w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-2 border-zinc-500/20 shadow-2xl">
                                 <img
                                     src="/dio.jpg"
                                     alt="Bérenger SESSOU"
-                                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                                    className={`w-full h-full object-cover transition-all duration-700 ${isColor ? 'grayscale-0' : 'grayscale hover:grayscale-0'}`}
                                 />
                             </div>
                             {/* Info badges under image */}

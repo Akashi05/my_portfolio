@@ -56,6 +56,7 @@ export default function Home() {
 
   useEffect(() => {
     localStorage.setItem('currentPage', currentPage);
+    window.scrollTo(0, 0);
   }, [currentPage]);
 
   const bgClass = darkMode
