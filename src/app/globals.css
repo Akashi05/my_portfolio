@@ -1,1 +1,68 @@
 @import "tailwindcss";
+
+:root {
+    --neon-primary: #71717a;
+    --neon-glow: rgba(113, 113, 122, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+    --neon-primary: #ffffff;
+    --neon-glow: rgba(255, 255, 255, 0.15);
+    --glass-bg: rgba(9, 9, 11, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+@theme {
+    --color-neon-primary: var(--neon-primary);
+    --color-neon-glow: var(--neon-glow);
+}
+
+@layer components {
+    .glow-text {
+        text-shadow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow);
+    }
+
+    .glow-border {
+        box-shadow: 0 0 15px var(--neon-glow);
+        border-color: var(--neon-primary);
+    }
+
+    .glass-card {
+        @apply backdrop-blur-md border;
+        background-color: var(--glass-bg);
+        border-color: var(--glass-border);
+    }
+
+    .hover-glow {
+        @apply transition-all duration-300;
+    }
+
+    .hover-glow:hover {
+        box-shadow: 0 0 25px var(--neon-glow);
+        border-color: var(--neon-primary);
+        transform: translateY(-4px);
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-400/50 rounded-full hover:bg-gray-500/50 transition-colors;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600/50 hover:bg-gray-500/50;
+}
