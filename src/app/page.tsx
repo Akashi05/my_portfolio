@@ -4,7 +4,9 @@ import React, { useState } from 'react';
 import { Github, Linkedin, Mail, ExternalLink, ArrowRight, MapPin, Calendar, Award, Code2, Server, Cpu, Globe, Terminal, Database, Sun, Moon } from 'lucide-react';
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const pageNames = ['home', 'about', 'projects', 'experience', 'contact'] as const;
+  type PageName = typeof pageNames[number];
+  const [currentPage, setCurrentPage] = useState<PageName>('home');
   const [darkMode, setDarkMode] = useState(false);
 
   const skills = {
@@ -517,7 +519,7 @@ export default function Home() {
 
           <div className="flex items-center gap-8">
             <div className="flex gap-8">
-              {['home', 'about', 'projects', 'experience', 'contact'].map((page) => (
+              {pageNames.map((page) => (
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
