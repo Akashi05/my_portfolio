@@ -38,9 +38,9 @@ export default function Contact({ language, darkMode }: ContactProps) {
                             <div className="p-4 bg-zinc-500/10 text-zinc-500 rounded-2xl">
                                 <Mail size={32} />
                             </div>
-                            <div>
+                            <div className="min-w-0">
                                 <h3 className="font-bold text-xl">Email</h3>
-                                <p className={textSecondary}>sessouberenger@gmail.com</p>
+                                <p className={`${textSecondary} break-all`}>sessouberenger@gmail.com</p>
                             </div>
                         </a>
 
@@ -48,9 +48,9 @@ export default function Contact({ language, darkMode }: ContactProps) {
                             <div className="p-4 bg-zinc-500/10 text-zinc-500 rounded-2xl">
                                 <Phone size={32} />
                             </div>
-                            <div>
+                            <div className="min-w-0">
                                 <h3 className="font-bold text-xl">WhatsApp</h3>
-                                <p className={textSecondary}>+229 01 64 77 86 82</p>
+                                <p className={`${textSecondary} break-words`}>+229 01 64 77 86 82</p>
                             </div>
                         </a>
                     </div>

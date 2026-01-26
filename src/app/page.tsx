@@ -56,7 +56,10 @@ export default function Home() {
 
   useEffect(() => {
     localStorage.setItem('currentPage', currentPage);
-    window.scrollTo(0, 0);
+    // Use requestAnimationFrame to ensure scroll happens after the DOM updates
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
   }, [currentPage]);
 
   const bgClass = darkMode
