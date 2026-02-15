@@ -136,14 +136,14 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
                             className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2"
                         >
                             <a
-                                href="/cv_fr.pdf"
+                                href="/CV_Bérenger_Sessou_FR.pdf"
                                 download="CV_Berenger_Sessou_FR.pdf"
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${borderColor} text-xs font-bold hover:border-zinc-500 transition-all text-zinc-500`}
                             >
                                 <Download size={14} /> {t[language].hero.cv_fr}
                             </a>
                             <a
-                                href="/cv_en.pdf"
+                                href="/CV_Berenger_Sessou_EN.pdf"
                                 download="CV_Berenger_Sessou_EN.pdf"
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${borderColor} text-xs font-bold hover:border-zinc-500 transition-all text-zinc-500`}
                             >
