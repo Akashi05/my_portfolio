@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Globe, Code2, Server, Cpu, Terminal, Database, Award, Heart, X, Github, Menu } from 'lucide-react';
+import { Sun, Moon, Globe, Code2, Server, Cpu, Terminal, Database, Award, Heart, X, ArrowRight, Menu } from 'lucide-react';
 import { translations } from '../data/translations';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -209,6 +209,7 @@ export default function Home() {
               <h4 className="font-bold mb-4">{t[language].footer.contact}</h4>
               <ul className="space-y-2 text-sm text-zinc-500">
                 <li><a href="mailto:sessouberenger@gmail.com" className="hover:text-zinc-900 dark:hover:text-white transition-colors">sessouberenger@gmail.com</a></li>
+                <li><a href="mailto:berenger.sessou@epitech.eu" className="hover:text-zinc-900 dark:hover:text-white transition-colors">berenger.sessou@epitech.eu</a></li>
                 <li><a href="https://www.linkedin.com/in/b%C3%A9renger-sessou-b36ab1314/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">LinkedIn</a></li>
                 <li><a href="https://github.com/Akashi05" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">GitHub</a></li>
               </ul>
@@ -235,8 +236,8 @@ export default function Home() {
               <X size={24} />
             </button>
 
-            <div className="lg:w-1/2 h-64 lg:h-auto">
-              <img src={selectedProject.media} alt={selectedProject.title} className="w-full h-full object-cover" />
+            <div className="lg:w-1/2 h-64 lg:h-auto bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center p-4">
+              <img src={selectedProject.media} alt={selectedProject.title} className="w-full h-full object-contain shadow-lg rounded-xl" />
             </div>
 
             <div className="lg:w-1/2 p-8 lg:p-12">
@@ -270,7 +271,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-black font-bold rounded-xl hover:scale-105 transition-all"
               >
-                <Github size={20} /> {t[language].projects.github}
+                <ArrowRight size={20} /> {t[language].projects.github}
               </a>
             </div>
           </div>

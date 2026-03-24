@@ -52,50 +52,78 @@ export default function Projects({ language, darkMode, setSelectedProject }: Pro
                     </motion.p>
                 </div>
 
-                <div className="relative space-y-12">
-                    {/* Vertical Line */}
-                    <div className="absolute left-0 lg:left-1/2 top-0 bottom-0 w-px bg-zinc-500/20 -translate-x-1/2 hidden lg:block"></div>
+                <div className="relative">
+                    {/* Main Vertical Line (Left Aligned on Desktop) */}
+                    <div className="absolute left-4 lg:left-32 top-0 bottom-0 w-px bg-zinc-500/20 hidden md:block"></div>
 
-                    {sortedProjects.map((project, idx) => (
-                        <div
-                            key={idx}
-                            className={`relative flex flex-col lg:flex-row items-center gap-8 lg:gap-16 ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
-                        >
-                            {/* Timeline Dot */}
-                            <div className="absolute left-0 lg:left-1/2 w-4 h-4 bg-zinc-500 rounded-full -translate-x-1/2 z-10 hidden lg:block border-4 border-white dark:border-[#0a0a0a]"></div>
-
-                            {/* Content Card */}
-                            <div
-                                className={`w-full lg:w-1/2 ${cardClass} rounded-3xl overflow-hidden border group hover-glow cursor-pointer transition-all duration-500`}
-                                onClick={() => setSelectedProject(project)}
+                    <div className="space-y-20 lg:space-y-32">
+                        {sortedProjects.map((project, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.8, delay: 0.1 }}
+                                className="relative flex flex-col md:flex-row items-start gap-8 lg:gap-12 group"
                             >
-                                <div className="h-48 overflow-hidden relative">
-                                    <img src={project.media} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                        <span className="bg-white text-black px-4 py-2 rounded-full font-bold text-sm">{t[language].projects.view_details}</span>
-                                    </div>
+                                {/* Date / Year Indicator (Sticky-ish on the left) */}
+                                <div className="hidden md:flex md:w-32 flex-col items-end pt-2 pr-8 sticky top-24">
+                                    <span className="text-sm font-bold text-zinc-500 uppercase tracking-tighter">{project.period.split(' ')[0]}</span>
+                                    <span className="text-3xl font-black text-zinc-900 dark:text-white tracking-tighter opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+                                        {project.date.split('-')[0]}
+                                    </span>
                                 </div>
-                                <div className="p-6">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest">{project.category}</p>
-                                        <p className="text-xs text-zinc-500 font-medium">{project.period}</p>
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                                    <p className={`text-sm ${textSecondary} line-clamp-2 mb-4`}>{project.description}</p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.tech.slice(0, 3).map((tech) => (
-                                            <span key={tech} className="text-[10px] px-2 py-1 border border-zinc-500/20 rounded-md text-zinc-500/70">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
 
-                            {/* Spacer for the other side in desktop */}
-                            <div className="hidden lg:block lg:w-1/2"></div>
-                        </div>
-                    ))}
+                                {/* Timeline Point */}
+                                <div className="absolute left-4 lg:left-32 w-3 h-3 bg-zinc-400 rounded-full -translate-x-1/2 mt-4 z-10 border-2 border-white dark:border-[#0a0a0a] group-hover:bg-white transition-colors duration-500 hidden md:block"></div>
+                                <div className="absolute left-4 lg:left-32 w-8 h-8 bg-zinc-500/10 rounded-full -translate-x-1/2 mt-1.5 z-0 blur-sm scale-0 group-hover:scale-150 transition-transform duration-500 hidden md:block"></div>
+
+                                {/* Horizontal Content Card */}
+                                <div
+                                    className={`flex-1 ${cardClass} rounded-3xl overflow-hidden border flex flex-col lg:flex-row h-full lg:h-72 hover:shadow-2xl transition-all duration-500 group/card cursor-pointer`}
+                                    onClick={() => setSelectedProject(project)}
+                                >
+                                    {/* Image Side */}
+                                    <div className="w-full lg:w-2/5 h-48 lg:h-full overflow-hidden relative">
+                                        <img
+                                            src={project.media}
+                                            alt={project.title}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-black/20 group-hover/card:bg-black/0 transition-colors duration-500"></div>
+                                    </div>
+
+                                    {/* Text Side */}
+                                    <div className="flex-1 p-8 flex flex-col justify-center">
+                                        <div className="flex justify-between items-start mb-4">
+                                            <div>
+                                                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mb-1">{project.category}</p>
+                                                <h3 className="text-2xl font-bold">{project.title}</h3>
+                                            </div>
+                                            <span className="md:hidden text-xs text-zinc-500 font-medium">{project.period}</span>
+                                        </div>
+
+                                        <p className={`text-sm ${textSecondary} line-clamp-2 lg:line-clamp-3 mb-6 leading-relaxed`}>
+                                            {project.description}
+                                        </p>
+
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.tech.map((tech) => (
+                                                <span key={tech} className="text-[10px] px-3 py-1 bg-zinc-500/5 dark:bg-white/5 border border-zinc-500/10 dark:border-white/10 rounded-full text-zinc-500 dark:text-zinc-400 font-medium">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Floating Detail Button */}
+                                    <div className="absolute bottom-6 right-6 opacity-0 lg:group-hover/card:opacity-100 transition-all translate-y-2 lg:group-hover/card:translate-y-0 bg-white dark:bg-zinc-800 p-3 rounded-full shadow-xl">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

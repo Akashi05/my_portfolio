@@ -34,15 +34,20 @@ export default function Contact({ language, darkMode }: ContactProps) {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div className="space-y-6">
-                        <a href="mailto:sessouberenger@gmail.com" className={`${cardClass} flex items-center gap-6 p-8 rounded-3xl border hover-glow`}>
+                        <div className={`${cardClass} flex items-center gap-6 p-8 rounded-3xl border hover-glow`}>
                             <div className="p-4 bg-zinc-500/10 text-zinc-500 rounded-2xl">
                                 <Mail size={32} />
                             </div>
-                            <div className="min-w-0">
-                                <h3 className="font-bold text-xl">Email</h3>
-                                <p className={`${textSecondary} break-all`}>sessouberenger@gmail.com</p>
+                            <div className="min-w-0 flex-1">
+                                <h3 className="font-bold text-xl mb-1">Email</h3>
+                                <a href="mailto:sessouberenger@gmail.com" className="block text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors truncate">
+                                    sessouberenger@gmail.com
+                                </a>
+                                <a href="mailto:berenger.sessou@epitech.eu" className="block text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors truncate mt-1">
+                                    berenger.sessou@epitech.eu
+                                </a>
                             </div>
-                        </a>
+                        </div>
 
                         <a href="https://wa.me/2290164778682" target="_blank" rel="noopener noreferrer" className={`${cardClass} flex items-center gap-6 p-8 rounded-3xl border hover-glow`}>
                             <div className="p-4 bg-zinc-500/10 text-zinc-500 rounded-2xl">

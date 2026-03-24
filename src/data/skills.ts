@@ -2,6 +2,7 @@ export const skills = {
     languages: [
         { name: 'C', logo: 'c' },
         { name: 'C++', logo: 'cplusplus' },
+        { name: 'Rust', logo: 'rust' },
         { name: 'Python', logo: 'python' },
         { name: 'JavaScript', logo: 'javascript' },
         { name: 'Haskell', logo: 'haskell' },
