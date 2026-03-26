@@ -59,7 +59,7 @@ export const translations = {
         contact: {
             title: 'Travaillons Ensemble',
             subtitle: 'Contact',
-            description: 'Je suis ouvert aux opportunités de stage, collaboration et projets innovants. N\'hésitez pas à me contacter.',
+            description: 'Je suis ouvert aux collaboration et projets innovants. N\'hésitez pas à me contacter.',
             form_name: 'Nom',
             form_email: 'Email',
             form_message: 'Message',
@@ -298,7 +298,7 @@ export const translations = {
         contact: {
             title: 'Let\'s Work Together',
             subtitle: 'Contact',
-            description: 'I am open to internship opportunities, collaborations, and innovative projects. Feel free to contact me.',
+            description: 'I am open to collaborations and innovative projects. Feel free to contact me.',
             form_name: 'Name',
             form_email: 'Email',
             form_message: 'Message',
