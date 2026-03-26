@@ -31,6 +31,26 @@ export default function About({ language, darkMode }: AboutProps) {
                     <h2 className="text-5xl font-bold mb-8">{t[language].about.title}</h2>
                 </motion.div>
 
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+                >
+                    {[
+                        { label: t[language].about.stats.projects_label, value: t[language].about.stats.projects },
+                        { label: t[language].about.stats.tech_label, value: t[language].about.stats.tech },
+                        { label: t[language].about.stats.experience_label, value: t[language].about.stats.experience },
+                    ].map((stat, i) => (
+                        <div key={i} className={`${cardClass} p-8 rounded-3xl border text-center hover-glow transition-all group relative overflow-hidden`}>
+                            <div className="absolute inset-0 bg-gradient-to-br from-zinc-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <p className="text-5xl font-bold mb-2 tracking-tighter">{stat.value}</p>
+                            <p className={`text-xs uppercase tracking-[0.2em] ${textSecondary} font-bold`}>{stat.label}</p>
+                        </div>
+                    ))}
+                </motion.div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className={`lg:col-span-2 space-y-6 text-lg ${textSecondary} leading-relaxed`}>
                         <p>{t[language].about.description1}</p>
