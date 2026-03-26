@@ -104,8 +104,13 @@ export default function About({ language, darkMode }: AboutProps) {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className="lg:col-span-2 space-y-8">
                         <div className={`space-y-6 text-xl ${textSecondary} leading-relaxed font-medium`}>
-                            <p>{t[language].about.description1}</p>
-                            <p>{t[language].about.description2}</p>
+                            {Object.entries(t[language].about)
+                                .filter(([key]) => key.startsWith('description'))
+                                .sort()
+                                .map(([key, value]) => (
+                                    <p key={key}>{value as string}</p>
+                                ))
+                            }
                         </div>
                     </div>
 

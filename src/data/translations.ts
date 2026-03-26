@@ -13,9 +13,11 @@ export const translations = {
         about: {
             title: 'Qui suis-je ?',
             subtitle: 'À propos',
-            description1: 'Étudiant en 3ème année d\'expertise informatique à EPITECH Benin, passionné d\'informatique et en recherche d\'un stage pour acquérir plus d\'expériences et perfectionner mes compétences.',
-            description2: 'Mon parcours m\'a permis de développer une expertise solide en architecture logicielle, DevOps et développement full-stack. De l\'architecture de moteurs de jeu haute performance en C++ à la conception de plateformes d\'automation avec Django, j\'aime relever des défis techniques complexes.',
-            description_tech: 'Mon expertise se divise principalement en deux piliers : le développement Web (avec des projets comme ArbitraChain, JEB, AREA) et la programmation bas niveau (Minishell, Zappy, etc.). Cette dualité me permet de concevoir des systèmes allant de l\'abstraction applicative à la performance brute.',
+            description1: 'Étudiant en 3ᵉ année d’expertise informatique à EPITECH Bénin, je suis passionné par le développement logiciel et la création de solutions concrètes à des problématiques réelles.',
+            description2: 'Au-delà de l’aspect technique, je m’intéresse à la manière dont les systèmes sont conçus pour être utiles, performants et durables. Mon parcours m’a amené à travailler aussi bien sur des systèmes bas niveau en C++ que sur des applications web et des architectures complètes.',
+            description3: 'Formé dans un environnement exigeant, j’ai développé une forte autonomie ainsi qu’une capacité à apprendre rapidement et à m’adapter à des contextes variés.',
+            description4: 'J’accorde une importance particulière au travail en équipe, convaincu que les meilleures solutions émergent d’une collaboration efficace et d’une bonne communication.',
+            description5: 'Aujourd’hui, je cherche à évoluer dans des environnements stimulants, académiques comme professionnels, où je pourrai continuer à apprendre, contribuer et participer à la création de solutions à impact.',
             stats: {
                 total: 60,
                 total_label: 'Projets au total',
@@ -244,9 +246,11 @@ export const translations = {
         about: {
             title: 'Who am I?',
             subtitle: 'About',
-            description1: '3rd-year Software Engineering student at EPITECH Benin, passionate about IT and looking for an internship to gain more experience and perfect my skills.',
-            description2: 'My background has allowed me to develop solid expertise in software architecture, DevOps, and full-stack development. From architecting high-performance C++ game engines to designing automation platforms with Django, I enjoy tackling complex technical challenges.',
-            description_tech: 'My expertise is primarily divided into two pillars: Web development (with projects like ArbitraChain, JEB, AREA) and low-level programming (Minishell, Zappy, etc.). This duality allows me to design systems ranging from application abstraction to raw performance.',
+            description1: 'Junior software engineering student at EPITECH Benin, I am passionate about software development and creating concrete solutions to real-world problems.',
+            description2: 'Beyond technical aspects, I am interested in how systems are designed to be useful, efficient, and sustainable. My background has led me to work on both low-level systems in C++ as well as web applications and complete architectures.',
+            description3: 'Trained in a demanding environment, I have developed strong autonomy along with an ability to learn quickly and adapt to various contexts.',
+            description4: 'I place particular importance on teamwork, convinced that the best solutions emerge from effective collaboration and good communication.',
+            description5: 'Today, I am looking to grow in stimulating environments, both academic and professional, where I can continue to learn, contribute, and participate in creating impactful solutions.',
             stats: {
                 total: 60,
                 total_label: 'Total projects',
@@ -254,7 +258,7 @@ export const translations = {
                 school_label: 'Academic projects',
                 personal: 10,
                 personal_label: 'Personal projects',
-                details: 'including 50+ academic and 10+ personal',
+                details: 'including 60+ academic and 10+ personal',
                 tech: 30,
                 tech_label: 'Technologies',
                 experience: 3,
