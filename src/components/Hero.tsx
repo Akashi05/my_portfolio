@@ -28,7 +28,7 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
     }, [isColor]);
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-6 lg:px-12 relative overflow-hidden pt-24 lg:pt-0">
+        <div className="min-h-screen flex items-center justify-center px-6 lg:px-12 relative overflow-hidden pt-32 lg:pt-32">
             {/* Background Glows */}
             <div className="absolute top-1/4 -left-20 w-96 h-96 bg-zinc-500/5 rounded-full blur-[120px] pointer-events-none"></div>
             <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-zinc-500/5 rounded-full blur-[120px] pointer-events-none"></div>

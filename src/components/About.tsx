@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, animate } from 'framer-motion';
 import { translations } from '../data/translations';
 import { skills } from '../data/skills';
 
@@ -8,58 +8,109 @@ interface AboutProps {
     darkMode: boolean;
 }
 
+const CountingNumber = ({ value }: { value: number }) => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        const controls = animate(0, value, {
+            duration: 2,
+            onUpdate: (latest) => setCount(Math.floor(latest)),
+        });
+        return () => controls.stop();
+    }, [value]);
+
+    return <span>{count}</span>;
+};
+
 export default function About({ language, darkMode }: AboutProps) {
     const t = translations;
     const cardClass = darkMode
         ? 'glass-card'
         : 'bg-white/80 border-gray-200 backdrop-blur-md';
-    const borderColor = darkMode ? 'border-gray-800' : 'border-gray-200';
+    const borderColor = darkMode ? 'border-zinc-800' : 'border-zinc-200';
     const textSecondary = darkMode ? 'text-gray-400' : 'text-gray-600';
     const textTertiary = darkMode ? 'text-gray-500' : 'text-gray-500';
 
+    const highPriority = ['C', 'C++', 'Django', 'Django REST Framework', 'Git', 'Docker'];
+    const mediumPriority = ['Python', 'Rust', 'PostgreSQL', 'GitHub Actions', 'SDL'];
+
+    // Preprocessing function to fill holes
+    const processSkills = (targetCols: number) => {
+        const flattened = Object.entries(skills).flatMap(([category, items]) =>
+            items.map(skill => ({ ...skill, category }))
+        );
+
+        let currentRowUsage = 0;
+        const result: any[] = [];
+
+        flattened.forEach((skill) => {
+            let span = highPriority.includes(skill.name) || mediumPriority.includes(skill.name) ? 2 : 1;
+
+            // Limit span to targetCols
+            if (span > targetCols) span = targetCols;
+
+            if (currentRowUsage + span > targetCols) {
+                // Expand previous item if there's a hole
+                if (currentRowUsage < targetCols && result.length > 0) {
+                    result[result.length - 1].currentSpan += (targetCols - currentRowUsage);
+                }
+                currentRowUsage = 0;
+            }
+
+            result.push({ ...skill, currentSpan: span });
+            currentRowUsage += span;
+        });
+
+        // Fill last row hole
+        if (currentRowUsage > 0 && currentRowUsage < targetCols && result.length > 0) {
+            result[result.length - 1].currentSpan += (targetCols - currentRowUsage);
+        }
+
+        return result;
+    };
+
+    // We can't easily do different spans for different breakpoints with one pass
+    // So we'll use a slightly simpler CSS-first approach or generate classes
+    const getSpanClass = (span: number) => {
+        if (span === 1) return 'col-span-1';
+        if (span === 2) return 'col-span-2';
+        if (span === 3) return 'col-span-3';
+        if (span === 4) return 'col-span-4';
+        if (span === 5) return 'col-span-5';
+        if (span === 6) return 'col-span-6';
+        return 'col-span-1';
+    };
+
+    // For simplicity and perfect filling on LG, we'll use the LG processed list
+    // On smaller screens, the layout might have small holes or we can just let flex/grid wrap naturally
+    // BUT the user really wants NO holes on the main view.
+    const processedSkills = processSkills(6);
+
     return (
-        <div className="min-h-screen px-6 lg:px-12 py-24">
-            <div className="max-w-6xl mx-auto">
+        <div className="min-h-screen py-24 overflow-x-hidden">
+            <div className="max-w-6xl mx-auto px-6 lg:px-12 space-y-24">
+                {/* Header Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="mb-16"
                 >
                     <p className={`text-sm uppercase tracking-widest text-zinc-500 font-bold mb-4`}>{t[language].about.subtitle}</p>
-                    <h2 className="text-5xl font-bold mb-8">{t[language].about.title}</h2>
+                    <h2 className="text-5xl font-bold">{t[language].about.title}</h2>
                 </motion.div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
-                >
-                    {[
-                        { label: t[language].about.stats.projects_label, value: t[language].about.stats.projects },
-                        { label: t[language].about.stats.tech_label, value: t[language].about.stats.tech },
-                        { label: t[language].about.stats.experience_label, value: t[language].about.stats.experience },
-                    ].map((stat, i) => (
-                        <div key={i} className={`${cardClass} p-8 rounded-3xl border text-center hover-glow transition-all group relative overflow-hidden`}>
-                            <div className="absolute inset-0 bg-gradient-to-br from-zinc-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <p className="text-5xl font-bold mb-2 tracking-tighter">{stat.value}</p>
-                            <p className={`text-xs uppercase tracking-[0.2em] ${textSecondary} font-bold`}>{stat.label}</p>
-                        </div>
-                    ))}
-                </motion.div>
-
+                {/* Top Content: Intro & Sidebar */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    <div className={`lg:col-span-2 space-y-6 text-lg ${textSecondary} leading-relaxed`}>
-                        <p>{t[language].about.description1}</p>
-                        <p>{t[language].about.description2}</p>
-                        <p>{t[language].about.description3}</p>
+                    <div className="lg:col-span-2 space-y-8">
+                        <div className={`space-y-6 text-xl ${textSecondary} leading-relaxed font-medium`}>
+                            <p>{t[language].about.description1}</p>
+                            <p>{t[language].about.description2}</p>
+                        </div>
                     </div>
 
                     <div className="space-y-8">
-                        <div className={`${cardClass} p-6 rounded-2xl border`}>
+                        <div className={`${cardClass} p-6 rounded-2xl border ${borderColor}`}>
                             <h3 className="font-bold text-xl mb-4 text-zinc-500">{t[language].about.formation}</h3>
                             <div className="space-y-3">
                                 <div>
@@ -75,7 +126,7 @@ export default function About({ language, darkMode }: AboutProps) {
                             </div>
                         </div>
 
-                        <div className={`${cardClass} p-6 rounded-2xl border`}>
+                        <div className={`${cardClass} p-6 rounded-2xl border ${borderColor}`}>
                             <h3 className="font-bold text-xl mb-4 text-zinc-500">{t[language].about.languages}</h3>
                             <div className="space-y-2">
                                 <p><span className="font-medium">{t[language].about.lang_fr}:</span> {t[language].about.lang_native}</p>
@@ -84,37 +135,95 @@ export default function About({ language, darkMode }: AboutProps) {
                         </div>
                     </div>
                 </div>
+            </div>
 
+            {/* Full Width Stats Section */}
+            <div className="mt-20 mb-24 w-full relative">
+                <div className={`w-full h-px ${darkMode ? 'bg-zinc-800/50' : 'bg-zinc-200'} mb-8`} />
+                <div className="px-6 lg:px-24">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="flex flex-col xl:flex-row items-center xl:items-end justify-between gap-12"
+                    >
+                        <div className="flex items-baseline gap-4">
+                            <span className={`text-[8rem] md:text-[10rem] font-mono font-bold leading-none tracking-tighter ${darkMode ? 'text-zinc-100 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]' : 'text-zinc-900 drop-shadow-[0_0_20px_rgba(0,0,0,0.1)]'}`}>
+                                <CountingNumber value={t[language].about.stats.total} />
+                            </span>
+                            <span className="text-4xl md:text-6xl font-bold text-zinc-500 leading-none">+</span>
+                        </div>
+
+                        <div className="flex-1 max-w-4xl space-y-8 text-center xl:text-left pb-4">
+                            <div className="space-y-4">
+                                <p className={`text-[14px] uppercase tracking-[0.6em] font-black ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                                    {t[language].about.stats.total_label}
+                                </p>
+                                <h4 className={`text-2xl md:text-4xl font-black leading-tight ${darkMode ? 'text-zinc-100' : 'text-zinc-900'}`}>
+                                    {(t[language].about.stats as any).details}
+                                </h4>
+                            </div>
+                            <div className="flex flex-wrap justify-center xl:justify-start gap-4">
+                                {['Web', 'Low-level', 'DevOps'].map((tag) => (
+                                    <span key={tag} className={`px-8 py-2 text-[12px] uppercase tracking-[0.3em] font-black rounded-full border ${borderColor} ${darkMode ? 'bg-zinc-900/50 text-zinc-400' : 'bg-zinc-100 text-zinc-600'}`}>
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+                <div className={`w-full h-px ${darkMode ? 'bg-zinc-800/50' : 'bg-zinc-200'} mt-8`} />
+            </div>
+
+            {/* Truly Full Width Bento Skills Section - Perfectly Filled */}
+            <div className="w-full px-6 lg:px-24 pb-24 max-w-[2000px] mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className={`mt-16 pt-16 border-t ${borderColor}`}
+                    className="space-y-16"
                 >
-                    <h3 className="font-bold text-2xl mb-8">{t[language].about.skills_title}</h3>
-                    <div className="flex flex-wrap gap-4">
-                        {Object.entries(skills).flatMap(([category, items]) =>
-                            items.map((skill) => (
+                    <h3 className="font-bold text-4xl text-center md:text-left tracking-tight">{t[language].about.skills_title}</h3>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 w-full">
+                        {processedSkills.map((skill, index) => {
+                            const isHigh = highPriority.includes(skill.name);
+                            const isMed = mediumPriority.includes(skill.name);
+                            const spanClass = getSpanClass(skill.currentSpan);
+
+                            return (
                                 <motion.div
                                     key={skill.name}
-                                    whileHover={{ scale: 1.05, y: -5 }}
-                                    className={`${cardClass} px-6 py-4 rounded-2xl border flex flex-col items-center justify-center gap-3 min-w-[120px] hover-glow transition-all duration-300 group`}
+                                    whileHover={{ y: -8, scale: 1.01 }}
+                                    className={`${cardClass} p-8 md:p-10 rounded-[2.5rem] border ${borderColor} flex flex-col items-center justify-center gap-6 group hover-glow transition-all duration-300 ${spanClass} min-h-[220px] relative overflow-hidden`}
                                 >
-                                    <div className="w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+
+                                    <div className={`flex items-center justify-center transition-transform duration-500 group-hover:scale-110 ${isHigh ? 'w-24 h-24' : 'w-14 h-14'}`}>
                                         <img
                                             src={`https://cdn.simpleicons.org/${skill.logo}/${darkMode ? 'white' : 'black'}`}
                                             alt={skill.name}
-                                            className="w-8 h-8 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                                            className={`object-contain transition-all duration-500 ${isHigh ? 'w-20 h-20 opacity-100' : 'w-10 h-10 opacity-60 group-hover:opacity-100'}`}
                                         />
                                     </div>
-                                    <span className="text-sm font-bold tracking-tight">{skill.name}</span>
-                                    <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-medium">
-                                        {t[language].about.skill_cats[category as keyof typeof t.en.about.skill_cats]}
-                                    </span>
+                                    <div className="text-center">
+                                        <span className={`${isHigh ? 'text-2xl font-black' : isMed ? 'text-xl font-bold' : 'text-base font-bold'} tracking-tight block uppercase text-zinc-500 group-hover:text-inherit transition-colors`}>
+                                            {skill.name}
+                                        </span>
+                                        <p className="text-[10px] uppercase tracking-widest font-bold text-zinc-500 mt-2">
+                                            {skill.name === 'SDL' ? (language === 'fr' ? 'Outil' : 'Tool') :
+                                                skill.name === 'C' ? (language === 'fr' ? 'Langage' : 'Language') :
+                                                    t[language].about.skill_cats[skill.category as keyof typeof t.en.about.skill_cats]}
+                                        </p>
+                                    </div>
+
+                                    {/* Active border indicator on hover */}
+                                    <div className={`absolute bottom-0 left-0 h-1 bg-zinc-500/10 w-0 group-hover:w-full transition-all duration-500`} />
                                 </motion.div>
-                            ))
-                        )}
+                            );
+                        })}
                     </div>
                 </motion.div>
             </div>

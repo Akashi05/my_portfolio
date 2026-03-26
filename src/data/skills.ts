@@ -1,6 +1,6 @@
 export const skills = {
     languages: [
-        { name: 'C', logo: 'c' },
+        { name: 'SDL', logo: 'libsdl' },
         { name: 'C++', logo: 'cplusplus' },
         { name: 'Rust', logo: 'rust' },
         { name: 'Python', logo: 'python' },
@@ -33,6 +33,6 @@ export const skills = {
         { name: 'Railway', logo: 'railway' },
         { name: 'SFML', logo: 'sfml' },
         { name: 'Ncurses', logo: 'gnubash' },
-        { name: 'SDL', logo: 'libsdl' }
+        { name: 'C', logo: 'c' }
     ]
 };
