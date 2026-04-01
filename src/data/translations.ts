@@ -28,7 +28,7 @@ export const translations = {
                 details: 'dont 50+ scolaires et 10+ personnels',
                 tech: 30,
                 tech_label: 'Technologies',
-                experience: 3,
+                experience: 5,
                 experience_label: 'Expériences'
             },
             formation: 'Formation',
@@ -99,36 +99,6 @@ export const translations = {
                 media: '/arbitrachain.png'
             },
             {
-                title: 'Chocolatine',
-                role: 'Ingénieur DevOps',
-                description: 'Mise en place de GitHub Actions pour automatiser des tâches (GitHub Technologie).',
-                highlights: [
-                    'Vérification de l\'existence des fichiers et du building effectif du projet',
-                    'Mirroring de répertoire GitHub'
-                ],
-                tech: ['GitHub Actions', 'CI/CD', 'Bash'],
-                category: 'DevOps',
-                period: '2024 2024',
-                date: '2024-01',
-                github: 'https://github.com/Akashi05/CHOCOLATINE_PROJET',
-                media: '/cholatine.png'
-            },
-            {
-                title: 'JEB Incubator',
-                role: 'Développeur Backend',
-                description: 'Conception d\'une application web pour une entreprise d\'incubateur.',
-                highlights: [
-                    'Conception de l\'application web',
-                    'Chargé du backend en utilisant Django'
-                ],
-                tech: ['Django', 'Python', 'Web'],
-                category: 'Développement Web',
-                period: 'Septembre 2025',
-                date: '2025-09',
-                github: 'https://github.com/yourusername/jeb-incubator',
-                media: '/jeb.png'
-            },
-            {
                 title: 'AREA - Automation Platform',
                 role: 'Lead Backend & Architecte',
                 description: 'Clone d\'IFTTT/Zapier avec architecture microservices Django/DRF. Moteur d\'automation asynchrone avec workers multithreads pour intégrations API (Google, Discord, GitHub, etc).',
@@ -140,10 +110,59 @@ export const translations = {
                 ],
                 tech: ['Django', 'DRF', 'Docker', 'PostgreSQL', 'OAuth2', 'Railway'],
                 category: 'Full-Stack & Architecture',
-                period: '2025 2025',
-                date: '2025-12',
+                period: 'Janvier 2026',
+                date: '2026-01',
                 github: 'https://github.com/evra0/G-DEV-500-COT-5-2-area-10/tree/main',
                 media: '/area.png'
+            },
+            {
+                title: 'Gomoku',
+                role: 'Développeur IA',
+                description: 'Implémentation d\'une IA performante pour le jeu Gomoku utilisant l\'algorithme Minimax avec élagage Alpha-Beta.',
+                highlights: [
+                    'IA basée sur l\'algorithme Minimax',
+                    'Optimisation par élagage Alpha-Beta pour une meilleure performance',
+                    'Interface en ligne de commande pour le jeu contre l\'ordinateur'
+                ],
+                tech: ['C++', 'Minimax', 'AI'],
+                category: 'Intelligence Artificielle',
+                period: 'Janvier 2026',
+                date: '2026-01',
+                github: 'https://github.com/Akashi05/Gomoku',
+                media: '/gomoku.png'
+            },
+            {
+                title: 'NeuralNetwork',
+                role: 'Chercheur en IA',
+                description: 'Création d\'un réseau de neurones multicouche en C pour la reconnaissance d\'images, entraîné sur le dataset MNIST, atteignant 96% de précision.',
+                highlights: [
+                    'Architecture en réseau multicouche (MLP)',
+                    'Entraînement avec l\'algorithme de rétropropagation du gradient',
+                    'Gestion des fonctions d\'activation et du calcul de l\'erreur'
+                ],
+                tech: ['C', 'Machine Learning', 'Mathématiques'],
+                category: 'Intelligence Artificielle',
+                period: 'Novembre 2025',
+                date: '2025-11',
+                github: 'https://github.com/Akashi05/NeuralNetwork',
+                media: '/nn.png'
+            },
+            {
+                title: 'R-Type Game Engine',
+                role: 'Développeur Moteur',
+                description: 'Moteur de jeu 2D haute performance développé de zéro en C++17 avec architecture ECS.',
+                highlights: [
+                    'Architecture ECS (Entity Component System) en C++17',
+                    'Moteur réseau UDP faible latence pour le multijoueur',
+                    'Chiffrement réseau sur mesure',
+                    'Performances optimisées pour le temps réel'
+                ],
+                tech: ['C++', 'ECS', 'UDP', 'Réseau'],
+                category: 'Programmation Système',
+                period: 'Novembre 2025',
+                date: '2025-11',
+                github: 'https://github.com/Akashi05/rtype',
+                media: '/rtype.png'
             },
             {
                 title: 'Whanos - DevOps Platform',
@@ -152,37 +171,69 @@ export const translations = {
                 highlights: [
                     'Conception d\'une plateforme CI/CD avec Jenkins',
                     'Détection automatique de la stack technologique',
-                    'Build d\'images Docker optimisées et standardisées',
-                    'Déploiement automatisé des applications'
+                    'Création d\'images Docker standardisées',
+                    'Déploiement automatisé d\'applications'
                 ],
                 tech: ['Jenkins', 'Docker', 'Bash', 'Groovy'],
-                category: 'DevOps & Automation',
-                period: '2025 2025',
-                date: '2025-10',
-                github: 'https://github.com/yourusername/whanos',
+                category: 'DevOps & Automatisation',
+                period: 'Novembre 2025',
+                date: '2025-11',
+                github: 'https://github.com/Akashi05/Whanos',
                 media: '/whanos.png'
             },
             {
-                title: 'R-Type Game Engine',
-                role: 'Développeur Moteur',
-                description: 'Moteur de jeu 2D haute performance développé from scratch en C++17 avec architecture ECS.',
+                title: 'JEB Incubator',
+                role: 'Développeur Backend',
+                description: 'Projet complet autour de l\'espace, gérant une marketplace entre particuliers et professionnels, avec des enchères interactives.',
                 highlights: [
-                    'Architecture ECS (Entity Component System) en C++17',
-                    'Moteur réseau UDP bas-latence pour multijoueur',
-                    'Chiffrement custom des paquets pour la sécurité',
-                    'Performance optimisée pour le temps réel'
+                    'Architecture en microservices',
+                    'Gestion en temps réel via WebSockets',
+                    'Déploiement Docker & orchestration',
+                    'Plateforme web complète (Backend + Frontend)'
                 ],
-                tech: ['C++', 'ECS', 'UDP', 'Network'],
-                category: 'Systems Programming',
-                period: '2025 2025',
-                date: '2025-10',
-                github: 'https://github.com/yourusername/rtype',
-                media: '/rtype.png'
+                tech: ['Go', 'TypeScript', 'Docker', 'WebSockets'],
+                category: 'Full-Stack & Architecture',
+                period: 'Décembre 2025',
+                date: '2025-12',
+                github: 'https://github.com/Akashi05/JEB_Incubator',
+                media: '/survivor.png'
+            },
+            {
+                title: 'Raytracer',
+                role: 'Développeur Graphique',
+                description: 'Moteur de rendu 3D utilisant le ray tracing pour générer des images avec gestion des ombres, reflets et transparences.',
+                highlights: [
+                    'Gestion des lumières, ombres et réflexions',
+                    'Rendu d\'objets géométriques complexes',
+                    'Moteur de parsing pour la configuration des scènes',
+                    'Application de textures et matériaux'
+                ],
+                tech: ['C++', 'Mathématiques 3D', 'Ray Tracing'],
+                category: 'Programmation Graphique',
+                period: 'Juin 2025',
+                date: '2025-06',
+                github: 'https://github.com/Akashi05/Raytracer',
+                media: '/raytracer.png'
+            },
+            {
+                title: 'MyPandoc',
+                role: 'Développeur Fonctionnel',
+                description: 'Convertisseur de formats de documents (XML vers JSON/Markdown) développé en Haskell.',
+                highlights: [
+                    'Parsing et génération de données structurées (XML, JSON, MD)',
+                    'Développement en programmation fonctionnelle Haskell'
+                ],
+                tech: ['Haskell', 'Functional Programming', 'Parsing'],
+                category: 'Outils de Développement',
+                period: 'Mai 2025',
+                date: '2025-05',
+                github: 'https://github.com/Akashi05/MyPandoc',
+                media: '/mypandoc.png'
             },
             {
                 title: 'Arcade - Virtual Console',
                 role: 'Développeur Core & Jeux',
-                description: 'Console virtuelle avec plusieurs jeux et types d\'affichage différents (SFML, Ncurses, SDL).',
+                description: 'Console virtuelle with multiple games and different display types (SFML, Ncurses, SDL).',
                 highlights: [
                     'Implémentation de la logique des jeux en C++',
                     'Gestion du core reliant interface graphique et jeux',
@@ -193,11 +244,101 @@ export const translations = {
                 category: 'Game Development',
                 period: 'Mars - Avril 2025',
                 date: '2025-04',
-                github: 'https://github.com/yourusername/arcade',
+                github: 'https://github.com/Akashi05/Arcade',
                 media: '/arcade.png'
+            },
+            {
+                title: 'MiniLibC',
+                role: 'Développeur Système',
+                description: 'Réimplémentation partielle de la bibliothèque standard C en assembleur x86-64.',
+                highlights: [
+                    'Réécriture de fonctions systèmes (strlen, strcpy, etc.)',
+                    'Utilisation exclusive de l\'assembleur x86-64',
+                    'Optimisation bas niveau pour la performance'
+                ],
+                tech: ['Assembly', 'x86-64', 'System'],
+                category: 'Programmation Bas Niveau',
+                period: 'Mars 2025',
+                date: '2025-03',
+                github: 'https://github.com/Akashi05/MiniLibC',
+                media: '/libc.png'
+            },
+            {
+                title: 'AutoMakefile',
+                role: 'Développeur Outils',
+                description: 'Outil d\'automatisation pour la génération de Makefiles complexes pour des projets C/C++.',
+                highlights: [
+                    'Génération automatique de dépendances',
+                    'Support pour les projets C et C++',
+                    'Scripting shell pour l\'automatisation'
+                ],
+                tech: ['Shell', 'Bash', 'Makefile'],
+                category: 'DevOps & Outils',
+                period: 'Octobre 2024',
+                date: '2024-10',
+                github: 'https://github.com/Akashi05/AutoMakefile',
+                media: '/automake.png'
+            },
+            {
+                title: 'MyRPG',
+                role: 'Développeur Jeu Vidéo',
+                description: 'Moteur de jeu 2D avec gestion d\'inventaire, quêtes et combats en utilisant la bibliothèque CSFML.',
+                highlights: [
+                    'Moteur de jeu 2D avec CSFML',
+                    'Système de gestion de personnages et d\'inventaire',
+                    'Cartes interactives et PNJ'
+                ],
+                tech: ['C', 'CSFML', 'Game Engine'],
+                category: 'Développement de Jeux',
+                period: 'Octobre 2024',
+                date: '2024-10',
+                github: 'https://github.com/Akashi05/MyRPG',
+                media: '/myrpg.png'
+            },
+            {
+                title: 'Minishell2',
+                role: 'Développeur Système',
+                description: 'Interpréteur de commandes avancé gérant les pipes, les redirections et les variables d\'environnement.',
+                highlights: [
+                    'Gestion des pipes et des redirections',
+                    'Exécution de commandes systèmes et built-ins',
+                    'Gestion précise de l\'environnement Unix'
+                ],
+                tech: ['C', 'Unix', 'Shell'],
+                category: 'Programmation Système',
+                period: 'Septembre 2024',
+                date: '2024-09',
+                github: 'https://github.com/Akashi05/Minishell2',
+                media: '/minishell.png'
+            },
+            {
+                title: 'Chocolatine',
+                role: 'Ingénieur DevOps',
+                description: 'Mise en place de GitHub Actions pour automatiser des tâches (GitHub Technologie).',
+                highlights: [
+                    'Vérification de l\'existence des fichiers et du building effectif du projet',
+                    'Mirroring de répertoire GitHub'
+                ],
+                tech: ['GitHub Actions', 'CI/CD', 'Bash'],
+                category: 'DevOps',
+                period: 'Août 2024',
+                date: '2024-08',
+                github: 'https://github.com/Akashi05/CHOCOLATINE_PROJET',
+                media: '/cholatine.png'
             }
         ],
         experience_data: [
+            {
+                title: 'Stage académique (troisième année)',
+                company: 'Future Studio (incubateur)',
+                location: 'Cotonou, Bénin',
+                period: 'Avril 2026 - Juillet 2026',
+                achievements: [
+                    'Développement d\'ArbitraChain, une plateforme d\'accessibilité aux marchés de prédiction, au sein de l\'incubateur Future Studio.',
+                    'Conception et implémentation d\'un moteur d\'arbitrage haute performance en Rust.',
+                    'Accompagnement par Future Studio pour la mise sur le marché et l\'optimisation de l\'efficacité du produit.'
+                ]
+            },
             {
                 title: 'Voyage d\'immersion tech à Lagos',
                 company: 'EPITECH (Study Trip)',
@@ -207,6 +348,17 @@ export const translations = {
                     'Immersion d\'une semaine pour découvrir l\'écosystème technologique dynamique du Nigeria.',
                     'Rencontres stratégiques avec des acteurs clés : Maliyo Games, ALX Nigeria, Rank et Oracle.',
                     'Analyse des opportunités et des défis technologiques sur le marché nigérian.'
+                ]
+            },
+            {
+                title: 'Hackaton Beyond Memories',
+                company: 'Team Genesis',
+                location: 'Cotonou, Bénin',
+                period: 'Novembre 2025',
+                achievements: [
+                    'Conception d\'un mémorial virtuel universel (mémoire humaine numérique) visant à préserver l\'héritage numérique.',
+                    'Utilisation de technologies innovantes pour la gestion de données mémorielles.',
+                    'Projet labellisé #TechForGood et #Innovation.'
                 ]
             },
             {
@@ -261,7 +413,7 @@ export const translations = {
                 details: 'including 60+ academic and 10+ personal',
                 tech: 30,
                 tech_label: 'Technologies',
-                experience: 3,
+                experience: 5,
                 experience_label: 'Experiences'
             },
             formation: 'Education',
@@ -332,53 +484,6 @@ export const translations = {
                 media: '/arbitrachain.png'
             },
             {
-                title: 'Chocolatine',
-                role: 'DevOps Engineer',
-                description: 'Implementation of GitHub Actions to automate tasks (GitHub Technology).',
-                highlights: [
-                    'Verification of file existence and effective project building',
-                    'Mirroring GitHub repository'
-                ],
-                tech: ['GitHub Actions', 'CI/CD', 'Bash'],
-                category: 'DevOps',
-                period: '2024 2024',
-                date: '2024-01',
-                github: 'https://github.com/Akashi05/CHOCOLATINE_PROJET',
-                media: '/cholatine.png'
-            },
-            {
-                title: 'JEB Incubator',
-                role: 'Backend Developer',
-                description: 'Design of a web application for an incubator company.',
-                highlights: [
-                    'Web application design',
-                    'Backend development using Django'
-                ],
-                tech: ['Django', 'Python', 'Web'],
-                category: 'Web Development',
-                period: 'September 2025',
-                date: '2025-09',
-                github: 'https://github.com/yourusername/jeb-incubator',
-                media: '/jeb.png'
-            },
-            {
-                title: 'Whanos - DevOps Platform',
-                role: 'DevOps Engineer',
-                description: 'CI/CD automation platform capable of detecting repo technology, building Docker images, and auto-deploying.',
-                highlights: [
-                    'Engineered a Jenkins CI/CD platform',
-                    'Automatic detection of repository technology stack',
-                    'Built robust and standardized Docker images',
-                    'Automated application deployment'
-                ],
-                tech: ['Jenkins', 'Docker', 'Bash', 'Groovy'],
-                category: 'DevOps & Automation',
-                period: '2025 2025',
-                date: '2025-05',
-                github: 'https://github.com/yourusername/whanos',
-                media: '/whanos.png'
-            },
-            {
                 title: 'AREA - Automation Platform',
                 role: 'Lead Backend & Architect',
                 description: 'IFTTT/Zapier clone with Django/DRF microservices architecture. Asynchronous automation engine with multithreaded workers for API integrations (Google, Discord, GitHub, etc).',
@@ -390,10 +495,42 @@ export const translations = {
                 ],
                 tech: ['Django', 'DRF', 'Docker', 'PostgreSQL', 'OAuth2', 'Railway'],
                 category: 'Full-Stack & Architecture',
-                period: '2025 2025',
-                date: '2025-12',
+                period: 'January 2026',
+                date: '2026-01',
                 github: 'https://github.com/evra0/G-DEV-500-COT-5-2-area-10/tree/main',
                 media: '/area.png'
+            },
+            {
+                title: 'Gomoku',
+                role: 'AI Developer',
+                description: 'High-performance AI implementation for the Gomoku game using the Minimax algorithm with Alpha-Beta pruning.',
+                highlights: [
+                    'AI based on the Minimax algorithm',
+                    'Alpha-Beta pruning optimization for better performance',
+                    'Command-line interface for playing against the computer'
+                ],
+                tech: ['C++', 'Minimax', 'AI'],
+                category: 'Artificial Intelligence',
+                period: 'January 2026',
+                date: '2026-01',
+                github: 'https://github.com/Akashi05/Gomoku',
+                media: '/gomoku.png'
+            },
+            {
+                title: 'NeuralNetwork',
+                role: 'AI Researcher',
+                description: 'Creation of a multilayer neural network in C for image recognition, trained on the MNIST dataset, achieving 96% accuracy.',
+                highlights: [
+                    'Multilayer Perceptron (MLP) architecture',
+                    'Training with gradient backpropagation algorithm',
+                    'Activation functions and backpropagation management'
+                ],
+                tech: ['C', 'Machine Learning', 'Mathematics'],
+                category: 'Artificial Intelligence',
+                period: 'November 2025',
+                date: '2025-11',
+                github: 'https://github.com/Akashi05/NeuralNetwork',
+                media: '/nn.png'
             },
             {
                 title: 'R-Type Game Engine',
@@ -407,10 +544,75 @@ export const translations = {
                 ],
                 tech: ['C++', 'ECS', 'UDP', 'Network'],
                 category: 'Systems Programming',
-                period: '2025 2025',
-                date: '2025-10',
-                github: 'https://github.com/yourusername/rtype',
+                period: 'November 2025',
+                date: '2025-11',
+                github: 'https://github.com/Akashi05/rtype',
                 media: '/rtype.png'
+            },
+            {
+                title: 'Whanos - DevOps Platform',
+                role: 'DevOps Engineer',
+                description: 'CI/CD automation platform capable of detecting repo technology, building Docker images, and auto-deploying.',
+                highlights: [
+                    'Engineered a Jenkins CI/CD platform',
+                    'Automatic detection of repository technology stack',
+                    'Built robust and standardized Docker images',
+                    'Automated application deployment'
+                ],
+                tech: ['Jenkins', 'Docker', 'Bash', 'Groovy'],
+                category: 'DevOps & Automation',
+                period: 'November 2025',
+                date: '2025-11',
+                github: 'https://github.com/Akashi05/Whanos',
+                media: '/whanos.png'
+            },
+            {
+                title: 'JEB Incubator',
+                role: 'Backend Developer',
+                description: 'Comprehensive space-related project managing a marketplace between individuals and professionals, featuring interactive auctions.',
+                highlights: [
+                    'Microservices architecture',
+                    'Real-time management via WebSockets',
+                    'Docker deployment & orchestration',
+                    'Full web platform (Backend + Frontend)'
+                ],
+                tech: ['Go', 'TypeScript', 'Docker', 'WebSockets'],
+                category: 'Full-Stack & Architecture',
+                period: 'December 2025',
+                date: '2025-12',
+                github: 'https://github.com/Akashi05/JEB_Incubator',
+                media: '/survivor.png'
+            },
+            {
+                title: 'Raytracer',
+                role: 'Graphics Developer',
+                description: '3D rendering engine using ray tracing to generate images with shadow, reflection, and transparency management.',
+                highlights: [
+                    'Light, shadow, and reflection management',
+                    'Rendering of complex geometric objects',
+                    'Parsing engine for scene configuration',
+                    'Application of textures and materials'
+                ],
+                tech: ['C++', '3D Mathematics', 'Ray Tracing'],
+                category: 'Graphics Programming',
+                period: 'June 2025',
+                date: '2025-06',
+                media: '/raytracer.png'
+            },
+            {
+                title: 'MyPandoc',
+                role: 'Functional Developer',
+                description: 'Document format converter (XML to JSON/Markdown) developed in Haskell.',
+                highlights: [
+                    'Parsing and generation of structured data (XML, JSON, MD)',
+                    'Haskell functional programming development'
+                ],
+                tech: ['Haskell', 'Functional Programming', 'Parsing'],
+                category: 'Development Tools',
+                period: 'May 2025',
+                date: '2025-05',
+                github: 'https://github.com/Akashi05/MyPandoc',
+                media: '/mypandoc.png'
             },
             {
                 title: 'Arcade - Virtual Console',
@@ -426,11 +628,101 @@ export const translations = {
                 category: 'Game Development',
                 period: 'March - April 2025',
                 date: '2025-04',
-                github: 'https://github.com/yourusername/arcade',
+                github: 'https://github.com/Akashi05/Arcade',
                 media: '/arcade.png'
+            },
+            {
+                title: 'MiniLibC',
+                role: 'System Developer',
+                description: 'Partial reimplementation of the standard C library in x86-64 assembly.',
+                highlights: [
+                    'Rewriting system functions (strlen, strcpy, etc.)',
+                    'Exclusive use of x86-64 assembly',
+                    'Low-level optimization for performance'
+                ],
+                tech: ['Assembly', 'x86-64', 'System'],
+                category: 'Low-Level Programming',
+                period: 'March 2025',
+                date: '2025-03',
+                github: 'https://github.com/Akashi05/MiniLibC',
+                media: '/libc.png'
+            },
+            {
+                title: 'AutoMakefile',
+                role: 'Tool Developer',
+                description: 'Automation tool for generating complex Makefiles for C/C++ projects.',
+                highlights: [
+                    'Automatic dependency generation',
+                    'Support for C and C++ projects',
+                    'Shell scripting for automation'
+                ],
+                tech: ['Shell', 'Bash', 'Makefile'],
+                category: 'DevOps & Tooling',
+                period: 'October 2024',
+                date: '2024-10',
+                github: 'https://github.com/Akashi05/AutoMakefile',
+                media: '/automake.png'
+            },
+            {
+                title: 'MyRPG',
+                role: 'Game Developer',
+                description: '2D game engine with inventory, quest, and combat management using the CSFML library.',
+                highlights: [
+                    '2D game engine with CSFML',
+                    'Character and inventory management system',
+                    'Interactive maps and NPCs'
+                ],
+                tech: ['C', 'CSFML', 'Game Engine'],
+                category: 'Game Development',
+                period: 'October 2024',
+                date: '2024-10',
+                github: 'https://github.com/Akashi05/MyRPG',
+                media: '/myrpg.png'
+            },
+            {
+                title: 'Minishell2',
+                role: 'System Developer',
+                description: 'Advanced command interpreter managing pipes, redirections, and environment variables.',
+                highlights: [
+                    'Pipes and redirections management',
+                    'System commands and built-ins execution',
+                    'Unix environment precision management'
+                ],
+                tech: ['C', 'Unix', 'Shell'],
+                category: 'System Programming',
+                period: 'September 2024',
+                date: '2024-09',
+                github: 'https://github.com/Akashi05/Minishell2',
+                media: '/minishell.png'
+            },
+            {
+                title: 'Chocolatine',
+                role: 'DevOps Engineer',
+                description: 'Implementation of GitHub Actions to automate tasks (GitHub Technology).',
+                highlights: [
+                    'Verification of file existence and effective project building',
+                    'Mirroring GitHub repository'
+                ],
+                tech: ['GitHub Actions', 'CI/CD', 'Bash'],
+                category: 'DevOps',
+                period: 'August 2024',
+                date: '2024-08',
+                github: 'https://github.com/Akashi05/CHOCOLATINE_PROJET',
+                media: '/cholatine.png'
             }
         ],
         experience_data: [
+            {
+                title: 'Academic Internship (Third Year)',
+                company: 'Future Studio (incubator)',
+                location: 'Cotonou, Benin',
+                period: 'April 2026 - July 2026',
+                achievements: [
+                    'Development of ArbitraChain, a prediction market accessibility platform, within the Future Studio incubator.',
+                    'Design and implementation of a high-performance arbitrage engine in Rust.',
+                    'Support from Future Studio for product effectiveness and market readiness.'
+                ]
+            },
             {
                 title: 'Tech Immersion Trip to Lagos',
                 company: 'EPITECH (Study Trip)',
@@ -440,6 +732,17 @@ export const translations = {
                     'One-week immersion to discover Nigeria\'s dynamic tech ecosystem.',
                     'Strategic meetings with key players: Maliyo Games, ALX Nigeria, Rank, and Oracle.',
                     'Analysis of technological opportunities and challenges in the Nigerian market.'
+                ]
+            },
+            {
+                title: 'Hackathon Beyond Memories',
+                company: 'Team Genesis',
+                location: 'Cotonou, Benin',
+                period: 'November 2025',
+                achievements: [
+                    'Design of a universal virtual memorial (digital human memory) aiming to preserve digital legacy.',
+                    'Utilization of innovative technologies for memorial data management.',
+                    'Project labeled #TechForGood and #Innovation.'
                 ]
             },
             {

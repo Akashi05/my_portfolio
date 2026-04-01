@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone } from 'lucide-react';
 import { translations } from '../data/translations';
+import { useForm, ValidationError } from '@formspree/react';
 
 interface ContactProps {
     language: 'fr' | 'en';
@@ -9,6 +10,7 @@ interface ContactProps {
 }
 
 export default function Contact({ language, darkMode }: ContactProps) {
+    const [state, handleSubmit] = useForm("xdapdrpv"); // Remplace avec ton ID Formspree si tu en as un, sinon il faudra en créer un
     const t = translations;
     const cardClass = darkMode
         ? 'glass-card'
@@ -60,30 +62,42 @@ export default function Contact({ language, darkMode }: ContactProps) {
                         </a>
                     </div>
 
-                    <form className={`${cardClass} p-8 rounded-3xl border space-y-6`}>
+                    <form onSubmit={handleSubmit} className={`${cardClass} p-8 rounded-3xl border space-y-6`}>
                         <div>
-                            <label className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_name}</label>
+                            <label htmlFor="name" className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_name}</label>
                             <input
+                                id="name"
                                 type="text"
+                                name="name"
+                                required
                                 className="w-full bg-zinc-500/5 border border-zinc-500/10 rounded-xl px-4 py-3 focus:outline-none focus:border-zinc-500 transition-colors"
                             />
+                            <ValidationError prefix="Name" field="name" errors={state.errors} />
                         </div>
                         <div>
-                            <label className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_email}</label>
+                            <label htmlFor="email" className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_email}</label>
                             <input
+                                id="email"
                                 type="email"
+                                name="email"
+                                required
                                 className="w-full bg-zinc-500/5 border border-zinc-500/10 rounded-xl px-4 py-3 focus:outline-none focus:border-zinc-500 transition-colors"
                             />
+                            <ValidationError prefix="Email" field="email" errors={state.errors} />
                         </div>
                         <div>
-                            <label className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_message}</label>
+                            <label htmlFor="message" className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_message}</label>
                             <textarea
+                                id="message"
+                                name="message"
+                                required
                                 rows={4}
                                 className="w-full bg-zinc-500/5 border border-zinc-500/10 rounded-xl px-4 py-3 focus:outline-none focus:border-zinc-500 transition-colors"
                             ></textarea>
+                            <ValidationError prefix="Message" field="message" errors={state.errors} />
                         </div>
-                        <button className="w-full bg-zinc-900 dark:bg-white text-white dark:text-black font-bold py-4 rounded-xl hover:scale-[1.02] transition-transform">
-                            {t[language].contact.form_send}
+                        <button type="submit" disabled={state.submitting} className="w-full bg-zinc-900 dark:bg-white text-white dark:text-black font-bold py-4 rounded-xl hover:scale-[1.02] transition-transform disabled:opacity-50">
+                            {state.succeeded ? (language === 'fr' ? 'Message envoyé !' : 'Message sent!') : t[language].contact.form_send}
                         </button>
                     </form>
                 </div>
