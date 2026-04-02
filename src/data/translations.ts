@@ -196,7 +196,7 @@ export const translations = {
                 period: 'Décembre 2025',
                 date: '2025-12',
                 github: 'https://github.com/Akashi05/JEB_Incubator',
-                media: '/survivor.png'
+                media: '/jeb.png'
             },
             {
                 title: 'Raytracer',
@@ -293,7 +293,7 @@ export const translations = {
                 period: 'Octobre 2024',
                 date: '2024-10',
                 github: 'https://github.com/Akashi05/MyRPG',
-                media: '/myrpg.png'
+                media: '/rpg.png'
             },
             {
                 title: 'Minishell2',
@@ -581,7 +581,7 @@ export const translations = {
                 period: 'December 2025',
                 date: '2025-12',
                 github: 'https://github.com/Akashi05/JEB_Incubator',
-                media: '/survivor.png'
+                media: '/jeb.png'
             },
             {
                 title: 'Raytracer',
@@ -678,7 +678,7 @@ export const translations = {
                 period: 'October 2024',
                 date: '2024-10',
                 github: 'https://github.com/Akashi05/MyRPG',
-                media: '/myrpg.png'
+                media: '/rpg.png'
             },
             {
                 title: 'Minishell2',
