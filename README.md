@@ -4,7 +4,7 @@ Bienvenue sur le dépôt de mon portfolio personnel. Ce projet est une vitrine d
 
 ## 🚀 Aperçu
 
-Vous pouvez consulter la version en ligne ici : [https://berenger-sessou.vercel.app/](https://berenger-sessou.vercel.app/)
+Vous pouvez consulter la version en ligne ici : [Portfolio en ligne](https://berenger-sessou.vercel.app/)
 
 ## 🛠️ Technologies utilisées
 

@@ -20,7 +20,7 @@ export const translations = {
             description5: 'Aujourd’hui, je cherche à évoluer dans des environnements stimulants, académiques comme professionnels, où je pourrai continuer à apprendre, contribuer et participer à la création de solutions à impact.',
             stats: {
                 total: 60,
-                total_label: 'Projets au total',
+                total_label: 'Projets au total (mini projets & projets)',
                 school: 50,
                 school_label: 'Projets scolaires',
                 personal: 10,
@@ -121,8 +121,8 @@ export const translations = {
                 description: 'Implémentation d\'une IA performante pour le jeu Gomoku utilisant l\'algorithme Minimax avec élagage Alpha-Beta.',
                 highlights: [
                     'IA basée sur l\'algorithme Minimax',
-                    'Optimisation par élagage Alpha-Beta pour une meilleure performance',
-                    'Interface en ligne de commande pour le jeu contre l\'ordinateur'
+                    'Optimisation par Zobrist Hashing et élagage Alpha-Beta',
+                    'Heuristiques avancées pour l\'évaluation et la gestion du temps'
                 ],
                 tech: ['C++', 'Minimax', 'AI'],
                 category: 'Intelligence Artificielle',
@@ -134,13 +134,13 @@ export const translations = {
             {
                 title: 'NeuralNetwork',
                 role: 'Chercheur en IA',
-                description: 'Création d\'un réseau de neurones multicouche en C pour la reconnaissance d\'images, entraîné sur le dataset MNIST, atteignant 96% de précision.',
+                description: 'Implémentation complète d\'un framework de réseaux de neurones (type PyTorch) à partir de zéro en Python avec NumPy. Inclut la gestion des couches, fonctions d\'activation, de perte et optimiseurs.',
                 highlights: [
-                    'Architecture en réseau multicouche (MLP)',
-                    'Entraînement avec l\'algorithme de rétropropagation du gradient',
-                    'Gestion des fonctions d\'activation et du calcul de l\'erreur'
+                    'Framework de deep learning reproduisant les fonctionnalités de PyTorch',
+                    'Optimisation avec NumPy pour le calcul matriciel',
+                    'Entraînement sur la classification de positions d\'échecs et problème XOR'
                 ],
-                tech: ['C', 'Machine Learning', 'Mathématiques'],
+                tech: ['Python', 'NumPy', 'Machine Learning', 'Framework Design'],
                 category: 'Intelligence Artificielle',
                 period: 'Novembre 2025',
                 date: '2025-11',
@@ -152,10 +152,10 @@ export const translations = {
                 role: 'Développeur Moteur',
                 description: 'Moteur de jeu 2D haute performance développé de zéro en C++17 avec architecture ECS.',
                 highlights: [
-                    'Architecture ECS (Entity Component System) en C++17',
+                    'Architecture ECS (Entity Component System) sur mesure',
                     'Moteur réseau UDP faible latence pour le multijoueur',
-                    'Chiffrement réseau sur mesure',
-                    'Performances optimisées pour le temps réel'
+                    'Gestion de projet avec Conan et CMake',
+                    'Performances optimisées pour le multijoueur'
                 ],
                 tech: ['C++', 'ECS', 'UDP', 'Réseau'],
                 category: 'Programmation Système',
@@ -167,14 +167,14 @@ export const translations = {
             {
                 title: 'Whanos - DevOps Platform',
                 role: 'Ingénieur DevOps',
-                description: 'Plateforme d\'automatisation CI/CD capable de détecter la technologie d\'un dépôt, builder des images Docker et les déployer automatiquement.',
+                description: 'Plateforme PaaS automatisant la détection de technologie, la création d\'images Docker et le déploiement sur Kubernetes.',
                 highlights: [
                     'Conception d\'une plateforme CI/CD avec Jenkins',
                     'Détection automatique de la stack technologique',
                     'Création d\'images Docker standardisées',
-                    'Déploiement automatisé d\'applications'
+                    'Déploiement automatisé d\'applications sur Kubernetes'
                 ],
-                tech: ['Jenkins', 'Docker', 'Bash', 'Groovy'],
+                tech: ['Jenkins', 'Ansible', 'Kubernetes', 'Docker'],
                 category: 'DevOps & Automatisation',
                 period: 'Novembre 2025',
                 date: '2025-11',
@@ -184,14 +184,14 @@ export const translations = {
             {
                 title: 'JEB Incubator',
                 role: 'Développeur Backend',
-                description: 'Projet complet autour de l\'espace, gérant une marketplace entre particuliers et professionnels, avec des enchères interactives.',
+                description: 'Plateforme de gestion pour incubateur de startups. Backend robuste avec Django et frontend dynamique en Next.js.',
                 highlights: [
                     'Architecture en microservices',
                     'Gestion en temps réel via WebSockets',
                     'Déploiement Docker & orchestration',
-                    'Plateforme web complète (Backend + Frontend)'
+                    'Plateforme web complète (Django + Next.js)'
                 ],
-                tech: ['Go', 'TypeScript', 'Docker', 'WebSockets'],
+                tech: ['Django', 'Next.js', 'PostgreSQL', 'DRF'],
                 category: 'Full-Stack & Architecture',
                 period: 'Décembre 2025',
                 date: '2025-12',
@@ -203,10 +203,10 @@ export const translations = {
                 role: 'Développeur Graphique',
                 description: 'Moteur de rendu 3D utilisant le ray tracing pour générer des images avec gestion des ombres, reflets et transparences.',
                 highlights: [
-                    'Gestion des lumières, ombres et réflexions',
-                    'Rendu d\'objets géométriques complexes',
-                    'Moteur de parsing pour la configuration des scènes',
-                    'Application de textures et matériaux'
+                    'Gestion des lumières, ombres portées et réflexions',
+                    'Rendu de formes géométriques : sphères, cylindres et cônes',
+                    'Simulations d\'interaction lumineuse complexe',
+                    'Support des transformations géométriques'
                 ],
                 tech: ['C++', 'Mathématiques 3D', 'Ray Tracing'],
                 category: 'Programmation Graphique',
@@ -218,7 +218,7 @@ export const translations = {
             {
                 title: 'MyPandoc',
                 role: 'Développeur Fonctionnel',
-                description: 'Convertisseur de formats de documents (XML vers JSON/Markdown) développé en Haskell.',
+                description: 'Convertisseur de documents haute fidélité supportant Markdown, JSON et XML, développé en Haskell.',
                 highlights: [
                     'Parsing et génération de données structurées (XML, JSON, MD)',
                     'Développement en programmation fonctionnelle Haskell'
@@ -233,14 +233,14 @@ export const translations = {
             {
                 title: 'Arcade - Virtual Console',
                 role: 'Développeur Core & Jeux',
-                description: 'Console virtuelle with multiple games and different display types (SFML, Ncurses, SDL).',
+                description: 'Console virtuelle modulaire capable de charger dynamiquement des jeux et des moteurs graphiques (SFML, SDL2, Ncurses) au runtime.',
                 highlights: [
-                    'Implémentation de la logique des jeux en C++',
-                    'Gestion du core reliant interface graphique et jeux',
-                    'Support multi-display (SFML, Ncurses, SDL)',
-                    'Architecture modulaire pour ajout de nouveaux jeux'
+                    'Chargement dynamique de bibliothèques partagées',
+                    'Abstraction totale du moteur graphique',
+                    'Jeux implémentés : Snake, Nibbler',
+                    'Changement de moteur graphique en plein jeu'
                 ],
-                tech: ['C++', 'SFML', 'Ncurses', 'SDL'],
+                tech: ['C++', 'SFML', 'Ncurses', 'SDL2'],
                 category: 'Game Development',
                 period: 'Mars - Avril 2025',
                 date: '2025-04',
@@ -256,7 +256,7 @@ export const translations = {
                     'Utilisation exclusive de l\'assembleur x86-64',
                     'Optimisation bas niveau pour la performance'
                 ],
-                tech: ['Assembly', 'x86-64', 'System'],
+                tech: ['Assembly x86-64', 'NASM', 'System'],
                 category: 'Programmation Bas Niveau',
                 period: 'Mars 2025',
                 date: '2025-03',
@@ -266,7 +266,7 @@ export const translations = {
             {
                 title: 'AutoMakefile',
                 role: 'Développeur Outils',
-                description: 'Outil d\'automatisation pour la génération de Makefiles complexes pour des projets C/C++.',
+                description: 'Script d\'automatisation Bash permettant de générer automatiquement des Makefiles complexes.',
                 highlights: [
                     'Génération automatique de dépendances',
                     'Support pour les projets C et C++',
@@ -288,7 +288,7 @@ export const translations = {
                     'Système de gestion de personnages et d\'inventaire',
                     'Cartes interactives et PNJ'
                 ],
-                tech: ['C', 'CSFML', 'Game Engine'],
+                tech: ['C', 'CSFML', 'Game Development'],
                 category: 'Développement de Jeux',
                 period: 'Octobre 2024',
                 date: '2024-10',
@@ -301,8 +301,8 @@ export const translations = {
                 description: 'Interpréteur de commandes avancé gérant les pipes, les redirections et les variables d\'environnement.',
                 highlights: [
                     'Gestion des pipes et des redirections',
-                    'Exécution de commandes systèmes et built-ins',
-                    'Gestion précise de l\'environnement Unix'
+                    'Exécution de commandes via execve',
+                    'Gestion précise de l\'environnement Unix et des signaux'
                 ],
                 tech: ['C', 'Unix', 'Shell'],
                 category: 'Programmation Système',
@@ -314,7 +314,7 @@ export const translations = {
             {
                 title: 'Chocolatine',
                 role: 'Ingénieur DevOps',
-                description: 'Mise en place de GitHub Actions pour automatiser des tâches (GitHub Technologie).',
+                description: 'Automatisation de la compilation et du respect des normes de codage (Epitech Coding Style) via GitHub Actions.',
                 highlights: [
                     'Vérification de l\'existence des fichiers et du building effectif du projet',
                     'Mirroring de répertoire GitHub'
@@ -405,7 +405,7 @@ export const translations = {
             description5: 'Today, I am looking to grow in stimulating environments, both academic and professional, where I can continue to learn, contribute, and participate in creating impactful solutions.',
             stats: {
                 total: 60,
-                total_label: 'Total projects',
+                total_label: 'Total projects (mini projects & projects)',
                 school: 50,
                 school_label: 'Academic projects',
                 personal: 10,
@@ -506,8 +506,8 @@ export const translations = {
                 description: 'High-performance AI implementation for the Gomoku game using the Minimax algorithm with Alpha-Beta pruning.',
                 highlights: [
                     'AI based on the Minimax algorithm',
-                    'Alpha-Beta pruning optimization for better performance',
-                    'Command-line interface for playing against the computer'
+                    'Optimization via Zobrist Hashing and Alpha-Beta pruning',
+                    'Advanced heuristics for evaluation and time management'
                 ],
                 tech: ['C++', 'Minimax', 'AI'],
                 category: 'Artificial Intelligence',
@@ -519,13 +519,13 @@ export const translations = {
             {
                 title: 'NeuralNetwork',
                 role: 'AI Researcher',
-                description: 'Creation of a multilayer neural network in C for image recognition, trained on the MNIST dataset, achieving 96% accuracy.',
+                description: 'Complete implementation of a neural network framework (PyTorch-like) from scratch in Python using NumPy. Features layers, activation functions, loss functions, and optimizers.',
                 highlights: [
-                    'Multilayer Perceptron (MLP) architecture',
-                    'Training with gradient backpropagation algorithm',
-                    'Activation functions and backpropagation management'
+                    'Deep learning framework reproducing PyTorch functionalities',
+                    'NumPy optimization for matrix computations',
+                    'Trained on chess position classification and XOR problem'
                 ],
-                tech: ['C', 'Machine Learning', 'Mathematics'],
+                tech: ['Python', 'NumPy', 'Machine Learning', 'Framework Design'],
                 category: 'Artificial Intelligence',
                 period: 'November 2025',
                 date: '2025-11',
@@ -537,10 +537,10 @@ export const translations = {
                 role: 'Engine Developer',
                 description: 'High-performance 2D game engine developed from scratch in C++17 with ECS architecture.',
                 highlights: [
-                    'ECS (Entity Component System) architecture in C++17',
+                    'Custom ECS (Entity Component System) architecture',
                     'Low-latency UDP network engine for multiplayer',
-                    'Custom packet encryption for security',
-                    'Optimized performance for real-time'
+                    'Project management with Conan and CMake',
+                    'Optimized performance for real-time multiplayer'
                 ],
                 tech: ['C++', 'ECS', 'UDP', 'Network'],
                 category: 'Systems Programming',
@@ -552,14 +552,14 @@ export const translations = {
             {
                 title: 'Whanos - DevOps Platform',
                 role: 'DevOps Engineer',
-                description: 'CI/CD automation platform capable of detecting repo technology, building Docker images, and auto-deploying.',
+                description: 'PaaS platform automating technology detection, Docker image creation, and Kubernetes deployment.',
                 highlights: [
                     'Engineered a Jenkins CI/CD platform',
                     'Automatic detection of repository technology stack',
                     'Built robust and standardized Docker images',
-                    'Automated application deployment'
+                    'Automated application deployment on Kubernetes'
                 ],
-                tech: ['Jenkins', 'Docker', 'Bash', 'Groovy'],
+                tech: ['Jenkins', 'Ansible', 'Kubernetes', 'Docker'],
                 category: 'DevOps & Automation',
                 period: 'November 2025',
                 date: '2025-11',
@@ -569,14 +569,14 @@ export const translations = {
             {
                 title: 'JEB Incubator',
                 role: 'Backend Developer',
-                description: 'Comprehensive space-related project managing a marketplace between individuals and professionals, featuring interactive auctions.',
+                description: 'Management platform for startup incubators. Robust Django backend and dynamic Next.js frontend.',
                 highlights: [
                     'Microservices architecture',
                     'Real-time management via WebSockets',
                     'Docker deployment & orchestration',
-                    'Full web platform (Backend + Frontend)'
+                    'Full web platform (Django + Next.js)'
                 ],
-                tech: ['Go', 'TypeScript', 'Docker', 'WebSockets'],
+                tech: ['Django', 'Next.js', 'PostgreSQL', 'DRF'],
                 category: 'Full-Stack & Architecture',
                 period: 'December 2025',
                 date: '2025-12',
@@ -589,20 +589,21 @@ export const translations = {
                 description: '3D rendering engine using ray tracing to generate images with shadow, reflection, and transparency management.',
                 highlights: [
                     'Light, shadow, and reflection management',
-                    'Rendering of complex geometric objects',
-                    'Parsing engine for scene configuration',
-                    'Application of textures and materials'
+                    'Rendering of geometric shapes: spheres, cylinders, and cones',
+                    'Complex light interaction simulations',
+                    'Support for geometric transformations'
                 ],
                 tech: ['C++', '3D Mathematics', 'Ray Tracing'],
                 category: 'Graphics Programming',
                 period: 'June 2025',
                 date: '2025-06',
+                github: 'https://github.com/Akashi05/Raytracer',
                 media: '/raytracer.png'
             },
             {
                 title: 'MyPandoc',
                 role: 'Functional Developer',
-                description: 'Document format converter (XML to JSON/Markdown) developed in Haskell.',
+                description: 'High-fidelity document converter supporting Markdown, JSON, and XML, developed in Haskell.',
                 highlights: [
                     'Parsing and generation of structured data (XML, JSON, MD)',
                     'Haskell functional programming development'
@@ -617,14 +618,14 @@ export const translations = {
             {
                 title: 'Arcade - Virtual Console',
                 role: 'Core & Game Developer',
-                description: 'Virtual console with multiple games and different display types (SFML, Ncurses, SDL).',
+                description: 'Modular virtual console capable of dynamically loading games and graphics engines (SFML, SDL2, Ncurses) at runtime.',
                 highlights: [
-                    'Implementation of game logic in C++',
-                    'Core management linking GUI and games',
-                    'Multi-display support (SFML, Ncurses, SDL)',
-                    'Modular architecture for adding new games'
+                    'Dynamic loading of shared libraries',
+                    'Total abstraction of the graphics engine',
+                    'Implemented games: Snake, Nibbler',
+                    'In-game graphics engine switching'
                 ],
-                tech: ['C++', 'SFML', 'Ncurses', 'SDL'],
+                tech: ['C++', 'SFML', 'Ncurses', 'SDL2'],
                 category: 'Game Development',
                 period: 'March - April 2025',
                 date: '2025-04',
@@ -640,7 +641,7 @@ export const translations = {
                     'Exclusive use of x86-64 assembly',
                     'Low-level optimization for performance'
                 ],
-                tech: ['Assembly', 'x86-64', 'System'],
+                tech: ['Assembly x86-64', 'NASM', 'System'],
                 category: 'Low-Level Programming',
                 period: 'March 2025',
                 date: '2025-03',
@@ -672,7 +673,7 @@ export const translations = {
                     'Character and inventory management system',
                     'Interactive maps and NPCs'
                 ],
-                tech: ['C', 'CSFML', 'Game Engine'],
+                tech: ['C', 'CSFML', 'Game Development'],
                 category: 'Game Development',
                 period: 'October 2024',
                 date: '2024-10',
@@ -685,8 +686,8 @@ export const translations = {
                 description: 'Advanced command interpreter managing pipes, redirections, and environment variables.',
                 highlights: [
                     'Pipes and redirections management',
-                    'System commands and built-ins execution',
-                    'Unix environment precision management'
+                    'Command execution via execve',
+                    'Unix environment and signals management'
                 ],
                 tech: ['C', 'Unix', 'Shell'],
                 category: 'System Programming',
@@ -698,7 +699,7 @@ export const translations = {
             {
                 title: 'Chocolatine',
                 role: 'DevOps Engineer',
-                description: 'Implementation of GitHub Actions to automate tasks (GitHub Technology).',
+                description: 'Automation of compilation and Epitech Coding Style compliance via GitHub Actions.',
                 highlights: [
                     'Verification of file existence and effective project building',
                     'Mirroring GitHub repository'

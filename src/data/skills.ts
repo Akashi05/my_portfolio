@@ -1,13 +1,13 @@
 export const skills = {
     languages: [
-        { name: 'SDL', logo: 'libsdl' },
+        { name: 'SDL', logo: '/sdl.svg' },
         { name: 'C++', logo: 'cplusplus' },
         { name: 'Rust', logo: 'rust' },
         { name: 'Python', logo: 'python' },
         { name: 'JavaScript', logo: 'javascript' },
         { name: 'Haskell', logo: 'haskell' },
         { name: 'HTML', logo: 'html5' },
-        { name: 'CSS', logo: 'css3' }
+        { name: 'CSS', logo: 'css' }
     ],
     frameworks: [
         { name: 'Django', logo: 'django' },

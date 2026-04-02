@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .bs-text { fill: white; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-weight: 900; font-size: 70px; }
+    @media (prefers-color-scheme: light) {
+      .bs-text { fill: black; }
+    }
+    .bs-dot { fill: #71717a; }
+  </style>
+  <text x="0" y="75" class="bs-text" letter-spacing="-5">BS</text>
+  <circle cx="92" cy="74" r="8" class="bs-dot" />
+</svg>

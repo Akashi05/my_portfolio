@@ -46,7 +46,7 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
                             <div className="absolute -inset-4 bg-zinc-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
                             <div className="relative w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-2 border-zinc-500/20 shadow-2xl">
                                 <img
-                                    src="/dio.jpg"
+                                    src="/profil.jpeg"
                                     alt="Bérenger SESSOU"
                                     className={`w-full h-full object-cover transition-all duration-700 ${isColor ? 'grayscale-0' : 'grayscale hover:grayscale-0'}`}
                                 />

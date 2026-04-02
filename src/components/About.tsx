@@ -34,57 +34,10 @@ export default function About({ language, darkMode }: AboutProps) {
     const highPriority = ['C', 'C++', 'Django', 'Django REST Framework', 'Git', 'Docker'];
     const mediumPriority = ['Python', 'Rust', 'PostgreSQL', 'GitHub Actions', 'SDL'];
 
-    // Preprocessing function to fill holes
-    const processSkills = (targetCols: number) => {
-        const flattened = Object.entries(skills).flatMap(([category, items]) =>
-            items.map(skill => ({ ...skill, category }))
-        );
-
-        let currentRowUsage = 0;
-        const result: any[] = [];
-
-        flattened.forEach((skill) => {
-            let span = highPriority.includes(skill.name) || mediumPriority.includes(skill.name) ? 2 : 1;
-
-            // Limit span to targetCols
-            if (span > targetCols) span = targetCols;
-
-            if (currentRowUsage + span > targetCols) {
-                // Expand previous item if there's a hole
-                if (currentRowUsage < targetCols && result.length > 0) {
-                    result[result.length - 1].currentSpan += (targetCols - currentRowUsage);
-                }
-                currentRowUsage = 0;
-            }
-
-            result.push({ ...skill, currentSpan: span });
-            currentRowUsage += span;
-        });
-
-        // Fill last row hole
-        if (currentRowUsage > 0 && currentRowUsage < targetCols && result.length > 0) {
-            result[result.length - 1].currentSpan += (targetCols - currentRowUsage);
-        }
-
-        return result;
-    };
-
-    // We can't easily do different spans for different breakpoints with one pass
-    // So we'll use a slightly simpler CSS-first approach or generate classes
-    const getSpanClass = (span: number) => {
-        if (span === 1) return 'col-span-1';
-        if (span === 2) return 'col-span-2';
-        if (span === 3) return 'col-span-3';
-        if (span === 4) return 'col-span-4';
-        if (span === 5) return 'col-span-5';
-        if (span === 6) return 'col-span-6';
-        return 'col-span-1';
-    };
-
-    // For simplicity and perfect filling on LG, we'll use the LG processed list
-    // On smaller screens, the layout might have small holes or we can just let flex/grid wrap naturally
-    // BUT the user really wants NO holes on the main view.
-    const processedSkills = processSkills(6);
+    // Flatten skills for the Bento grid
+    const flattenedSkills = Object.entries(skills).flatMap(([category, items]) =>
+        items.map(skill => ({ ...skill, category }))
+    );
 
     return (
         <div className="min-h-screen py-24 overflow-x-hidden">
@@ -193,25 +146,36 @@ export default function About({ language, darkMode }: AboutProps) {
                 >
                     <h3 className="font-bold text-4xl text-center md:text-left tracking-tight">{t[language].about.skills_title}</h3>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 w-full">
-                        {processedSkills.map((skill, index) => {
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 grid-flow-dense gap-4 md:gap-6 w-full">
+                        {flattenedSkills.map((skill, index) => {
                             const isHigh = highPriority.includes(skill.name);
                             const isMed = mediumPriority.includes(skill.name);
-                            const spanClass = getSpanClass(skill.currentSpan);
+
+                            // Responsive span logic
+                            // On mobile (cols-2): high/med span 2 (full width), others span 1
+                            // On desktop (cols-6): high/med span 2, others span 1
+                            const spanClass = isHigh ? 'col-span-2' : (isMed ? 'col-span-2' : 'col-span-1');
 
                             return (
                                 <motion.div
-                                    key={skill.name}
+                                    key={`${skill.name}-${index}`}
                                     whileHover={{ y: -8, scale: 1.01 }}
-                                    className={`${cardClass} p-8 md:p-10 rounded-[2.5rem] border ${borderColor} flex flex-col items-center justify-center gap-6 group hover-glow transition-all duration-300 ${spanClass} min-h-[220px] relative overflow-hidden`}
+                                    className={`${cardClass} p-8 md:p-10 rounded-[2.5rem] border ${borderColor} flex flex-col items-center justify-center gap-6 group hover-glow transition-all duration-300 ${spanClass} min-h-[200px] md:min-h-[220px] relative overflow-hidden`}
                                 >
 
                                     <div className={`flex items-center justify-center transition-transform duration-500 group-hover:scale-110 ${isHigh ? 'w-24 h-24' : 'w-14 h-14'}`}>
-                                        <img
-                                            src={`https://cdn.simpleicons.org/${skill.logo}/${darkMode ? 'white' : 'black'}`}
-                                            alt={skill.name}
-                                            className={`object-contain transition-all duration-500 ${isHigh ? 'w-20 h-20 opacity-100' : 'w-10 h-10 opacity-60 group-hover:opacity-100'}`}
-                                        />
+                                        {(() => {
+                                            const logoSrc = skill.logo.startsWith('/')
+                                                ? skill.logo
+                                                : `https://cdn.simpleicons.org/${skill.logo}/${darkMode ? 'white' : 'black'}`;
+                                            return (
+                                                <img
+                                                    src={logoSrc}
+                                                    alt={skill.name}
+                                                    className={`object-contain transition-all duration-500 ${isHigh ? 'w-20 h-20 opacity-100' : 'w-10 h-10 opacity-60 group-hover:opacity-100'}`}
+                                                />
+                                            );
+                                        })()}
                                     </div>
                                     <div className="text-center">
                                         <span className={`${isHigh ? 'text-2xl font-black' : isMed ? 'text-xl font-bold' : 'text-base font-bold'} tracking-tight block uppercase text-zinc-500 group-hover:text-inherit transition-colors`}>
