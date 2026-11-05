@@ -25,6 +25,7 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
             const timer = setTimeout(() => setIsColor(false), 3000);
             return () => clearTimeout(timer);
         }
+        return undefined;
     }, [isColor]);
 
     return (
