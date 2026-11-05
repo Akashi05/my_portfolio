@@ -1,0 +1,4 @@
+[{"capability":"code","source":"Next.js single-page portfolio","outcome":"ported to TanStack index route","status":"migrated","next_action":"none"},
+{"capability":"assets","source":"public/ images, CVs, favicon","outcome":"copied","status":"migrated","next_action":"none"},
+{"capability":"contact form","source":"Formspree form xdapdrpv","outcome":"preserved","status":"migrated","next_action":"send a test message"},
+{"capability":"database/auth/secrets/endpoints","source":"none detected","outcome":"n/a","status":"verified","next_action":"none"}]
