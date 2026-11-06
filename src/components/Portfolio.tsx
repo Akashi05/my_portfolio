@@ -63,8 +63,8 @@ export default function Portfolio() {
   }, [currentPage]);
 
   const bgClass = darkMode
-    ? 'bg-[#0a0a0a] text-gray-100'
-    : 'bg-gray-50 text-gray-900';
+    ? 'bg-charcoal text-ivory'
+    : 'bg-ivory text-charcoal';
 
   const cardClass = darkMode
     ? 'glass-card'
