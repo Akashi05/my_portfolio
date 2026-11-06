@@ -71,7 +71,7 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
           </motion.div>
 
           <h1 className="font-display text-[16vw] font-black leading-[0.85] tracking-tighter lg:text-[9.5rem]">
-            <Reveal delay={0.1}>Bérenger</Reveal>
+            <Reveal delay={0.1}>B<span className="font-sans">é</span>renger</Reveal>
             <Reveal delay={0.25}>
               <span className="bg-gradient-to-r from-zinc-400 via-amber-300 to-zinc-500 bg-clip-text text-transparent">Sessou.</span>
             </Reveal>
