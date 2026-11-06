@@ -4,10 +4,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Light.ttf") format("truetype");font-weight:300;font-display:swap;}
-@font-face{font-family:"Colasta";src:url("/fonts/Colasta.ttf") format("truetype");font-weight:400;font-display:swap;}
-@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Bold.ttf") format("truetype");font-weight:700;font-display:swap;}
-@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Black.ttf") format("truetype");font-weight:900;font-display:swap;}
+@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Light.ttf") format("truetype");font-weight:300;font-display:swap;unicode-range:U+0020-007E;}
+@font-face{font-family:"Colasta";src:url("/fonts/Colasta.ttf") format("truetype");font-weight:400;font-display:swap;unicode-range:U+0020-007E;}
+@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Bold.ttf") format("truetype");font-weight:700;font-display:swap;unicode-range:U+0020-007E;}
+@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Black.ttf") format("truetype");font-weight:900;font-display:swap;unicode-range:U+0020-007E;}
 
 
 /* Ported from original portfolio */
