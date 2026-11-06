@@ -53,7 +53,7 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
       </motion.div>
 
       {/* Grain/vignette */}
-      <div className={`pointer-events-none absolute inset-0 ${darkMode ? 'bg-[radial-gradient(ellipse_at_center,transparent_30%,#0a0a0a_85%)]' : 'bg-[radial-gradient(ellipse_at_center,transparent_30%,#f9fafb_85%)]'}`} />
+      <div className={`pointer-events-none absolute inset-0 ${darkMode ? 'bg-[radial-gradient(ellipse_at_center,transparent_30%,#2a2529_85%)]' : 'bg-[radial-gradient(ellipse_at_center,transparent_30%,#f3f0e7_85%)]'}`} />
 
       <div className="pointer-events-none relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] max-w-7xl flex-col justify-between px-6 pb-10 lg:px-12">
         <div className="pt-6 lg:pt-16">
@@ -70,8 +70,8 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
             {t.role}
           </motion.div>
 
-          <h1 className="text-[16vw] font-black leading-[0.85] tracking-tighter lg:text-[9.5rem]">
-            <Reveal delay={0.1}>Bérenger</Reveal>
+          <h1 className="font-display text-[16vw] font-black leading-[0.85] tracking-tighter lg:text-[9.5rem]">
+            <Reveal delay={0.1}>B<span className="font-sans">é</span>renger</Reveal>
             <Reveal delay={0.25}>
               <span className="bg-gradient-to-r from-zinc-400 via-amber-300 to-zinc-500 bg-clip-text text-transparent">Sessou.</span>
             </Reveal>

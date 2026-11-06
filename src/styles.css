@@ -4,6 +4,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Light.ttf") format("truetype");font-weight:300;font-display:swap;unicode-range:U+0020-007E;}
+@font-face{font-family:"Colasta";src:url("/fonts/Colasta.ttf") format("truetype");font-weight:400;font-display:swap;unicode-range:U+0020-007E;}
+@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Bold.ttf") format("truetype");font-weight:700;font-display:swap;unicode-range:U+0020-007E;}
+@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Black.ttf") format("truetype");font-weight:900;font-display:swap;unicode-range:U+0020-007E;}
+
+
 /* Ported from original portfolio */
 
 :root {
@@ -21,7 +27,10 @@
 }
 
 @theme inline {
-    --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Colasta", "Satoshi", sans-serif;
+    --color-charcoal: #2a2529;
+    --color-ivory: #f3f0e7;
+    --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
     --font-mono: "Geist Mono", ui-monospace, monospace;
     --color-neon-primary: var(--neon-primary);
     --color-neon-glow: var(--neon-glow);
@@ -134,8 +143,8 @@ html {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: #f3f0e7;
+  --foreground: #2a2529;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -169,8 +178,8 @@ html {
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
+  --background: #2a2529;
+  --foreground: #f3f0e7;
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
   --popover: oklch(0.208 0.042 265.755);
@@ -213,3 +222,5 @@ html {
     color: var(--color-foreground);
   }
 }
+
+h1,h2,h3{font-family:var(--font-display);}

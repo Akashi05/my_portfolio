@@ -75,7 +75,7 @@ export default function Projects({ language, darkMode, setSelectedProject }: Pro
                                 </div>
 
                                 {/* Timeline Point */}
-                                <div className="absolute left-4 lg:left-32 w-3 h-3 bg-zinc-400 rounded-full -translate-x-1/2 mt-4 z-10 border-2 border-white dark:border-[#0a0a0a] group-hover:bg-white transition-colors duration-500 hidden md:block"></div>
+                                <div className="absolute left-4 lg:left-32 w-3 h-3 bg-zinc-400 rounded-full -translate-x-1/2 mt-4 z-10 border-2 border-white dark:border-charcoal group-hover:bg-white transition-colors duration-500 hidden md:block"></div>
                                 <div className="absolute left-4 lg:left-32 w-8 h-8 bg-zinc-500/10 rounded-full -translate-x-1/2 mt-1.5 z-0 blur-sm scale-0 group-hover:scale-150 transition-transform duration-500 hidden md:block"></div>
 
                                 {/* Horizontal Content Card */}
