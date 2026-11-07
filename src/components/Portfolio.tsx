@@ -71,10 +71,10 @@ export default function Portfolio() {
   return (
     <MotionConfig reducedMotion="user">
       <div className={`portfolio min-h-screen bg-background text-foreground font-sans transition-colors duration-500 selection:bg-foreground/20 ${darkMode ? 'dark' : ''}`}>
-        <nav aria-label={language === 'fr' ? 'Navigation principale' : 'Main navigation'} className="fixed top-0 inset-x-0 z-50 flex justify-between items-center px-6 py-4 lg:px-12 bg-background/90 border-b border-border backdrop-blur-md">
+        <nav aria-label={language === 'fr' ? 'Navigation principale' : 'Main navigation'} className="floating-nav fixed top-4 left-1/2 -translate-x-1/2 z-50 flex justify-between items-center gap-3 w-[calc(100%-2rem)] max-w-5xl px-3 py-2 lg:px-4 lg:py-2.5 bg-background/85 border border-border rounded-full backdrop-blur-xl">
           <Button variant="ghost" onClick={() => scrollToSection('home')} className="px-0 font-display text-2xl font-black" aria-label="Accueil">BS.</Button>
-          <div className="flex items-center gap-3 lg:gap-6">
-            <div className="hidden lg:flex items-center gap-3">
+          <div className="flex items-center gap-2 lg:gap-4">
+            <div className="hidden lg:flex items-center gap-2">
               {sections.map(section => <Button variant="ghost" key={section} onClick={() => scrollToSection(section)} aria-current={currentSection === section ? 'location' : undefined} className={`relative uppercase text-xs font-bold ${currentSection === section ? 'text-foreground' : 'text-muted-foreground'}`}>
                 {t.nav[section]}{currentSection === section && <span className="absolute bottom-0 inset-x-4 h-px bg-foreground" />}
               </Button>)}
