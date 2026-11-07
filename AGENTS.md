@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Render portfolio sections together under stable section IDs; navigation scrolls instead of switching views so all content stays accessible on one page.
+- Drive portfolio surfaces, text, controls, and Three.js material colors from global semantic tokens; use display and body font tokens with unicode-range fallback for unsupported glyphs.

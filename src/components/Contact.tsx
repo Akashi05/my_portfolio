@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { Mail, Phone } from 'lucide-react';
 import { translations } from '../data/translations';
@@ -12,10 +13,8 @@ interface ContactProps {
 export default function Contact({ language, darkMode }: ContactProps) {
     const [state, handleSubmit] = useForm("xdapdrpv"); // Remplace avec ton ID Formspree si tu en as un, sinon il faudra en créer un
     const t = translations;
-    const cardClass = darkMode
-        ? 'glass-card'
-        : 'bg-white/80 border-gray-200 backdrop-blur-md';
-    const textSecondary = darkMode ? 'text-gray-400' : 'text-gray-600';
+    const cardClass = 'glass-card';
+    const textSecondary = 'text-muted-foreground';
 
     return (
         <div className="min-h-screen flex items-center justify-center px-6 lg:px-12 py-24">
@@ -27,7 +26,7 @@ export default function Contact({ language, darkMode }: ContactProps) {
                     transition={{ duration: 0.8 }}
                     className="mb-16 text-center"
                 >
-                    <p className={`text-sm uppercase tracking-widest text-zinc-500 font-bold mb-4`}>{t[language].contact.subtitle}</p>
+                    <p className={`text-sm uppercase tracking-widest text-muted-foreground font-bold mb-4`}>{t[language].contact.subtitle}</p>
                     <h2 className="text-5xl font-bold mb-6">{t[language].contact.title}</h2>
                     <p className={`text-xl ${textSecondary} max-w-2xl mx-auto`}>
                         {t[language].contact.description}
@@ -36,23 +35,23 @@ export default function Contact({ language, darkMode }: ContactProps) {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div className="space-y-6">
-                        <div className={`${cardClass} flex items-center gap-6 p-8 rounded-3xl border hover-glow`}>
-                            <div className="p-4 bg-zinc-500/10 text-zinc-500 rounded-2xl">
+                        <div className={`${cardClass} flex items-center gap-4 p-5 sm:p-8 rounded-lg border hover-glow`}>
+                            <div className="p-4 bg-secondary/10 text-muted-foreground rounded-lg">
                                 <Mail size={32} />
                             </div>
                             <div className="min-w-0 flex-1">
                                 <h3 className="font-bold text-xl mb-1">Email</h3>
-                                <a href="mailto:sessouberenger@gmail.com" className="block text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors truncate">
+                                <a href="mailto:sessouberenger@gmail.com" className="block text-muted-foreground hover:text-foreground  transition-colors truncate">
                                     sessouberenger@gmail.com
                                 </a>
-                                <a href="mailto:berenger.sessou@epitech.eu" className="block text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors truncate mt-1">
+                                <a href="mailto:berenger.sessou@epitech.eu" className="block text-muted-foreground hover:text-foreground  transition-colors truncate mt-1">
                                     berenger.sessou@epitech.eu
                                 </a>
                             </div>
                         </div>
 
-                        <a href="https://wa.me/2290164778682" target="_blank" rel="noopener noreferrer" className={`${cardClass} flex items-center gap-6 p-8 rounded-3xl border hover-glow`}>
-                            <div className="p-4 bg-zinc-500/10 text-zinc-500 rounded-2xl">
+                        <a href="https://wa.me/2290164778682" target="_blank" rel="noopener noreferrer" className={`${cardClass} flex items-center gap-4 p-5 sm:p-8 rounded-lg border hover-glow`}>
+                            <div className="p-4 bg-secondary/10 text-muted-foreground rounded-lg">
                                 <Phone size={32} />
                             </div>
                             <div className="min-w-0">
@@ -62,43 +61,43 @@ export default function Contact({ language, darkMode }: ContactProps) {
                         </a>
                     </div>
 
-                    <form onSubmit={handleSubmit} className={`${cardClass} p-8 rounded-3xl border space-y-6`}>
+                    <form onSubmit={handleSubmit} className={`${cardClass} p-8 rounded-lg border space-y-6`}>
                         <div>
-                            <label htmlFor="name" className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_name}</label>
+                            <label htmlFor="name" className="block text-sm font-bold mb-2 text-muted-foreground">{t[language].contact.form_name}</label>
                             <input
                                 id="name"
                                 type="text"
                                 name="name"
                                 required
-                                className="w-full bg-zinc-500/5 border border-zinc-500/10 rounded-xl px-4 py-3 focus:outline-none focus:border-zinc-500 transition-colors"
+                                className="w-full bg-secondary/5 border border-border/10 rounded-lg px-4 py-3 focus:outline-none focus:border-border transition-colors"
                             />
                             <ValidationError prefix="Name" field="name" errors={state.errors} />
                         </div>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_email}</label>
+                            <label htmlFor="email" className="block text-sm font-bold mb-2 text-muted-foreground">{t[language].contact.form_email}</label>
                             <input
                                 id="email"
                                 type="email"
                                 name="email"
                                 required
-                                className="w-full bg-zinc-500/5 border border-zinc-500/10 rounded-xl px-4 py-3 focus:outline-none focus:border-zinc-500 transition-colors"
+                                className="w-full bg-secondary/5 border border-border/10 rounded-lg px-4 py-3 focus:outline-none focus:border-border transition-colors"
                             />
                             <ValidationError prefix="Email" field="email" errors={state.errors} />
                         </div>
                         <div>
-                            <label htmlFor="message" className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_message}</label>
+                            <label htmlFor="message" className="block text-sm font-bold mb-2 text-muted-foreground">{t[language].contact.form_message}</label>
                             <textarea
                                 id="message"
                                 name="message"
                                 required
                                 rows={4}
-                                className="w-full bg-zinc-500/5 border border-zinc-500/10 rounded-xl px-4 py-3 focus:outline-none focus:border-zinc-500 transition-colors"
+                                className="w-full bg-secondary/5 border border-border/10 rounded-lg px-4 py-3 focus:outline-none focus:border-border transition-colors"
                             ></textarea>
                             <ValidationError prefix="Message" field="message" errors={state.errors} />
                         </div>
-                        <button type="submit" disabled={state.submitting} className="w-full bg-zinc-900 dark:bg-white text-white dark:text-black font-bold py-4 rounded-xl hover:scale-[1.02] transition-transform disabled:opacity-50">
+                        <Button type="submit" disabled={state.submitting} className="w-full bg-primary text-primary-foreground  font-bold h-auto py-4 rounded-lg hover:scale-[1.02] transition-transform disabled:opacity-50">
                             {state.succeeded ? (language === 'fr' ? 'Message envoyé !' : 'Message sent!') : t[language].contact.form_send}
-                        </button>
+                        </Button>
                     </form>
                 </div>
             </div>

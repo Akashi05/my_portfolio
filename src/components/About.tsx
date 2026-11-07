@@ -24,12 +24,10 @@ const CountingNumber = ({ value }: { value: number }) => {
 
 export default function About({ language, darkMode }: AboutProps) {
     const t = translations;
-    const cardClass = darkMode
-        ? 'glass-card'
-        : 'bg-white/80 border-gray-200 backdrop-blur-md';
-    const borderColor = darkMode ? 'border-zinc-800' : 'border-zinc-200';
-    const textSecondary = darkMode ? 'text-gray-400' : 'text-gray-600';
-    const textTertiary = darkMode ? 'text-gray-500' : 'text-gray-500';
+    const cardClass = 'glass-card';
+    const borderColor = 'border-border';
+    const textSecondary = 'text-muted-foreground';
+    const textTertiary = 'text-muted-foreground';
 
     const highPriority = ['C', 'C++', 'Django', 'Django REST Framework', 'Git', 'Docker'];
     const mediumPriority = ['Python', 'Rust', 'PostgreSQL', 'GitHub Actions', 'SDL'];
@@ -49,7 +47,7 @@ export default function About({ language, darkMode }: AboutProps) {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <p className={`text-sm uppercase tracking-widest text-zinc-500 font-bold mb-4`}>{t[language].about.subtitle}</p>
+                    <p className={`text-sm uppercase tracking-widest text-muted-foreground font-bold mb-4`}>{t[language].about.subtitle}</p>
                     <h2 className="text-5xl font-bold">{t[language].about.title}</h2>
                 </motion.div>
 
@@ -68,8 +66,8 @@ export default function About({ language, darkMode }: AboutProps) {
                     </div>
 
                     <div className="space-y-8">
-                        <div className={`${cardClass} p-6 rounded-2xl border ${borderColor}`}>
-                            <h3 className="font-bold text-xl mb-4 text-zinc-500">{t[language].about.formation}</h3>
+                        <div className={`${cardClass} p-6 rounded-lg border ${borderColor}`}>
+                            <h3 className="font-bold text-xl mb-4 text-muted-foreground">{t[language].about.formation}</h3>
                             <div className="space-y-3">
                                 <div>
                                     <p className="font-medium">Bachelor d'expertise informatique</p>
@@ -84,8 +82,8 @@ export default function About({ language, darkMode }: AboutProps) {
                             </div>
                         </div>
 
-                        <div className={`${cardClass} p-6 rounded-2xl border ${borderColor}`}>
-                            <h3 className="font-bold text-xl mb-4 text-zinc-500">{t[language].about.languages}</h3>
+                        <div className={`${cardClass} p-6 rounded-lg border ${borderColor}`}>
+                            <h3 className="font-bold text-xl mb-4 text-muted-foreground">{t[language].about.languages}</h3>
                             <div className="space-y-2">
                                 <p><span className="font-medium">{t[language].about.lang_fr}:</span> {t[language].about.lang_native}</p>
                                 <p><span className="font-medium">{t[language].about.lang_en}:</span> {t[language].about.lang_intermediate}</p>
@@ -97,7 +95,7 @@ export default function About({ language, darkMode }: AboutProps) {
 
             {/* Full Width Stats Section */}
             <div className="mt-20 mb-24 w-full relative">
-                <div className={`w-full h-px ${darkMode ? 'bg-zinc-800/50' : 'bg-zinc-200'} mb-8`} />
+                <div className={`w-full h-px ${darkMode ? 'bg-secondary/50' : 'bg-secondary'} mb-8`} />
                 <div className="px-6 lg:px-24">
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -107,24 +105,24 @@ export default function About({ language, darkMode }: AboutProps) {
                         className="flex flex-col xl:flex-row items-center xl:items-end justify-between gap-12"
                     >
                         <div className="flex items-baseline gap-4">
-                            <span className={`text-[8rem] md:text-[10rem] font-mono font-bold leading-none tracking-tighter ${darkMode ? 'text-zinc-100 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]' : 'text-zinc-900 drop-shadow-[0_0_20px_rgba(0,0,0,0.1)]'}`}>
+                            <span className={`text-[8rem] md:text-[10rem] font-mono font-bold leading-none tracking-tighter ${darkMode ? 'text-foreground' : 'text-foreground'}`}>
                                 <CountingNumber value={t[language].about.stats.total} />
                             </span>
-                            <span className="text-4xl md:text-6xl font-bold text-zinc-500 leading-none">+</span>
+                            <span className="text-4xl md:text-6xl font-bold text-muted-foreground leading-none">+</span>
                         </div>
 
                         <div className="flex-1 max-w-4xl space-y-8 text-center xl:text-left pb-4">
                             <div className="space-y-4">
-                                <p className={`text-[14px] uppercase tracking-[0.6em] font-black ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                                <p className={`text-[14px] uppercase tracking-[0.6em] font-black ${darkMode ? 'text-muted-foreground' : 'text-muted-foreground'}`}>
                                     {t[language].about.stats.total_label}
                                 </p>
-                                <h4 className={`text-2xl md:text-4xl font-black leading-tight ${darkMode ? 'text-zinc-100' : 'text-zinc-900'}`}>
+                                <h4 className={`text-2xl md:text-4xl font-black leading-tight ${darkMode ? 'text-foreground' : 'text-foreground'}`}>
                                     {(t[language].about.stats as any).details}
                                 </h4>
                             </div>
                             <div className="flex flex-wrap justify-center xl:justify-start gap-4">
                                 {['Web', 'Low-level', 'DevOps'].map((tag) => (
-                                    <span key={tag} className={`px-8 py-2 text-[12px] uppercase tracking-[0.3em] font-black rounded-full border ${borderColor} ${darkMode ? 'bg-zinc-900/50 text-zinc-400' : 'bg-zinc-100 text-zinc-600'}`}>
+                                    <span key={tag} className={`px-8 py-2 text-[12px] uppercase tracking-[0.3em] font-black rounded-full border ${borderColor} ${darkMode ? 'bg-primary/50 text-muted-foreground' : 'bg-secondary text-muted-foreground'}`}>
                                         {tag}
                                     </span>
                                 ))}
@@ -132,7 +130,7 @@ export default function About({ language, darkMode }: AboutProps) {
                         </div>
                     </motion.div>
                 </div>
-                <div className={`w-full h-px ${darkMode ? 'bg-zinc-800/50' : 'bg-zinc-200'} mt-8`} />
+                <div className={`w-full h-px ${darkMode ? 'bg-secondary/50' : 'bg-secondary'} mt-8`} />
             </div>
 
             {/* Truly Full Width Bento Skills Section - Perfectly Filled */}
@@ -160,7 +158,7 @@ export default function About({ language, darkMode }: AboutProps) {
                                 <motion.div
                                     key={`${skill.name}-${index}`}
                                     whileHover={{ y: -8, scale: 1.01 }}
-                                    className={`${cardClass} p-8 md:p-10 rounded-[2.5rem] border ${borderColor} flex flex-col items-center justify-center gap-6 group hover-glow transition-all duration-300 ${spanClass} min-h-[200px] md:min-h-[220px] relative overflow-hidden`}
+                                    className={`${cardClass} p-4 md:p-6 rounded-lg border ${borderColor} flex flex-col items-center justify-center gap-6 group hover-glow transition-all duration-300 ${spanClass} min-h-[200px] md:min-h-[220px] relative overflow-hidden`}
                                 >
 
                                     <div className={`flex items-center justify-center transition-transform duration-500 group-hover:scale-110 ${isHigh ? 'w-24 h-24' : 'w-14 h-14'}`}>
@@ -172,16 +170,16 @@ export default function About({ language, darkMode }: AboutProps) {
                                                 <img
                                                     src={logoSrc}
                                                     alt={skill.name}
-                                                    className={`object-contain transition-all duration-500 ${isHigh ? 'w-20 h-20 opacity-100' : 'w-10 h-10 opacity-60 group-hover:opacity-100'}`}
+                                                    className={`skill-logo object-contain transition-all duration-500 ${isHigh ? 'w-20 h-20 opacity-100' : 'w-10 h-10 opacity-60 group-hover:opacity-100'}`}
                                                 />
                                             );
                                         })()}
                                     </div>
                                     <div className="text-center">
-                                        <span className={`${isHigh ? 'text-2xl font-black' : isMed ? 'text-xl font-bold' : 'text-base font-bold'} tracking-tight block uppercase text-zinc-500 group-hover:text-inherit transition-colors`}>
+                                        <span className={`${isHigh ? 'text-2xl font-black' : isMed ? 'text-xl font-bold' : 'text-base font-bold'} break-words block uppercase text-muted-foreground group-hover:text-inherit transition-colors`}>
                                             {skill.name}
                                         </span>
-                                        <p className="text-[10px] uppercase tracking-widest font-bold text-zinc-500 mt-2">
+                                        <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground mt-2">
                                             {skill.name === 'SDL' ? (language === 'fr' ? 'Outil' : 'Tool') :
                                                 skill.name === 'C' ? (language === 'fr' ? 'Langage' : 'Language') :
                                                     t[language].about.skill_cats[skill.category as keyof typeof t.en.about.skill_cats]}
@@ -189,7 +187,7 @@ export default function About({ language, darkMode }: AboutProps) {
                                     </div>
 
                                     {/* Active border indicator on hover */}
-                                    <div className={`absolute bottom-0 left-0 h-1 bg-zinc-500/10 w-0 group-hover:w-full transition-all duration-500`} />
+                                    <div className={`absolute bottom-0 left-0 h-1 bg-secondary/10 w-0 group-hover:w-full transition-all duration-500`} />
                                 </motion.div>
                             );
                         })}
