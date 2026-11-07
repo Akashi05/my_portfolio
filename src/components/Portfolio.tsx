@@ -84,7 +84,7 @@ export default function Portfolio() {
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={isMenuOpen} className="lg:hidden">{isMenuOpen ? <X /> : <Menu />}</Button>
           </div>
         </nav>
-        {isMenuOpen && <div className="fixed inset-0 z-40 lg:hidden bg-background flex flex-col items-center justify-center gap-6">
+        {isMenuOpen && <div className="fixed top-20 left-4 right-4 z-40 lg:hidden rounded-3xl border border-border bg-background/95 backdrop-blur-xl flex flex-col items-center gap-4 py-10">
           {sections.map(section => <Button variant="ghost" key={section} onClick={() => scrollToSection(section)} className="font-display text-3xl font-bold h-auto">{t.nav[section]}</Button>)}
         </div>}
         <main>

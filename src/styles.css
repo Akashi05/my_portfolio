@@ -195,7 +195,9 @@ h1,h2,h3,h4{font-family:var(--font-display);}
 @theme inline { --color-overlay: var(--overlay); }
 .portfolio { letter-spacing: 0; }
 .portfolio * { letter-spacing: 0; }
-.portfolio section { scroll-margin-top: 88px; }
+.portfolio section { scroll-margin-top: 96px; }
+/* The nav floats as a pill: it never touches the screen edges and keeps a soft token-driven shadow. */
+.floating-nav { box-shadow: 0 12px 40px -16px color-mix(in oklab, var(--foreground) 35%, transparent); }
 .portfolio h2 { font-size: 3rem; overflow-wrap: anywhere; }
 .portfolio h3, .portfolio h4 { overflow-wrap: anywhere; }
 .hero-name { font-size: 6rem; }
