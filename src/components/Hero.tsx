@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowRight, MapPin, Download } from 'lucide-react';
 import { translations } from '../data/translations';
+import { Button } from '@/components/ui/button';
 
 const HeroScene = lazy(() => import('./HeroScene'));
 
@@ -33,11 +34,11 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
 
-  const muted = darkMode ? 'text-zinc-400' : 'text-zinc-600';
-  const line = darkMode ? 'border-white/10' : 'border-black/10';
+  const muted = 'text-muted-foreground';
+  const line = 'border-border';
 
   return (
-    <section className="relative min-h-screen overflow-hidden pt-28">
+    <section className="relative min-h-[calc(100svh-3rem)] overflow-hidden pt-28">
       {/* 3D scene */}
       <motion.div
         className="absolute inset-0 lg:left-[25%] [mask-image:linear-gradient(to_right,transparent,black_25%)]"
@@ -47,15 +48,15 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
       >
         {mounted && (
           <Suspense fallback={null}>
-            <HeroScene />
+            <HeroScene darkMode={darkMode} />
           </Suspense>
         )}
       </motion.div>
 
       {/* Grain/vignette */}
-      <div className={`pointer-events-none absolute inset-0 ${darkMode ? 'bg-[radial-gradient(ellipse_at_center,transparent_30%,#2a2529_85%)]' : 'bg-[radial-gradient(ellipse_at_center,transparent_30%,#f3f0e7_85%)]'}`} />
+      <div className="hero-vignette pointer-events-none absolute inset-0" />
 
-      <div className="pointer-events-none relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] max-w-7xl flex-col justify-between px-6 pb-10 lg:px-12">
+      <div className="pointer-events-none relative z-10 mx-auto flex min-h-[calc(100svh-10rem)] max-w-7xl flex-col justify-between px-6 pb-10 lg:px-12">
         <div className="pt-6 lg:pt-16">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -64,16 +65,16 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
             className={`mb-8 inline-flex items-center gap-2 rounded-full border ${line} px-4 py-1.5 font-mono text-xs uppercase tracking-widest ${muted} backdrop-blur-md`}
           >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-foreground" />
             </span>
             {t.role}
           </motion.div>
 
-          <h1 className="font-display text-[16vw] font-black leading-[0.85] tracking-tighter lg:text-[9.5rem]">
+          <h1 className="hero-name font-display font-black leading-[0.95]">
             <Reveal delay={0.1}>B<span className="font-sans">é</span>renger</Reveal>
             <Reveal delay={0.25}>
-              <span className="bg-gradient-to-r from-zinc-400 via-amber-300 to-zinc-500 bg-clip-text text-transparent">Sessou.</span>
+              <span className="text-foreground">Sessou.</span>
             </Reveal>
           </h1>
 
@@ -92,19 +93,19 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
             transition={{ duration: 1, delay: 0.9, ease }}
             className="pointer-events-auto mt-10 flex flex-wrap gap-4"
           >
-            <button
+            <Button
               onClick={() => setCurrentPage('projects')}
-              className="group flex items-center gap-2 rounded-full bg-zinc-900 px-7 py-4 font-bold text-white transition-all hover:scale-105 dark:bg-white dark:text-black"
+              className="group flex items-center gap-2 h-auto rounded-lg bg-primary px-7 py-4 font-bold text-primary-foreground transition-all hover:scale-105  "
             >
               {t.cta_projects}
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-            </button>
-            <button
+            </Button>
+            <Button variant="outline"
               onClick={() => setCurrentPage('contact')}
-              className={`rounded-full border ${line} px-7 py-4 font-bold backdrop-blur-md transition-all hover:scale-105 hover:border-amber-300/60`}
+              className={`h-auto rounded-lg border ${line} px-7 py-4 font-bold backdrop-blur-md transition-all hover:scale-105 hover:border-border/60`}
             >
               {t.cta_contact}
-            </button>
+            </Button>
           </motion.div>
         </div>
 
@@ -116,11 +117,11 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
         >
           <div className="flex items-center gap-2"><MapPin size={14} /> Cotonou, Benin · EPITECH 2023–2026</div>
           <div className="flex items-center gap-5">
-            <a href="/CV_Bérenger_Sessou_FR.pdf" download="CV_Berenger_Sessou_FR.pdf" className="flex items-center gap-1.5 hover:text-amber-300"><Download size={14} /> {t.cv_fr}</a>
-            <a href="/CV_Berenger_Sessou_EN.pdf" download="CV_Berenger_Sessou_EN.pdf" className="flex items-center gap-1.5 hover:text-amber-300"><Download size={14} /> {t.cv_en}</a>
-            <a href="https://github.com/Akashi05" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300"><Github size={18} /></a>
-            <a href="https://www.linkedin.com/in/b%C3%A9renger-sessou-b36ab1314/" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300"><Linkedin size={18} /></a>
-            <a href="mailto:sessouberenger@gmail.com" className="hover:text-amber-300"><Mail size={18} /></a>
+            <a href="/CV_Bérenger_Sessou_FR.pdf" download="CV_Berenger_Sessou_FR.pdf" className="flex items-center gap-1.5 hover:text-muted-foreground"><Download size={14} /> {t.cv_fr}</a>
+            <a href="/CV_Berenger_Sessou_EN.pdf" download="CV_Berenger_Sessou_EN.pdf" className="flex items-center gap-1.5 hover:text-muted-foreground"><Download size={14} /> {t.cv_en}</a>
+            <a href="https://github.com/Akashi05" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground"><Github size={18} /></a>
+            <a href="https://www.linkedin.com/in/b%C3%A9renger-sessou-b36ab1314/" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground"><Linkedin size={18} /></a>
+            <a href="mailto:sessouberenger@gmail.com" className="hover:text-muted-foreground"><Mail size={18} /></a>
           </div>
         </motion.div>
       </div>

@@ -28,10 +28,10 @@
 
 @theme inline {
     --font-display: "Colasta", "Satoshi", sans-serif;
-    --color-charcoal: #2a2529;
-    --color-ivory: #f3f0e7;
+    --color-charcoal: oklch(0.2719 0.0099 337.54);
+    --color-ivory: oklch(0.955 0.0127 89.73);
     --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
-    --font-mono: "Geist Mono", ui-monospace, monospace;
+    --font-mono: "Satoshi", ui-sans-serif, sans-serif;
     --color-neon-primary: var(--neon-primary);
     --color-neon-glow: var(--neon-glow);
 }
@@ -223,4 +223,80 @@ html {
   }
 }
 
-h1,h2,h3{font-family:var(--font-display);}
+h1,h2,h3,h4{font-family:var(--font-display);}
+
+/* The two identity colors also drive surfaces, controls and the 3D materials. */
+:root {
+  --identity-charcoal: oklch(0.2719 0.0099 337.54);
+  --identity-ivory: oklch(0.955 0.0127 89.73);
+  --background: var(--identity-ivory);
+  --foreground: var(--identity-charcoal);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --card: color-mix(in oklab, var(--background) 96%, var(--foreground));
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --secondary: color-mix(in oklab, var(--background) 92%, var(--foreground));
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: color-mix(in oklab, var(--foreground) 75%, var(--background));
+  --accent: var(--secondary);
+  --accent-foreground: var(--foreground);
+  --border: color-mix(in oklab, var(--foreground) 20%, var(--background));
+  --input: var(--border);
+  --ring: var(--foreground);
+  --neon-primary: var(--foreground);
+  --neon-glow: color-mix(in oklab, var(--foreground) 12%, transparent);
+  --glass-bg: var(--card);
+  --glass-border: var(--border);
+  --overlay: color-mix(in oklab, var(--identity-charcoal) 85%, transparent);
+  --scene-light: #F3F0E7;
+  --scene-dark: #2A2529;
+  --radius: 0.5rem;
+}
+.dark {
+  --background: var(--identity-charcoal);
+  --foreground: var(--identity-ivory);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --card: color-mix(in oklab, var(--background) 96%, var(--foreground));
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --secondary: color-mix(in oklab, var(--background) 92%, var(--foreground));
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: color-mix(in oklab, var(--foreground) 75%, var(--background));
+  --accent: var(--secondary);
+  --accent-foreground: var(--foreground);
+  --border: color-mix(in oklab, var(--foreground) 20%, var(--background));
+  --input: var(--border);
+  --ring: var(--foreground);
+  --neon-primary: var(--foreground);
+  --neon-glow: color-mix(in oklab, var(--foreground) 12%, transparent);
+  --glass-bg: var(--card);
+  --glass-border: var(--border);
+}
+@theme inline { --color-overlay: var(--overlay); }
+.portfolio { letter-spacing: 0; }
+.portfolio * { letter-spacing: 0; }
+.portfolio section { scroll-margin-top: 88px; }
+.portfolio h2 { font-size: 3rem; overflow-wrap: anywhere; }
+.portfolio h3, .portfolio h4 { overflow-wrap: anywhere; }
+.hero-name { font-size: 6rem; }
+.hero-vignette { background: radial-gradient(ellipse at center, transparent 30%, var(--background) 85%); }
+.skill-logo { filter: brightness(0) saturate(100%); }
+.dark .skill-logo { filter: brightness(0) saturate(100%) invert(96%) sepia(8%) saturate(316%) hue-rotate(354deg) brightness(100%) contrast(92%); }
+::-webkit-scrollbar-thumb { background: var(--border); }
+.dark ::-webkit-scrollbar-thumb { background: var(--border); }
+@media (min-width: 1024px) { .hero-name { font-size: 9.5rem; } }
+@media (max-width: 640px) {
+  .hero-name { font-size: 3.75rem; }
+  .portfolio h2 { font-size: 2.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
