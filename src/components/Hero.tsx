@@ -41,7 +41,7 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
     <section className="relative min-h-[calc(100svh-3rem)] overflow-hidden pt-28">
       {/* 3D scene */}
       <motion.div
-        className="absolute inset-0 lg:left-[25%] [mask-image:linear-gradient(to_right,transparent,black_25%)]"
+        className="hero-scene absolute inset-0 lg:left-[25%]"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.6, delay: 0.3, ease }}
