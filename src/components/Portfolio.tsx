@@ -71,10 +71,10 @@ export default function Portfolio() {
   return (
     <MotionConfig reducedMotion="user">
       <div className={`portfolio min-h-screen bg-background text-foreground font-sans transition-colors duration-500 selection:bg-foreground/20 ${darkMode ? 'dark' : ''}`}>
-        <nav aria-label={language === 'fr' ? 'Navigation principale' : 'Main navigation'} className="fixed top-0 inset-x-0 z-50 flex justify-between items-center px-6 py-4 lg:px-12 bg-background/90 border-b border-border backdrop-blur-md">
+        <nav aria-label={language === 'fr' ? 'Navigation principale' : 'Main navigation'} className="floating-nav fixed top-4 left-1/2 -translate-x-1/2 z-50 flex justify-between items-center gap-3 w-[calc(100%-2rem)] max-w-5xl px-3 py-2 lg:px-4 lg:py-2.5 bg-background/85 border border-border rounded-full backdrop-blur-xl">
           <Button variant="ghost" onClick={() => scrollToSection('home')} className="px-0 font-display text-2xl font-black" aria-label="Accueil">BS.</Button>
-          <div className="flex items-center gap-3 lg:gap-6">
-            <div className="hidden lg:flex items-center gap-3">
+          <div className="flex items-center gap-2 lg:gap-4">
+            <div className="hidden lg:flex items-center gap-2">
               {sections.map(section => <Button variant="ghost" key={section} onClick={() => scrollToSection(section)} aria-current={currentSection === section ? 'location' : undefined} className={`relative uppercase text-xs font-bold ${currentSection === section ? 'text-foreground' : 'text-muted-foreground'}`}>
                 {t.nav[section]}{currentSection === section && <span className="absolute bottom-0 inset-x-4 h-px bg-foreground" />}
               </Button>)}
@@ -84,7 +84,7 @@ export default function Portfolio() {
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={isMenuOpen} className="lg:hidden">{isMenuOpen ? <X /> : <Menu />}</Button>
           </div>
         </nav>
-        {isMenuOpen && <div className="fixed inset-0 z-40 lg:hidden bg-background flex flex-col items-center justify-center gap-6">
+        {isMenuOpen && <div className="fixed top-20 left-4 right-4 z-40 lg:hidden rounded-3xl border border-border bg-background/95 backdrop-blur-xl flex flex-col items-center gap-4 py-10">
           {sections.map(section => <Button variant="ghost" key={section} onClick={() => scrollToSection(section)} className="font-display text-3xl font-bold h-auto">{t.nav[section]}</Button>)}
         </div>}
         <main>
