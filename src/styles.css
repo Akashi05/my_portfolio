@@ -9,69 +9,94 @@
  * coverage of each weight lets the browser fall back to Satoshi for punctuation
  * (and accented glyphs) instead of drawing empty boxes at 300/400/900.
  */
-@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Light.ttf") format("truetype");font-weight:300;font-display:swap;unicode-range:U+0030-0039,U+0041-005A,U+0061-007A;}
-@font-face{font-family:"Colasta";src:url("/fonts/Colasta.ttf") format("truetype");font-weight:400;font-display:swap;unicode-range:U+0030-0039,U+0041-005A,U+0061-007A;}
-@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Bold.ttf") format("truetype");font-weight:700;font-display:swap;unicode-range:U+0020-007E;}
-@font-face{font-family:"Colasta";src:url("/fonts/Colasta-Black.ttf") format("truetype");font-weight:900;font-display:swap;unicode-range:U+0030-0039,U+0041-005A,U+0061-007A;}
-
+@font-face {
+  font-family: "Colasta";
+  src: url("/fonts/Colasta-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  unicode-range: U+0030-0039, U+0041-005A, U+0061-007A;
+}
+@font-face {
+  font-family: "Colasta";
+  src: url("/fonts/Colasta.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0030-0039, U+0041-005A, U+0061-007A;
+}
+@font-face {
+  font-family: "Colasta";
+  src: url("/fonts/Colasta-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0020-007E;
+}
+@font-face {
+  font-family: "Colasta";
+  src: url("/fonts/Colasta-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+  unicode-range: U+0030-0039, U+0041-005A, U+0061-007A;
+}
 
 @theme inline {
-    --font-display: "Colasta", "Satoshi", sans-serif;
-    --color-charcoal: oklch(0.27156323 0.01030100 332.55804154);
-    --color-ivory: oklch(0.95498682 0.01237502 91.51926860);
-    --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
-    --font-mono: "Satoshi", ui-sans-serif, sans-serif;
-    --color-neon-primary: var(--neon-primary);
-    --color-neon-glow: var(--neon-glow);
+  --font-display: "Colasta", "Satoshi", sans-serif;
+  --color-charcoal: oklch(0.27156323 0.010301 332.55804154);
+  --color-ivory: oklch(0.95498682 0.01237502 91.5192686);
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Satoshi", ui-sans-serif, sans-serif;
+  --color-neon-primary: var(--neon-primary);
+  --color-neon-glow: var(--neon-glow);
 }
 
 @layer components {
-    .glow-text {
-        text-shadow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow);
-    }
+  .glow-text {
+    text-shadow:
+      0 0 10px var(--neon-glow),
+      0 0 20px var(--neon-glow);
+  }
 
-    .glow-border {
-        box-shadow: 0 0 15px var(--neon-glow);
-        border-color: var(--neon-primary);
-    }
+  .glow-border {
+    box-shadow: 0 0 15px var(--neon-glow);
+    border-color: var(--neon-primary);
+  }
 
-    .glass-card {
-        @apply backdrop-blur-md border;
-        background-color: var(--glass-bg);
-        border-color: var(--glass-border);
-    }
+  .glass-card {
+    @apply backdrop-blur-md border;
+    background-color: var(--glass-bg);
+    border-color: var(--glass-border);
+  }
 
-    .hover-glow {
-        @apply transition-all duration-300;
-    }
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
 
-    .hover-glow:hover {
-        box-shadow: 0 0 25px var(--neon-glow);
-        border-color: var(--neon-primary);
-        transform: translateY(-4px);
-    }
+  .hover-glow:hover {
+    box-shadow: 0 0 25px var(--neon-glow);
+    border-color: var(--neon-primary);
+    transform: translateY(-4px);
+  }
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply rounded-full transition-colors;
-    background: var(--border);
+  @apply rounded-full transition-colors;
+  background: var(--border);
 }
 
 .dark ::-webkit-scrollbar-thumb {
-    background: var(--border);
+  background: var(--border);
 }
 
 /*
@@ -142,12 +167,17 @@ html {
   }
 }
 
-h1,h2,h3,h4{font-family:var(--font-display);}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+}
 
 /* The two identity colors also drive surfaces, controls and the 3D materials. */
 :root {
-  --identity-charcoal: oklch(0.27156323 0.01030100 332.55804154);
-  --identity-ivory: oklch(0.95498682 0.01237502 91.51926860);
+  --identity-charcoal: oklch(0.27156323 0.010301 332.55804154);
+  --identity-ivory: oklch(0.95498682 0.01237502 91.5192686);
   --background: var(--identity-ivory);
   --foreground: var(--identity-charcoal);
   --primary: var(--foreground);
@@ -170,8 +200,8 @@ h1,h2,h3,h4{font-family:var(--font-display);}
   --glass-bg: var(--card);
   --glass-border: var(--border);
   --overlay: color-mix(in oklab, var(--identity-charcoal) 85%, transparent);
-  --scene-light: #F3F0E7;
-  --scene-dark: #2A2529;
+  --scene-light: #f3f0e7;
+  --scene-dark: #2a2529;
   --radius: 0.5rem;
 }
 .dark {
@@ -197,22 +227,53 @@ h1,h2,h3,h4{font-family:var(--font-display);}
   --glass-bg: var(--card);
   --glass-border: var(--border);
 }
-@theme inline { --color-overlay: var(--overlay); }
-.portfolio { letter-spacing: 0; }
-.portfolio * { letter-spacing: 0; }
-.portfolio section { scroll-margin-top: 96px; }
+@theme inline {
+  --color-overlay: var(--overlay);
+}
+.portfolio {
+  letter-spacing: 0;
+}
+.portfolio * {
+  letter-spacing: 0;
+}
+.portfolio section {
+  scroll-margin-top: 96px;
+}
 /* The nav floats as a pill: it never touches the screen edges and keeps a soft token-driven shadow. */
-.floating-nav { box-shadow: 0 12px 40px -16px color-mix(in oklab, var(--foreground) 35%, transparent); }
-.portfolio h2 { overflow-wrap: anywhere; }
-.portfolio h3, .portfolio h4 { overflow-wrap: anywhere; }
-.skill-logo { filter: brightness(0) saturate(100%); }
-.dark .skill-logo { filter: brightness(0) saturate(100%) invert(96%) sepia(8%) saturate(316%) hue-rotate(354deg) brightness(100%) contrast(92%); }
-::-webkit-scrollbar-thumb { background: var(--border); }
-.dark ::-webkit-scrollbar-thumb { background: var(--border); }
+.floating-nav {
+  box-shadow: 0 12px 40px -16px color-mix(in oklab, var(--foreground) 35%, transparent);
+}
+.portfolio h2 {
+  overflow-wrap: anywhere;
+}
+.portfolio h3,
+.portfolio h4 {
+  overflow-wrap: anywhere;
+}
+.skill-logo {
+  filter: brightness(0) saturate(100%);
+}
+.dark .skill-logo {
+  filter: brightness(0) saturate(100%) invert(96%) sepia(8%) saturate(316%) hue-rotate(354deg)
+    brightness(100%) contrast(92%);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ------------------------------------------------------------------ *
@@ -221,10 +282,27 @@ h1,h2,h3,h4{font-family:var(--font-display);}
 
 /* The ribbon belongs to the hero stage only, so it can never sit on top of
    the body copy of the sections that follow. */
-.hero-stage { position: relative; isolation: isolate; }
-.sculpture-stage { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.sculpture-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
-.sculpture-canvas { width: 100%; height: 100%; will-change: transform, opacity; }
+.hero-stage {
+  position: relative;
+  isolation: isolate;
+}
+.sculpture-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.sculpture-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+.sculpture-canvas {
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+}
 /* The pinned canvas is clipped by the end of the hero stage. This wash sits
    above the ribbon and fades it into the page background right at that edge,
    so the ribbon dissolves instead of ending on a hard line. */
@@ -246,14 +324,33 @@ h1,h2,h3,h4{font-family:var(--font-display);}
   flex-direction: column;
   padding-top: clamp(7.5rem, 10vw, 9.5rem);
 }
-.hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: clamp(2rem, 5vh, 3.5rem); }
-.hero-name { font-size: clamp(3.25rem, 8.4vw, 8.25rem); line-height: 0.94; letter-spacing: -0.02em; }
-.hero-caption { max-width: 30rem; margin-top: clamp(1.5rem, 3vh, 2.25rem); }
-.hero-bottom { position: relative; }
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: clamp(2rem, 5vh, 3.5rem);
+}
+.hero-name {
+  font-size: clamp(3.25rem, 8.4vw, 8.25rem);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+}
+.hero-caption {
+  max-width: 30rem;
+  margin-top: clamp(1.5rem, 3vh, 2.25rem);
+}
+.hero-bottom {
+  position: relative;
+}
 
 /* Sections --------------------------------------------------------- */
-.editorial-section { padding-block: clamp(5rem, 9vw, 9rem); }
-.section-head { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.editorial-section {
+  padding-block: clamp(5rem, 9vw, 9rem);
+}
+.section-head {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
 .section-index {
   display: flex;
   align-items: center;
@@ -264,7 +361,13 @@ h1,h2,h3,h4{font-family:var(--font-display);}
   letter-spacing: 0.16em;
   color: var(--muted-foreground);
 }
-.section-index::before { content: ""; width: 2.25rem; height: 1px; background: currentColor; opacity: 0.45; }
+.section-index::before {
+  content: "";
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
 .portfolio .section-title {
   font-family: var(--font-display);
   font-weight: 700;
@@ -273,29 +376,85 @@ h1,h2,h3,h4{font-family:var(--font-display);}
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
-.section-lede { max-width: 34rem; color: var(--muted-foreground); font-size: clamp(1rem, 1.2vw, 1.125rem); line-height: 1.65; }
+.section-lede {
+  max-width: 34rem;
+  color: var(--muted-foreground);
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.65;
+}
 
-.about-rail { position: sticky; top: 7rem; align-self: start; }
-.about-copy p { max-width: 36rem; font-size: clamp(1rem, 1.1vw, 1.0625rem); line-height: 1.8; color: var(--muted-foreground); }
+.about-rail {
+  position: sticky;
+  top: 7rem;
+  align-self: start;
+}
+.about-copy p {
+  max-width: 36rem;
+  font-size: clamp(1rem, 1.1vw, 1.0625rem);
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
 
-.exp-row { transition: background-color 0.4s ease; }
-.exp-row:hover { background-color: color-mix(in oklab, var(--foreground) 3%, transparent); }
+.exp-row {
+  transition: background-color 0.4s ease;
+}
+.exp-row:hover {
+  background-color: color-mix(in oklab, var(--foreground) 3%, transparent);
+}
 
 @media (max-width: 1023px) {
-  .hero-name { font-size: clamp(3.25rem, 11vw, 6rem); }
-  .sculpture-stage { height: min(58svh, 520px); }
-  .sculpture-canvas { width: 62%; margin-left: 38%; }
-  .sculpture-sticky { position: relative; height: 100%; }
-  .about-rail { position: static; }
+  .hero-name {
+    font-size: clamp(3.25rem, 11vw, 6rem);
+  }
+  .sculpture-stage {
+    height: min(58svh, 520px);
+  }
+  .sculpture-canvas {
+    width: 62%;
+    margin-left: 38%;
+  }
+  .sculpture-sticky {
+    position: relative;
+    height: 100%;
+  }
+  .about-rail {
+    position: static;
+  }
 }
 @media (max-width: 640px) {
-  .hero-editorial { min-height: 0; padding-top: 6.5rem; padding-bottom: 2rem; }
-  .hero-content { flex: 0 0 auto; justify-content: flex-start; padding-top: 14rem; padding-bottom: 2.5rem; }
-  .hero-name { font-size: clamp(2.75rem, 14vw, 3.5rem); }
-  .hero-caption { margin-top: 1rem; }
-  .sculpture-stage { top: 4.75rem; height: 19rem; }
-  .sculpture-sticky { height: 19rem; }
-  .sculpture-canvas { width: 100%; margin-left: 0; transform: none !important; }
-  .editorial-section { padding-block: 4rem; }
-  .portfolio .section-title { font-size: clamp(2.25rem, 9vw, 2.75rem); }
+  .hero-editorial {
+    min-height: 0;
+    padding-top: 6.5rem;
+    padding-bottom: 2rem;
+  }
+  .hero-content {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    padding-top: 14rem;
+    padding-bottom: 2.5rem;
+  }
+  .hero-name {
+    font-size: clamp(2.75rem, 14vw, 3.5rem);
+  }
+  .hero-caption {
+    margin-top: 1rem;
+  }
+  .sculpture-stage {
+    top: 4.75rem;
+    height: 19rem;
+  }
+  .sculpture-sticky {
+    height: 19rem;
+  }
+  .sculpture-canvas {
+    width: 100%;
+    margin-left: 0;
+    transform: none !important;
+  }
+  .editorial-section {
+    padding-block: 4rem;
+  }
+  .portfolio .section-title {
+    font-size: clamp(2.25rem, 9vw, 2.75rem);
+  }
 }

@@ -1,12 +1,12 @@
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { translations } from '../data/translations';
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { translations } from "../data/translations";
 
-type Project = typeof translations.fr.projects_data[number];
+type Project = (typeof translations.fr.projects_data)[number];
 
 interface ProjectsProps {
-  language: 'fr' | 'en';
+  language: "fr" | "en";
   darkMode: boolean;
   setSelectedProject: (project: Project) => void;
 }
@@ -19,11 +19,13 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
     <div className="editorial-section mx-auto max-w-7xl px-6 lg:px-12">
       <header className="section-head flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="section-index">02 <span className="opacity-40">/</span> {t.projects.subtitle}</p>
+          <p className="section-index">
+            02 <span className="opacity-40">/</span> {t.projects.subtitle}
+          </p>
           <h2 className="section-title mt-6">{t.projects.title}</h2>
         </div>
         <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground md:mb-2">
-          {t.projects.timeline} — {String(projects.length).padStart(2, '0')}
+          {t.projects.timeline} — {String(projects.length).padStart(2, "0")}
         </p>
       </header>
 
@@ -35,13 +37,13 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.12 }}
             transition={{ duration: 0.7 }}
-            className={i === 0 ? 'md:col-span-2' : ''}
+            className={i === 0 ? "md:col-span-2" : ""}
           >
             <Button
               variant="ghost"
               onClick={() => setSelectedProject(project)}
               aria-label={`${t.projects.view_details} — ${project.title}`}
-              className={`project-image group relative flex h-auto w-full overflow-hidden rounded-xl border border-border bg-secondary p-0 ${i === 0 ? 'aspect-[16/8]' : 'aspect-[16/10]'}`}
+              className={`project-image group relative flex h-auto w-full overflow-hidden rounded-xl border border-border bg-secondary p-0 ${i === 0 ? "aspect-[16/8]" : "aspect-[16/10]"}`}
             >
               <img
                 src={project.media}
@@ -57,7 +59,8 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
             <div className="mt-6 flex items-start justify-between gap-4">
               <div>
                 <p className="mb-2 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                  {String(i + 1).padStart(2, '0')} <span className="opacity-40">/</span> {project.category}
+                  {String(i + 1).padStart(2, "0")} <span className="opacity-40">/</span>{" "}
+                  {project.category}
                 </p>
                 <h3 className="text-2xl font-bold sm:text-3xl">
                   <Button
@@ -69,11 +72,15 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                   </Button>
                 </h3>
               </div>
-              <p className="shrink-0 pt-1 text-xs text-muted-foreground">{project.date.split('-')[0]}</p>
+              <p className="shrink-0 pt-1 text-xs text-muted-foreground">
+                {project.date.split("-")[0]}
+              </p>
             </div>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              {project.description}
+            </p>
             <p className="mt-5 border-t border-border pt-3 text-xs leading-relaxed text-muted-foreground">
-              {project.tech.join(' · ')}
+              {project.tech.join(" · ")}
             </p>
           </motion.article>
         ))}

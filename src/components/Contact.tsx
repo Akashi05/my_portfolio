@@ -1,16 +1,16 @@
-import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion';
-import { Mail, Phone } from 'lucide-react';
-import { translations } from '../data/translations';
-import { useForm, ValidationError } from '@formspree/react';
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { Mail, Phone } from "lucide-react";
+import { translations } from "../data/translations";
+import { useForm, ValidationError } from "@formspree/react";
 
 interface ContactProps {
-  language: 'fr' | 'en';
+  language: "fr" | "en";
   darkMode: boolean;
 }
 
 export default function Contact({ language }: ContactProps) {
-  const [state, handleSubmit] = useForm('xdapdrpv');
+  const [state, handleSubmit] = useForm("xdapdrpv");
   const t = translations[language];
 
   return (
@@ -23,14 +23,19 @@ export default function Contact({ language }: ContactProps) {
         className="section-head grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end lg:gap-16"
       >
         <div>
-          <p className="section-index">04 <span className="opacity-40">/</span> {t.contact.subtitle}</p>
+          <p className="section-index">
+            04 <span className="opacity-40">/</span> {t.contact.subtitle}
+          </p>
           <h2 className="section-title mt-6">{t.contact.title}</h2>
         </div>
         <div>
           <p className="section-lede">{t.contact.description}</p>
           <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-[0.6875rem] uppercase tracking-[0.14em] text-muted-foreground">
-            <span aria-hidden="true" className="inline-block size-1.5 rounded-full bg-foreground/60" />
-            {t.hero.status.replace(/^[^\p{L}\p{N}]+/u, '')}
+            <span
+              aria-hidden="true"
+              className="inline-block size-1.5 rounded-full bg-foreground/60"
+            />
+            {t.hero.status.replace(/^[^\p{L}\p{N}]+/u, "")}
           </p>
         </div>
       </motion.header>
@@ -40,9 +45,21 @@ export default function Contact({ language }: ContactProps) {
           <div className="flex items-start gap-5 border-t border-border py-8">
             <Mail size={22} className="mt-1 shrink-0 text-muted-foreground" />
             <div className="min-w-0">
-              <h3 className="mb-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">Email</h3>
-              <a href="mailto:sessouberenger@gmail.com" className="block truncate text-lg transition-colors hover:text-muted-foreground">sessouberenger@gmail.com</a>
-              <a href="mailto:berenger.sessou@epitech.eu" className="mt-1 block truncate text-lg transition-colors hover:text-muted-foreground">berenger.sessou@epitech.eu</a>
+              <h3 className="mb-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                Email
+              </h3>
+              <a
+                href="mailto:sessouberenger@gmail.com"
+                className="block truncate text-lg transition-colors hover:text-muted-foreground"
+              >
+                sessouberenger@gmail.com
+              </a>
+              <a
+                href="mailto:berenger.sessou@epitech.eu"
+                className="mt-1 block truncate text-lg transition-colors hover:text-muted-foreground"
+              >
+                berenger.sessou@epitech.eu
+              </a>
             </div>
           </div>
 
@@ -54,7 +71,9 @@ export default function Contact({ language }: ContactProps) {
           >
             <Phone size={22} className="mt-1 shrink-0 text-muted-foreground" />
             <div className="min-w-0">
-              <h3 className="mb-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">WhatsApp</h3>
+              <h3 className="mb-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                WhatsApp
+              </h3>
               <p className="text-lg">+229 01 64 77 86 82</p>
             </div>
           </a>
@@ -66,7 +85,12 @@ export default function Contact({ language }: ContactProps) {
 
         <form onSubmit={handleSubmit} className="space-y-8" aria-label={t.contact.form_send}>
           <div>
-            <label htmlFor="name" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">{t.contact.form_name}</label>
+            <label
+              htmlFor="name"
+              className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground"
+            >
+              {t.contact.form_name}
+            </label>
             <input
               id="name"
               type="text"
@@ -78,7 +102,12 @@ export default function Contact({ language }: ContactProps) {
             <ValidationError prefix="Name" field="name" errors={state.errors} />
           </div>
           <div>
-            <label htmlFor="email" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">{t.contact.form_email}</label>
+            <label
+              htmlFor="email"
+              className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground"
+            >
+              {t.contact.form_email}
+            </label>
             <input
               id="email"
               type="email"
@@ -90,7 +119,12 @@ export default function Contact({ language }: ContactProps) {
             <ValidationError prefix="Email" field="email" errors={state.errors} />
           </div>
           <div>
-            <label htmlFor="message" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">{t.contact.form_message}</label>
+            <label
+              htmlFor="message"
+              className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground"
+            >
+              {t.contact.form_message}
+            </label>
             <textarea
               id="message"
               name="message"
@@ -106,7 +140,9 @@ export default function Contact({ language }: ContactProps) {
             className="h-14 w-full rounded-full font-bold uppercase tracking-[0.1em] transition-transform hover:scale-[1.01] disabled:opacity-50"
           >
             {state.succeeded
-              ? (language === 'fr' ? 'Message envoyé !' : 'Message sent!')
+              ? language === "fr"
+                ? "Message envoyé !"
+                : "Message sent!"
               : t.contact.form_send}
           </Button>
         </form>

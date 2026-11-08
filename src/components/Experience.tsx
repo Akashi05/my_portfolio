@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import { translations } from '../data/translations';
+import { motion } from "framer-motion";
+import { translations } from "../data/translations";
 
 interface ExperienceProps {
-  language: 'fr' | 'en';
+  language: "fr" | "en";
   darkMode: boolean;
 }
 
@@ -12,7 +12,9 @@ export default function Experience({ language }: ExperienceProps) {
   return (
     <div className="editorial-section mx-auto max-w-7xl px-6 lg:px-12">
       <header className="section-head">
-        <p className="section-index">03 <span className="opacity-40">/</span> {t.experience.subtitle}</p>
+        <p className="section-index">
+          03 <span className="opacity-40">/</span> {t.experience.subtitle}
+        </p>
         <h2 className="section-title mt-6">{t.experience.title}</h2>
       </header>
 
@@ -35,9 +37,11 @@ export default function Experience({ language }: ExperienceProps) {
               <h3 className="text-2xl font-bold sm:text-3xl">{exp.title}</h3>
               <p className="mt-2 text-base text-muted-foreground">{exp.company}</p>
               <ul className="mt-6 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
-                {exp.achievements.map(achievement => (
+                {exp.achievements.map((achievement) => (
                   <li key={achievement} className="flex gap-4">
-                    <span aria-hidden="true" className="text-foreground/40">—</span>
+                    <span aria-hidden="true" className="text-foreground/40">
+                      —
+                    </span>
                     <span>{achievement}</span>
                   </li>
                 ))}
