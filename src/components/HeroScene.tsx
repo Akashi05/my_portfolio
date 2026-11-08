@@ -1,80 +1,81 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment, Lightformer, Float, MeshDistortMaterial, MeshTransmissionMaterial } from '@react-three/drei';
+import { Environment, Lightformer } from '@react-three/drei';
 import * as THREE from 'three';
 
-function Blob({ light, dark, reducedMotion }: { light: string; dark: string; reducedMotion: boolean }) {
-  const group = useRef<THREE.Group>(null);
+// A closed, thick Möbius ribbon: one continuous silhouette, no satellite objects.
+function makeRibbon() {
+  const points = 240;
+  const cross = 12;
+  const vertices: number[] = [];
+  const indices: number[] = [];
+  for (let i = 0; i <= points; i++) {
+    const t = i / points * Math.PI * 2;
+    for (let j = 0; j <= cross; j++) {
+      const a = j / cross * Math.PI * 2;
+      const width = Math.cos(a) * 0.53;
+      const depth = Math.sin(a) * 0.065;
+      const radial = 1.48 + width * Math.cos(t / 2) - depth * Math.sin(t / 2);
+      vertices.push(radial * Math.cos(t), radial * Math.sin(t), width * Math.sin(t / 2) + depth * Math.cos(t / 2));
+      if (i < points && j < cross) {
+        const k = i * (cross + 1) + j;
+        indices.push(k, k + cross + 1, k + 1, k + 1, k + cross + 1, k + cross + 2);
+      }
+    }
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  return geometry;
+}
+
+function Ribbon({ color, reducedMotion }: { color: string; reducedMotion: boolean }) {
+  const mesh = useRef<THREE.Mesh>(null);
+  const geometry = useMemo(makeRibbon, []);
+  const phase = useRef(0);
+  const ready = useRef(false);
+  useEffect(() => () => geometry.dispose(), [geometry]);
   useFrame((state, delta) => {
-    const g = group.current;
-    if (!g || reducedMotion) return;
+    if (!ready.current) {
+      state.gl.domElement.parentElement?.setAttribute('data-scene-ready', '');
+      ready.current = true;
+    }
+    if (!mesh.current || reducedMotion) return;
     const dt = Math.min(delta, 0.05);
-    const tx = state.pointer.y * 0.35;
-    const ty = state.pointer.x * 0.5;
-    g.rotation.x += (tx - g.rotation.x) * (1 - Math.exp(-3 * dt));
-    g.rotation.y += (ty + state.clock.elapsedTime * 0.15 - g.rotation.y) * (1 - Math.exp(-3 * dt));
+    phase.current += dt * 0.14;
+    const follow = 1 - Math.exp(-2.5 * dt);
+    mesh.current.rotation.x += (0.65 + state.pointer.y * 0.18 - mesh.current.rotation.x) * follow;
+    mesh.current.rotation.y += (-0.4 + Math.sin(phase.current) * 0.45 + state.pointer.x * 0.25 - mesh.current.rotation.y) * follow;
+    mesh.current.rotation.z = -0.48 + Math.sin(phase.current * 0.7) * 0.16;
+    mesh.current.position.y = Math.sin(phase.current * 1.7) * 0.09;
   });
-  return (
-    <group ref={group}>
-      <Float speed={reducedMotion ? 0 : 1.4} rotationIntensity={0.6} floatIntensity={1.2}>
-        <mesh>
-          <icosahedronGeometry args={[1.25, 64]} />
-          <MeshDistortMaterial color={light} metalness={1} roughness={0.12} distort={0.38} speed={reducedMotion ? 0 : 1.6} />
-        </mesh>
-      </Float>
-      <Float speed={reducedMotion ? 0 : 2} rotationIntensity={1.5} floatIntensity={0.8}>
-        <mesh rotation={[Math.PI / 2.4, 0.3, 0]}>
-          <torusGeometry args={[2.1, 0.03, 32, 200]} />
-          <meshStandardMaterial color={light} metalness={0.9} roughness={0.25} />
-        </mesh>
-        <mesh rotation={[Math.PI / 1.7, -0.5, 0.4]}>
-          <torusGeometry args={[2.5, 0.012, 16, 200]} />
-          <meshStandardMaterial color={dark} metalness={1} roughness={0.3} />
-        </mesh>
-      </Float>
-      <Float speed={reducedMotion ? 0 : 3} floatIntensity={2}>
-        <mesh position={[1.9, 1.1, 0.6]}>
-          <sphereGeometry args={[0.18, 48, 48]} />
-          <MeshTransmissionMaterial thickness={0.4} roughness={0.05} chromaticAberration={0.2} samples={4} resolution={256} />
-        </mesh>
-        <mesh position={[-1.8, -1.2, 0.4]}>
-          <octahedronGeometry args={[0.22]} />
-          <meshStandardMaterial color={light} metalness={1} roughness={0.2} />
-        </mesh>
-      </Float>
-    </group>
-  );
+  return <mesh ref={mesh} geometry={geometry} rotation={[0.65, -0.4, -0.48]}>
+    <meshStandardMaterial color={color} metalness={0.32} roughness={0.38} side={THREE.DoubleSide} />
+  </mesh>;
 }
 
 export default function HeroScene({ darkMode }: { darkMode: boolean }) {
-  const [colors, setColors] = useState<{ light: string; dark: string } | null>(null);
+  const [color, setColor] = useState<string | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   useEffect(() => {
     const css = getComputedStyle(document.documentElement);
-    setColors({ light: css.getPropertyValue('--scene-light').trim(), dark: css.getPropertyValue('--scene-dark').trim() });
+    setColor(css.getPropertyValue(darkMode ? '--scene-light' : '--scene-dark').trim());
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => setReducedMotion(media.matches);
     update();
     media.addEventListener('change', update);
     return () => media.removeEventListener('change', update);
   }, [darkMode]);
-  if (!colors) return null;
-  return (
-    <Canvas
-      dpr={[1, 1.75]}
-      camera={{ position: [0, 0, 6], fov: 40 }}
-      gl={{ antialias: true, alpha: true }}
-      onCreated={({ gl }) => gl.domElement.parentElement?.setAttribute('data-scene-ready', '')}
-    >
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[4, 5, 3]} intensity={1.5} />
-      <Blob light={colors.light} dark={colors.dark} reducedMotion={reducedMotion} />
-      <Environment resolution={256}>
-        <Lightformer intensity={3} position={[0, 5, -2]} scale={[10, 3, 1]} />
-        <Lightformer intensity={2} color={colors.light} position={[-5, 1, -1]} rotation-y={Math.PI / 2} scale={[20, 1.5, 1]} />
-        <Lightformer intensity={1.5} position={[5, -1, 1]} rotation-y={-Math.PI / 2} scale={[20, 1, 1]} />
-        <Lightformer intensity={1} color={colors.light} position={[0, -4, 2]} rotation-x={-Math.PI / 2} scale={[10, 10, 1]} />
-      </Environment>
-    </Canvas>
-  );
+  if (!color) return null;
+  return <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 7.7], fov: 36 }} gl={{ antialias: true, alpha: true }}>
+    <ambientLight intensity={0.65} />
+    <directionalLight color={color} position={[3, 5, 4]} intensity={2.4} />
+    <Ribbon color={color} reducedMotion={reducedMotion} />
+    <Environment resolution={128}>
+      <Lightformer intensity={3} position={[0, 5, 2]} scale={[8, 3, 1]} />
+      <Lightformer intensity={2} position={[-5, 0, 2]} rotation-y={Math.PI / 2} scale={[8, 4, 1]} />
+      <Lightformer intensity={1.5} position={[5, -2, 1]} rotation-y={-Math.PI / 2} scale={[5, 2, 1]} />
+    </Environment>
+  </Canvas>;
 }
