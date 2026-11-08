@@ -1,107 +1,116 @@
-import React from 'react';
+import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { Mail, Phone } from 'lucide-react';
 import { translations } from '../data/translations';
 import { useForm, ValidationError } from '@formspree/react';
 
 interface ContactProps {
-    language: 'fr' | 'en';
-    darkMode: boolean;
+  language: 'fr' | 'en';
+  darkMode: boolean;
 }
 
-export default function Contact({ language, darkMode }: ContactProps) {
-    const [state, handleSubmit] = useForm("xdapdrpv"); // Remplace avec ton ID Formspree si tu en as un, sinon il faudra en créer un
-    const t = translations;
-    const cardClass = darkMode
-        ? 'glass-card'
-        : 'bg-white/80 border-gray-200 backdrop-blur-md';
-    const textSecondary = darkMode ? 'text-gray-400' : 'text-gray-600';
+export default function Contact({ language }: ContactProps) {
+  const [state, handleSubmit] = useForm('xdapdrpv');
+  const t = translations[language];
 
-    return (
-        <div className="min-h-screen flex items-center justify-center px-6 lg:px-12 py-24">
-            <div className="max-w-6xl w-full">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-16 text-center"
-                >
-                    <p className={`text-sm uppercase tracking-widest text-zinc-500 font-bold mb-4`}>{t[language].contact.subtitle}</p>
-                    <h2 className="text-5xl font-bold mb-6">{t[language].contact.title}</h2>
-                    <p className={`text-xl ${textSecondary} max-w-2xl mx-auto`}>
-                        {t[language].contact.description}
-                    </p>
-                </motion.div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div className="space-y-6">
-                        <div className={`${cardClass} flex items-center gap-6 p-8 rounded-3xl border hover-glow`}>
-                            <div className="p-4 bg-zinc-500/10 text-zinc-500 rounded-2xl">
-                                <Mail size={32} />
-                            </div>
-                            <div className="min-w-0 flex-1">
-                                <h3 className="font-bold text-xl mb-1">Email</h3>
-                                <a href="mailto:sessouberenger@gmail.com" className="block text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors truncate">
-                                    sessouberenger@gmail.com
-                                </a>
-                                <a href="mailto:berenger.sessou@epitech.eu" className="block text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors truncate mt-1">
-                                    berenger.sessou@epitech.eu
-                                </a>
-                            </div>
-                        </div>
-
-                        <a href="https://wa.me/2290164778682" target="_blank" rel="noopener noreferrer" className={`${cardClass} flex items-center gap-6 p-8 rounded-3xl border hover-glow`}>
-                            <div className="p-4 bg-zinc-500/10 text-zinc-500 rounded-2xl">
-                                <Phone size={32} />
-                            </div>
-                            <div className="min-w-0">
-                                <h3 className="font-bold text-xl">WhatsApp</h3>
-                                <p className={`${textSecondary} break-words`}>+229 01 64 77 86 82</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <form onSubmit={handleSubmit} className={`${cardClass} p-8 rounded-3xl border space-y-6`}>
-                        <div>
-                            <label htmlFor="name" className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_name}</label>
-                            <input
-                                id="name"
-                                type="text"
-                                name="name"
-                                required
-                                className="w-full bg-zinc-500/5 border border-zinc-500/10 rounded-xl px-4 py-3 focus:outline-none focus:border-zinc-500 transition-colors"
-                            />
-                            <ValidationError prefix="Name" field="name" errors={state.errors} />
-                        </div>
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_email}</label>
-                            <input
-                                id="email"
-                                type="email"
-                                name="email"
-                                required
-                                className="w-full bg-zinc-500/5 border border-zinc-500/10 rounded-xl px-4 py-3 focus:outline-none focus:border-zinc-500 transition-colors"
-                            />
-                            <ValidationError prefix="Email" field="email" errors={state.errors} />
-                        </div>
-                        <div>
-                            <label htmlFor="message" className="block text-sm font-bold mb-2 text-zinc-500">{t[language].contact.form_message}</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                required
-                                rows={4}
-                                className="w-full bg-zinc-500/5 border border-zinc-500/10 rounded-xl px-4 py-3 focus:outline-none focus:border-zinc-500 transition-colors"
-                            ></textarea>
-                            <ValidationError prefix="Message" field="message" errors={state.errors} />
-                        </div>
-                        <button type="submit" disabled={state.submitting} className="w-full bg-zinc-900 dark:bg-white text-white dark:text-black font-bold py-4 rounded-xl hover:scale-[1.02] transition-transform disabled:opacity-50">
-                            {state.succeeded ? (language === 'fr' ? 'Message envoyé !' : 'Message sent!') : t[language].contact.form_send}
-                        </button>
-                    </form>
-                </div>
-            </div>
+  return (
+    <div className="editorial-section mx-auto max-w-7xl px-6 lg:px-12">
+      <motion.header
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+        className="section-head grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end lg:gap-16"
+      >
+        <div>
+          <p className="section-index">04 <span className="opacity-40">/</span> {t.contact.subtitle}</p>
+          <h2 className="section-title mt-6">{t.contact.title}</h2>
         </div>
-    );
+        <div>
+          <p className="section-lede">{t.contact.description}</p>
+          <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-[0.6875rem] uppercase tracking-[0.14em] text-muted-foreground">
+            <span aria-hidden="true" className="inline-block size-1.5 rounded-full bg-foreground/60" />
+            {t.hero.status.replace(/^[^\p{L}\p{N}]+/u, '')}
+          </p>
+        </div>
+      </motion.header>
+
+      <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
+        <div>
+          <div className="flex items-start gap-5 border-t border-border py-8">
+            <Mail size={22} className="mt-1 shrink-0 text-muted-foreground" />
+            <div className="min-w-0">
+              <h3 className="mb-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">Email</h3>
+              <a href="mailto:sessouberenger@gmail.com" className="block truncate text-lg transition-colors hover:text-muted-foreground">sessouberenger@gmail.com</a>
+              <a href="mailto:berenger.sessou@epitech.eu" className="mt-1 block truncate text-lg transition-colors hover:text-muted-foreground">berenger.sessou@epitech.eu</a>
+            </div>
+          </div>
+
+          <a
+            href="https://wa.me/2290164778682"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-start gap-5 border-t border-border py-8"
+          >
+            <Phone size={22} className="mt-1 shrink-0 text-muted-foreground" />
+            <div className="min-w-0">
+              <h3 className="mb-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">WhatsApp</h3>
+              <p className="text-lg">+229 01 64 77 86 82</p>
+            </div>
+          </a>
+
+          <div className="border-t border-border py-8 text-sm text-muted-foreground">
+            Cotonou, Bénin · EPITECH
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-8" aria-label={t.contact.form_send}>
+          <div>
+            <label htmlFor="name" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">{t.contact.form_name}</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              autoComplete="name"
+              required
+              className="w-full border-0 border-b border-border bg-transparent px-0 py-3 text-base focus:border-foreground focus:outline-none"
+            />
+            <ValidationError prefix="Name" field="name" errors={state.errors} />
+          </div>
+          <div>
+            <label htmlFor="email" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">{t.contact.form_email}</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              autoComplete="email"
+              required
+              className="w-full border-0 border-b border-border bg-transparent px-0 py-3 text-base focus:border-foreground focus:outline-none"
+            />
+            <ValidationError prefix="Email" field="email" errors={state.errors} />
+          </div>
+          <div>
+            <label htmlFor="message" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">{t.contact.form_message}</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows={4}
+              className="w-full resize-none border-0 border-b border-border bg-transparent px-0 py-3 text-base focus:border-foreground focus:outline-none"
+            />
+            <ValidationError prefix="Message" field="message" errors={state.errors} />
+          </div>
+          <Button
+            type="submit"
+            disabled={state.submitting}
+            className="h-14 w-full rounded-full font-bold uppercase tracking-[0.1em] transition-transform hover:scale-[1.01] disabled:opacity-50"
+          >
+            {state.succeeded
+              ? (language === 'fr' ? 'Message envoyé !' : 'Message sent!')
+              : t.contact.form_send}
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
 }
