@@ -85,15 +85,16 @@ export default function Portfolio() {
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={isMenuOpen} className="lg:hidden">{isMenuOpen ? <X /> : <Menu />}</Button>
           </div>
         </nav>
-        {isMenuOpen && <div className="fixed top-20 left-4 right-4 z-40 lg:hidden rounded-3xl border border-border bg-background/95 backdrop-blur-xl flex flex-col items-center gap-4 py-10">
-          {sections.map(section => <Button variant="ghost" key={section} onClick={() => scrollToSection(section)} className="font-display text-3xl font-bold h-auto">{t.nav[section]}</Button>)}
+        {isMenuOpen && <div className="fixed inset-0 z-30 bg-overlay backdrop-blur-sm lg:hidden" onClick={() => setIsMenuOpen(false)} aria-hidden="true" />}
+        {isMenuOpen && <div className="fixed top-24 left-4 right-4 z-40 flex flex-col rounded-3xl border border-border bg-background p-3 shadow-2xl lg:hidden">
+          {sections.map((section, index) => <Button variant="ghost" key={section} onClick={() => scrollToSection(section)} className="h-auto w-full justify-start gap-5 border-b border-border px-5 py-5 font-display text-2xl font-bold last:border-0"><span className="text-xs font-medium tabular-nums text-muted-foreground">0{index + 1}</span>{t.nav[section]}</Button>)}
         </div>}
         <main>
-          <div className="intro-stage relative">
+          <div className="hero-stage">
             <SculptureStage darkMode={darkMode} />
-          <section id="home" aria-label={t.nav.home}><Hero language={language} setCurrentPage={scrollToSection} darkMode={darkMode} /></section>
-          <section id="about" aria-label={t.nav.about}><About language={language} darkMode={darkMode} /></section>
+            <section id="home" aria-label={t.nav.home}><Hero language={language} setCurrentPage={scrollToSection} darkMode={darkMode} /></section>
           </div>
+          <section id="about" aria-label={t.nav.about} className="border-t border-border"><About language={language} darkMode={darkMode} /></section>
           <section id="projects" aria-label={t.nav.projects} className="border-t border-border"><Projects language={language} darkMode={darkMode} setSelectedProject={setSelectedProject} /></section>
           <section id="experience" aria-label={t.nav.experience} className="border-t border-border"><Experience language={language} darkMode={darkMode} /></section>
           <section id="contact" aria-label={t.nav.contact} className="border-t border-border"><Contact language={language} darkMode={darkMode} /></section>

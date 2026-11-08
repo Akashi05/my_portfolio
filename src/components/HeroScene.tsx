@@ -68,7 +68,7 @@ export default function HeroScene({ darkMode }: { darkMode: boolean }) {
     return () => media.removeEventListener('change', update);
   }, [darkMode]);
   if (!color) return null;
-  return <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 7.7], fov: 36 }} gl={{ antialias: true, alpha: true }}>
+  return <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 8.3], fov: 36 }} gl={{ antialias: true, alpha: true }}>
     <ambientLight intensity={0.65} />
     <directionalLight color={color} position={[3, 5, 4]} intensity={2.4} />
     <Ribbon color={color} reducedMotion={reducedMotion} />
