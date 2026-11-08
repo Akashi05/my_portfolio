@@ -13,29 +13,29 @@ interface ContactProps {
 export default function Contact({ language, darkMode }: ContactProps) {
     const [state, handleSubmit] = useForm("xdapdrpv"); // Remplace avec ton ID Formspree si tu en as un, sinon il faudra en créer un
     const t = translations;
-    const cardClass = 'glass-card';
+    const cardClass = '';
     const textSecondary = 'text-muted-foreground';
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-6 lg:px-12 py-24">
-            <div className="max-w-6xl w-full">
+        <div className="editorial-section flex items-center justify-center px-6 lg:px-12">
+            <div className="max-w-7xl w-full">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="mb-16 text-center"
+                    className="mb-16"
                 >
-                    <p className={`text-sm uppercase tracking-widest text-muted-foreground font-bold mb-4`}>{t[language].contact.subtitle}</p>
-                    <h2 className="text-5xl font-bold mb-6">{t[language].contact.title}</h2>
-                    <p className={`text-xl ${textSecondary} max-w-2xl mx-auto`}>
+                    <p className={`text-sm uppercase tracking-widest text-muted-foreground font-bold mb-4`}>04 / {t[language].contact.subtitle}</p>
+                    <h2 className="section-title font-bold mb-6">{t[language].contact.title}</h2>
+                    <p className={`text-xl ${textSecondary} max-w-2xl`}>
                         {t[language].contact.description}
                     </p>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div className="space-y-6">
-                        <div className={`${cardClass} flex items-center gap-4 p-5 sm:p-8 rounded-lg border hover-glow`}>
+                        <div className={`${cardClass} flex items-center gap-4 py-8 border-t border-border`}>
                             <div className="p-4 bg-secondary/10 text-muted-foreground rounded-lg">
                                 <Mail size={32} />
                             </div>
@@ -50,7 +50,7 @@ export default function Contact({ language, darkMode }: ContactProps) {
                             </div>
                         </div>
 
-                        <a href="https://wa.me/2290164778682" target="_blank" rel="noopener noreferrer" className={`${cardClass} flex items-center gap-4 p-5 sm:p-8 rounded-lg border hover-glow`}>
+                        <a href="https://wa.me/2290164778682" target="_blank" rel="noopener noreferrer" className={`${cardClass} flex items-center gap-4 py-8 border-t border-border`}>
                             <div className="p-4 bg-secondary/10 text-muted-foreground rounded-lg">
                                 <Phone size={32} />
                             </div>
@@ -61,7 +61,7 @@ export default function Contact({ language, darkMode }: ContactProps) {
                         </a>
                     </div>
 
-                    <form onSubmit={handleSubmit} className={`${cardClass} p-8 rounded-lg border space-y-6`}>
+                    <form onSubmit={handleSubmit} className={`${cardClass} space-y-6`}>
                         <div>
                             <label htmlFor="name" className="block text-sm font-bold mb-2 text-muted-foreground">{t[language].contact.form_name}</label>
                             <input
@@ -69,7 +69,7 @@ export default function Contact({ language, darkMode }: ContactProps) {
                                 type="text"
                                 name="name"
                                 required
-                                className="w-full bg-secondary/5 border border-border/10 rounded-lg px-4 py-3 focus:outline-none focus:border-border transition-colors"
+                                className="w-full bg-transparent border-0 border-b border-border rounded-none px-0 py-3 focus:outline-none focus:border-border transition-colors"
                             />
                             <ValidationError prefix="Name" field="name" errors={state.errors} />
                         </div>
@@ -80,7 +80,7 @@ export default function Contact({ language, darkMode }: ContactProps) {
                                 type="email"
                                 name="email"
                                 required
-                                className="w-full bg-secondary/5 border border-border/10 rounded-lg px-4 py-3 focus:outline-none focus:border-border transition-colors"
+                                className="w-full bg-transparent border-0 border-b border-border rounded-none px-0 py-3 focus:outline-none focus:border-border transition-colors"
                             />
                             <ValidationError prefix="Email" field="email" errors={state.errors} />
                         </div>
@@ -91,7 +91,7 @@ export default function Contact({ language, darkMode }: ContactProps) {
                                 name="message"
                                 required
                                 rows={4}
-                                className="w-full bg-secondary/5 border border-border/10 rounded-lg px-4 py-3 focus:outline-none focus:border-border transition-colors"
+                                className="w-full bg-transparent border-0 border-b border-border rounded-none px-0 py-3 focus:outline-none focus:border-border transition-colors"
                             ></textarea>
                             <ValidationError prefix="Message" field="message" errors={state.errors} />
                         </div>
