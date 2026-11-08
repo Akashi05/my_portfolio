@@ -58,19 +58,6 @@ export default function Hero({ language, setCurrentPage, darkMode }: HeroProps) 
 
       <div className="pointer-events-none relative z-10 mx-auto flex min-h-[calc(100svh-10rem)] max-w-7xl flex-col justify-between px-6 pb-10 lg:px-12">
         <div className="pt-6 lg:pt-16">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease }}
-            className={`mb-8 inline-flex items-center gap-2 rounded-full border ${line} px-4 py-1.5 font-mono text-xs uppercase tracking-widest ${muted} backdrop-blur-md`}
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-foreground" />
-            </span>
-            {t.role}
-          </motion.div>
-
           <h1 className="hero-name font-display font-black leading-[0.95]">
             <Reveal delay={0.1}>B<span className="font-sans">é</span>renger</Reveal>
             <Reveal delay={0.25}>
