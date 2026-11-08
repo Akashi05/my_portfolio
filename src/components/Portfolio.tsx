@@ -8,6 +8,7 @@ import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
 import Contact from '@/components/Contact';
+import SculptureStage from '@/components/SculptureStage';
 
 const sections = ['home', 'about', 'projects', 'experience', 'contact'] as const;
 type Section = typeof sections[number];
@@ -88,8 +89,11 @@ export default function Portfolio() {
           {sections.map(section => <Button variant="ghost" key={section} onClick={() => scrollToSection(section)} className="font-display text-3xl font-bold h-auto">{t.nav[section]}</Button>)}
         </div>}
         <main>
+          <div className="intro-stage relative">
+            <SculptureStage darkMode={darkMode} />
           <section id="home" aria-label={t.nav.home}><Hero language={language} setCurrentPage={scrollToSection} darkMode={darkMode} /></section>
-          <section id="about" aria-label={t.nav.about} className="border-t border-border"><About language={language} darkMode={darkMode} /></section>
+          <section id="about" aria-label={t.nav.about}><About language={language} darkMode={darkMode} /></section>
+          </div>
           <section id="projects" aria-label={t.nav.projects} className="border-t border-border"><Projects language={language} darkMode={darkMode} setSelectedProject={setSelectedProject} /></section>
           <section id="experience" aria-label={t.nav.experience} className="border-t border-border"><Experience language={language} darkMode={darkMode} /></section>
           <section id="contact" aria-label={t.nav.contact} className="border-t border-border"><Contact language={language} darkMode={darkMode} /></section>
