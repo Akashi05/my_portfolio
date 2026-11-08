@@ -225,10 +225,22 @@ h1,h2,h3,h4{font-family:var(--font-display);}
 .sculpture-stage { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .sculpture-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
 .sculpture-canvas { width: 100%; height: 100%; will-change: transform, opacity; }
+/* The pinned canvas is clipped by the end of the hero stage. This wash sits
+   above the ribbon and fades it into the page background right at that edge,
+   so the ribbon dissolves instead of ending on a hard line. */
+.hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 24vh;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent 0%, var(--background) 88%);
+}
 
 .hero-editorial {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   min-height: 100svh;
   display: flex;
   flex-direction: column;

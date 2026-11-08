@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { Github, Linkedin, ArrowDown, ArrowUpRight, Download } from 'lucide-react';
 import { translations } from '../data/translations';
 import { Button } from '@/components/ui/button';
@@ -10,8 +11,13 @@ interface HeroProps {
 const ease = [0.22, 1, 0.36, 1] as const;
 export default function Hero({ language, setCurrentPage }: HeroProps) {
   const t = translations[language].hero;
-  return <div className="hero-editorial relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
-    <div className="hero-content">
+  const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -72]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.72, 1], [1, 1, 0.15]);
+  return <div ref={ref} className="hero-editorial relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
+    <motion.div className="hero-content" style={reduced ? {} : { y: contentY, opacity: contentOpacity }}>
       <h1 className="hero-name font-display font-black leading-[1.02]">
         {['Bérenger', 'Sessou.'].map((name, i) => <span className="block overflow-hidden pb-2" key={name}>
           <motion.span className="block" initial={{ y: '110%' }} animate={{ y: 0 }} transition={{ duration: 1.1, delay: i * 0.15, ease }}>{name}</motion.span>
@@ -24,7 +30,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
           <Button variant="ghost" onClick={() => setCurrentPage('contact')} className="h-12 px-3">{t.cta_contact}<ArrowUpRight /></Button>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
     <div className="hero-bottom flex flex-wrap items-center justify-between gap-4 border-t border-border py-5 text-xs text-muted-foreground">
       <Button variant="ghost" onClick={() => setCurrentPage('about')} className="h-auto gap-3 p-0 text-xs text-muted-foreground"><ArrowDown size={16} />{language === 'fr' ? 'Découvrir mon univers' : 'Explore my world'}</Button>
       <span className="hidden sm:block">Cotonou, Bénin · EPITECH</span>
