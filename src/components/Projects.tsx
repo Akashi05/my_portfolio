@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { translations } from "../data/translations";
 
@@ -13,6 +14,7 @@ interface ProjectsProps {
 
 export default function Projects({ language, setSelectedProject }: ProjectsProps) {
   const t = translations[language];
+  const [showOthers, setShowOthers] = useState(false);
   const projects = [...t.projects_data].sort((a, b) => b.date.localeCompare(a.date));
 
   return (
@@ -93,31 +95,82 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
       </div>
 
       <div className="mt-24 lg:mt-32">
-        <h3 className="section-title text-[clamp(1.75rem,3.2vw,2.75rem)]">
-          {t.projects.others_title}
-        </h3>
-        <ul className="mt-10">
-          {t.other_projects.map((item) => (
-            <li
-              key={item.title}
-              className="grid gap-2 border-t border-border py-5 md:grid-cols-[200px_1fr_140px_auto] md:items-baseline md:gap-8"
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <h3 className="section-title text-[clamp(1.75rem,3.2vw,2.75rem)]">
+            {t.projects.others_title}
+            <span className="ml-3 text-base font-normal text-muted-foreground">
+              {String(t.other_projects.length).padStart(2, "0")}
+            </span>
+          </h3>
+          <Button
+            variant="outline"
+            onClick={() => setShowOthers((v) => !v)}
+            aria-expanded={showOthers}
+            aria-controls="other-projects"
+            className="h-12 rounded-full border-foreground/40 px-6"
+          >
+            {showOthers ? t.projects.others_less : t.projects.others_more}
+            <ChevronDown className={`transition-transform ${showOthers ? "rotate-180" : ""}`} />
+          </Button>
+        </div>
+
+        <AnimatePresence initial={false}>
+          {showOthers && (
+            <motion.div
+              id="other-projects"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.45 }}
+              className="overflow-hidden"
             >
-              <p className="text-base font-bold">{item.title}</p>
-              <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-              <p className="text-xs text-muted-foreground md:text-right">{item.period}</p>
-              <a
-                href={item.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${t.projects.others_link} : ${item.title}`}
-                className="inline-flex items-center gap-1 text-xs uppercase tracking-[0.14em] transition-colors hover:text-muted-foreground"
+              <ul
+                tabIndex={0}
+                className="mt-10 max-h-[70svh] space-y-6 overflow-y-auto rounded-xl border border-border p-4 sm:p-6"
               >
-                {t.projects.others_link}
-                <ArrowUpRight size={14} />
-              </a>
-            </li>
-          ))}
-        </ul>
+                {t.other_projects.map((item) => (
+                  <li
+                    key={item.title}
+                    className="grid gap-4 sm:grid-cols-[minmax(0,260px)_1fr] sm:gap-8"
+                  >
+                    <a
+                      href={item.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      tabIndex={-1}
+                      aria-hidden="true"
+                      className="flex aspect-[16/10] items-center justify-center overflow-hidden rounded-lg border border-border bg-secondary"
+                    >
+                      <img
+                        src={item.media}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-contain"
+                      />
+                    </a>
+                    <div className="flex flex-col justify-center">
+                      <p className="text-xs text-muted-foreground">{item.period}</p>
+                      <h4 className="mt-1 text-xl font-bold">{item.title}</h4>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {item.description}
+                      </p>
+                      <a
+                        href={item.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${t.projects.others_link} : ${item.title}`}
+                        className="mt-4 inline-flex w-fit items-center gap-1 text-xs uppercase tracking-[0.14em] transition-colors hover:text-muted-foreground"
+                      >
+                        {t.projects.others_link}
+                        <ArrowUpRight size={14} />
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
