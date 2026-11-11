@@ -25,7 +25,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
           <h2 className="section-title mt-6">{t.projects.title}</h2>
         </div>
         <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground md:mb-2">
-          {t.projects.timeline} — {String(projects.length).padStart(2, "0")}
+          {t.projects.timeline} · {String(projects.length).padStart(2, "0")}
         </p>
       </header>
 
@@ -42,15 +42,21 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
             <Button
               variant="ghost"
               onClick={() => setSelectedProject(project)}
-              aria-label={`${t.projects.view_details} — ${project.title}`}
+              aria-label={`${t.projects.view_details} : ${project.title}`}
               className={`project-image group relative flex h-auto w-full overflow-hidden rounded-xl border border-border bg-secondary p-0 ${i === 0 ? "aspect-[16/8]" : "aspect-[16/10]"}`}
             >
-              <img
-                src={project.media}
-                alt={project.title}
-                loading="lazy"
-                className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.035]"
-              />
+              {project.media ? (
+                <img
+                  src={project.media}
+                  alt={project.title}
+                  loading="lazy"
+                  className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.035]"
+                />
+              ) : (
+                <span className="font-display text-[clamp(2.5rem,7vw,5rem)] font-black tracking-tight text-foreground/80">
+                  {project.title}
+                </span>
+              )}
               <span className="absolute right-4 bottom-4 flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-500 group-hover:-rotate-45">
                 <ArrowUpRight size={20} />
               </span>
@@ -84,6 +90,34 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
             </p>
           </motion.article>
         ))}
+      </div>
+
+      <div className="mt-24 lg:mt-32">
+        <h3 className="section-title text-[clamp(1.75rem,3.2vw,2.75rem)]">
+          {t.projects.others_title}
+        </h3>
+        <ul className="mt-10">
+          {t.other_projects.map((item) => (
+            <li
+              key={item.title}
+              className="grid gap-2 border-t border-border py-5 md:grid-cols-[200px_1fr_140px_auto] md:items-baseline md:gap-8"
+            >
+              <p className="text-base font-bold">{item.title}</p>
+              <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              <p className="text-xs text-muted-foreground md:text-right">{item.period}</p>
+              <a
+                href={item.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${t.projects.others_link} : ${item.title}`}
+                className="inline-flex items-center gap-1 text-xs uppercase tracking-[0.14em] transition-colors hover:text-muted-foreground"
+              >
+                {t.projects.others_link}
+                <ArrowUpRight size={14} />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

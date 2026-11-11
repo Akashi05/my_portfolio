@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Github, Linkedin, ArrowDown, ArrowUpRight, Download } from "lucide-react";
 import { translations } from "../data/translations";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,41 @@ interface HeroProps {
   darkMode: boolean;
 }
 const ease = [0.22, 1, 0.36, 1] as const;
+
+function RotatingDomains({ domains, fixed }: { domains: string[]; fixed: string }) {
+  const reduced = useReducedMotion();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduced) return;
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % domains.length), 2600);
+    return () => window.clearInterval(id);
+  }, [reduced, domains.length]);
+
+  if (reduced) {
+    return <p className="text-sm font-medium text-muted-foreground">{fixed}</p>;
+  }
+
+  return (
+    <p className="text-sm font-medium text-muted-foreground">
+      <span className="sr-only">{fixed}</span>
+      <span aria-hidden="true" className="relative block h-6 overflow-hidden">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={domains[index]}
+            className="block"
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: "-100%", opacity: 0 }}
+            transition={{ duration: 0.45, ease }}
+          >
+            {domains[index]}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+    </p>
+  );
+}
 export default function Hero({ language, setCurrentPage }: HeroProps) {
   const t = translations[language].hero;
   const ref = useRef<HTMLDivElement>(null);
@@ -42,9 +77,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
           transition={{ duration: 0.9, delay: 0.5, ease }}
           className="hero-caption"
         >
-          <p className="text-sm font-medium text-muted-foreground">
-            Fullstack · DevOps · {language === "fr" ? "Systèmes" : "Systems"}
-          </p>
+          <RotatingDomains domains={t.domains} fixed={t.domains_static} />
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <Button
               onClick={() => setCurrentPage("projects")}
@@ -70,7 +103,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
           <ArrowDown size={16} />
           {language === "fr" ? "Découvrir mon univers" : "Explore my world"}
         </Button>
-        <span className="hidden sm:block">Cotonou, Bénin · EPITECH</span>
+        <span className="hidden sm:block">{t.location}</span>
         <div className="flex items-center gap-4">
           <a
             href="/CV_Bérenger_Sessou_FR.pdf"

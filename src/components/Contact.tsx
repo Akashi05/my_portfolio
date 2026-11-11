@@ -79,7 +79,7 @@ export default function Contact({ language }: ContactProps) {
           </a>
 
           <div className="border-t border-border py-8 text-sm text-muted-foreground">
-            Cotonou, Bénin · EPITECH
+            {t.contact.location}
           </div>
         </div>
 

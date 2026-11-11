@@ -12,6 +12,11 @@ export default function About({ language }: AboutProps) {
   const paragraphs = Object.entries(t)
     .filter(([key]) => key.startsWith("description"))
     .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }));
+  const skillGroups: [keyof typeof t.skill_cats, readonly string[]][] = [
+    ["autonomy", skills.autonomy],
+    ["practiced", skills.practiced],
+    ["ai", [t.ai_item]],
+  ];
 
   return (
     <div className="editorial-section mx-auto max-w-7xl px-6 lg:px-12">
@@ -37,29 +42,19 @@ export default function About({ language }: AboutProps) {
         </div>
       </div>
 
-      <div className="mt-20 grid gap-10 border-y border-border py-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
-        <div>
-          <p className="font-display text-[clamp(3.5rem,7vw,6rem)] font-bold leading-[0.9]">
-            {t.stats.total}
-            <span className="text-muted-foreground">+</span>
-          </p>
-          <p className="mt-4 max-w-[16rem] text-sm leading-relaxed text-muted-foreground">
-            {t.stats.total_label}
-          </p>
-          <p className="mt-2 text-xs text-muted-foreground">{t.stats.details}</p>
-        </div>
+      <div className="mt-20 grid gap-10 border-y border-border py-12 sm:grid-cols-2 lg:gap-16">
         <div>
           <h3 className="mb-5 text-xs uppercase tracking-[0.16em] text-muted-foreground">
             {t.formation}
           </h3>
-          <p className="text-base">Bachelor d'expertise informatique</p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            EPITECH Benin 6th semester (in progress) · Feb 2024
-          </p>
-          <p className="mt-6 text-base">BAC D</p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Cardinal Bernandin Gantin (CBG) · Jun 2023
-          </p>
+          {t.education.map((item, index) => (
+            <div key={item.degree} className={index > 0 ? "mt-6" : ""}>
+              <p className="text-base">{item.degree}</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {item.school} · {item.period}
+              </p>
+            </div>
+          ))}
         </div>
         <div>
           <h3 className="mb-5 text-xs uppercase tracking-[0.16em] text-muted-foreground">
@@ -67,11 +62,11 @@ export default function About({ language }: AboutProps) {
           </h3>
           <p className="text-base">
             {t.lang_fr}
-            <span className="text-muted-foreground"> — {t.lang_native}</span>
+            <span className="text-muted-foreground"> · {t.lang_native}</span>
           </p>
           <p className="mt-3 text-base">
             {t.lang_en}
-            <span className="text-muted-foreground"> — {t.lang_intermediate}</span>
+            <span className="text-muted-foreground"> · {t.lang_intermediate}</span>
           </p>
         </div>
       </div>
@@ -79,7 +74,7 @@ export default function About({ language }: AboutProps) {
       <div className="mt-20">
         <h3 className="section-title text-[clamp(1.75rem,3.2vw,2.75rem)]">{t.skills_title}</h3>
         <div className="mt-10">
-          {Object.entries(skills).map(([category, items], index) => (
+          {skillGroups.map(([category, items], index) => (
             <motion.div
               key={category}
               initial={{ opacity: 0, y: 12 }}
@@ -90,18 +85,21 @@ export default function About({ language }: AboutProps) {
             >
               <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
                 <span className="mr-4 opacity-50">0{index + 1}</span>
-                {t.skill_cats[category as keyof typeof t.skill_cats]}
+                {t.skill_cats[category]}
               </p>
               <div className="flex flex-wrap gap-x-7 gap-y-3">
                 {items.map((skill) => (
-                  <span key={skill.name} className="text-base font-medium">
-                    {skill.name}
+                  <span key={skill} className="text-base font-medium">
+                    {skill}
                   </span>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
+        <p className="mt-8 border-t border-border pt-6 text-sm text-muted-foreground">
+          {t.skills_note}
+        </p>
       </div>
     </div>
   );

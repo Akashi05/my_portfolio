@@ -284,11 +284,15 @@ export default function Portfolio() {
                 <X />
               </Button>
               <div className="lg:w-1/2 h-64 lg:h-auto bg-secondary flex items-center justify-center p-4">
-                <img
-                  src={selectedProject.media}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-contain rounded-lg"
-                />
+                {selectedProject.media ? (
+                  <img
+                    src={selectedProject.media}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-contain rounded-lg"
+                  />
+                ) : (
+                  <span className="font-display text-5xl font-black">{selectedProject.title}</span>
+                )}
               </div>
               <div className="lg:w-1/2 p-6 lg:p-12">
                 <p className="text-muted-foreground font-bold uppercase mb-4">
