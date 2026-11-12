@@ -265,7 +265,8 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .typewriter-cursor {
+  .typewriter-cursor,
+  .cta-blink {
     animation: none;
   }
   html {
@@ -348,7 +349,7 @@ h4 {
   padding-bottom: clamp(2rem, 5vh, 3.5rem);
 }
 .hero-name {
-  font-size: clamp(3rem, 7vw, 7rem);
+  font-size: clamp(3rem, 6vw, 6rem);
   line-height: 0.94;
   letter-spacing: -0.02em;
 }
@@ -358,6 +359,19 @@ h4 {
   align-items: flex-end;
   max-width: 34rem;
   margin-top: clamp(1.25rem, 3vh, 2rem);
+}
+.cta-blink {
+  animation: cta-blink 2.2s ease-in-out infinite;
+}
+.cta-blink:hover,
+.cta-blink:focus-visible {
+  animation: none;
+  opacity: 1;
+}
+@keyframes cta-blink {
+  50% {
+    opacity: 0.35;
+  }
 }
 .typewriter-cursor {
   display: inline-block;

@@ -62,17 +62,40 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -72]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.72, 1], [1, 1, 0.15]);
-  const linkClass = "flex items-center gap-1 transition-colors hover:text-foreground";
+  const linkClass = "cta-blink flex items-center gap-1 transition-colors hover:text-foreground";
   return (
     <div ref={ref} className="hero-editorial relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2, ease }}
-        className="hero-top"
-      >
-        <p className="font-display hero-greeting font-bold">{t.greeting}</p>
-      </motion.div>
+      <div className="hero-top">
+        <p className="hero-greeting font-display overflow-hidden pb-2 font-bold">
+          <motion.span
+            className="block"
+            initial={{ y: "115%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1.1, delay: 0.25, ease }}
+          >
+            {t.greeting}
+          </motion.span>
+        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.9, ease }}
+          className="flex flex-wrap items-center gap-3"
+        >
+          <Button
+            onClick={() => setCurrentPage("projects")}
+            variant="outline"
+            className="group h-12 rounded-full border-foreground/40 bg-background/60 px-6 backdrop-blur-sm"
+          >
+            {t.cta_projects}
+            <ArrowUpRight className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Button>
+          <Button variant="ghost" onClick={() => setCurrentPage("contact")} className="h-12 px-3">
+            {t.cta_contact}
+            <ArrowUpRight />
+          </Button>
+        </motion.div>
+      </div>
 
       <motion.div
         className="hero-content"
@@ -82,9 +105,9 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
           <span className="block overflow-hidden pb-2">
             <motion.span
               className="block text-[0.45em] font-bold text-muted-foreground"
-              initial={{ y: "110%" }}
+              initial={{ y: "115%" }}
               animate={{ y: 0 }}
-              transition={{ duration: 1.1, ease }}
+              transition={{ duration: 1.1, delay: 0.5, ease }}
             >
               {t.intro_pre}
             </motion.span>
@@ -93,9 +116,9 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
             <span className="block overflow-hidden pb-2" key={name}>
               <motion.span
                 className="block"
-                initial={{ y: "110%" }}
+                initial={{ y: "115%" }}
                 animate={{ y: 0 }}
-                transition={{ duration: 1.1, delay: (i + 1) * 0.15, ease }}
+                transition={{ duration: 1.1, delay: 0.65 + i * 0.15, ease }}
               >
                 {name}
               </motion.span>
@@ -105,61 +128,10 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.6, ease }}
+          transition={{ duration: 0.9, delay: 1.1, ease }}
           className="hero-caption"
         >
           <Typewriter words={t.domains} fixed={t.domains_static} />
-          <div className="mt-6 flex flex-wrap items-center gap-3 md:justify-end">
-            <Button
-              onClick={() => setCurrentPage("projects")}
-              variant="outline"
-              className="group h-12 rounded-full border-foreground/40 bg-background/60 px-6 backdrop-blur-sm"
-            >
-              {t.cta_projects}
-              <ArrowUpRight className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Button>
-            <Button variant="ghost" onClick={() => setCurrentPage("contact")} className="h-12 px-3">
-              {t.cta_contact}
-              <ArrowUpRight />
-            </Button>
-          </div>
-          <div className="mt-5 flex items-center gap-4 text-xs text-muted-foreground">
-            <a
-              href="/CV_Bérenger_Sessou_FR.pdf"
-              download="CV_Berenger_Sessou_FR.pdf"
-              className={linkClass}
-              title={t.cv_fr}
-            >
-              <Download size={14} />
-              CV FR
-            </a>
-            <a
-              href="/CV_Berenger_Sessou_EN.pdf"
-              download="CV_Berenger_Sessou_EN.pdf"
-              className={linkClass}
-              title={t.cv_en}
-            >
-              CV EN
-            </a>
-            <a
-              href="https://github.com/Akashi05"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className={linkClass}
-            >
-              <Github size={17} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/b%C3%A9renger-sessou-b36ab1314/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className={linkClass}
-            >
-              <Linkedin size={17} />
-            </a>
-          </div>
         </motion.div>
       </motion.div>
       <div className="hero-bottom flex flex-wrap items-center justify-between gap-4 border-t border-border py-5 text-xs text-muted-foreground">
@@ -172,6 +144,44 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
           {language === "fr" ? "Découvrir mon univers" : "Explore my world"}
         </Button>
         <span className="hidden sm:block">{t.location}</span>
+        <div className="flex items-center gap-4">
+          <a
+            href="/CV_Bérenger_Sessou_FR.pdf"
+            download="CV_Berenger_Sessou_FR.pdf"
+            className={linkClass}
+            title={t.cv_fr}
+          >
+            <Download size={14} />
+            CV FR
+          </a>
+          <a
+            href="/CV_Berenger_Sessou_EN.pdf"
+            download="CV_Berenger_Sessou_EN.pdf"
+            className={linkClass}
+            title={t.cv_en}
+          >
+            <Download size={14} />
+            CV EN
+          </a>
+          <a
+            href="https://github.com/Akashi05"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className={linkClass}
+          >
+            <Github size={17} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/b%C3%A9renger-sessou-b36ab1314/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className={linkClass}
+          >
+            <Linkedin size={17} />
+          </a>
+        </div>
       </div>
     </div>
   );
