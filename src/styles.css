@@ -239,10 +239,6 @@ h4 {
 .portfolio section {
   scroll-margin-top: 96px;
 }
-/* The nav floats as a pill: it never touches the screen edges and keeps a soft token-driven shadow. */
-.floating-nav {
-  box-shadow: 0 12px 40px -16px color-mix(in oklab, var(--foreground) 35%, transparent);
-}
 .portfolio h2 {
   overflow-wrap: anywhere;
 }
@@ -327,6 +323,24 @@ h4 {
   display: flex;
   flex-direction: column;
   padding-top: clamp(7.5rem, 10vw, 9.5rem);
+}
+/* Soft veil under the nav: content scrolling up dissolves into blur and fades
+   into the background instead of sliding under hard-edged text. */
+.nav-veil {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 6.5rem;
+  z-index: 40;
+  pointer-events: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--background) 80%, transparent),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent);
+  mask-image: linear-gradient(to bottom, black 30%, transparent);
 }
 .hero-top {
   display: flex;
