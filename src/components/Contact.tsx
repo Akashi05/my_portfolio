@@ -30,13 +30,6 @@ export default function Contact({ language }: ContactProps) {
         </div>
         <div>
           <p className="section-lede">{t.contact.description}</p>
-          <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-[0.6875rem] uppercase tracking-[0.14em] text-muted-foreground">
-            <span
-              aria-hidden="true"
-              className="inline-block size-1.5 rounded-full bg-foreground/60"
-            />
-            {t.hero.status.replace(/^[^\p{L}\p{N}]+/u, "")}
-          </p>
         </div>
       </motion.header>
 

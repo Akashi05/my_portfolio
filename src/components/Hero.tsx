@@ -72,13 +72,6 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
         className="hero-top"
       >
         <p className="font-display hero-greeting font-bold">{t.greeting}</p>
-        <p className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-[0.6875rem] uppercase tracking-[0.14em] text-muted-foreground">
-          <span
-            aria-hidden="true"
-            className="inline-block size-1.5 rounded-full bg-foreground/60"
-          />
-          {t.status.replace(/^[^\p{L}\p{N}]+/u, "")}
-        </p>
       </motion.div>
 
       <motion.div

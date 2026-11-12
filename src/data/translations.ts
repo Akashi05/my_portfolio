@@ -10,7 +10,6 @@ export const translations = {
     hero: {
       greeting: "Bonjour à toi.",
       intro_pre: "Je suis",
-      status: "Disponible pour missions, temps partiel et collaborations",
       domains: ["Développeur backend et systèmes", "DevOps", "Prototypage de produit"],
       domains_static: "Développeur backend et systèmes, DevOps, prototypage de produit",
       location: "Cotonou, Bénin · À distance ou sur place",
@@ -418,7 +417,6 @@ export const translations = {
     hero: {
       greeting: "Hello you.",
       intro_pre: "I'm",
-      status: "Open to freelance work, part-time roles and collaborations",
       domains: ["Backend & Systems Developer", "DevOps", "Product prototyping"],
       domains_static: "Backend & Systems Developer, DevOps, product prototyping",
       location: "Cotonou, Benin · Remote or on-site",
