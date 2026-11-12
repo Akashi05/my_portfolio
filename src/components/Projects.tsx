@@ -3,6 +3,7 @@ import { useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { translations } from "../data/translations";
+import Reveal from "./Reveal";
 
 type Project = (typeof translations.fr.projects_data)[number];
 
@@ -242,7 +243,9 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
           <p className="section-index">
             02 <span className="opacity-40">/</span> {t.projects.subtitle}
           </p>
-          <h2 className="section-title mt-6">{t.projects.title}</h2>
+          <h2 className="section-title mt-6">
+            <Reveal>{t.projects.title}</Reveal>
+          </h2>
         </div>
         <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground md:mb-2">
           {t.projects.timeline} · {String(featured.length).padStart(2, "0")}

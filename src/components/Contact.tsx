@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
 import { translations } from "../data/translations";
+import Reveal from "./Reveal";
 import { useForm, ValidationError } from "@formspree/react";
 
 interface ContactProps {
@@ -26,7 +27,9 @@ export default function Contact({ language }: ContactProps) {
           <p className="section-index">
             04 <span className="opacity-40">/</span> {t.contact.subtitle}
           </p>
-          <h2 className="section-title mt-6">{t.contact.title}</h2>
+          <h2 className="section-title mt-6">
+            <Reveal>{t.contact.title}</Reveal>
+          </h2>
         </div>
         <div>
           <p className="section-lede">{t.contact.description}</p>

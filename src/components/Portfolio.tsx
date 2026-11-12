@@ -9,6 +9,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import SculptureStage from "@/components/SculptureStage";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const sections = ["home", "about", "projects", "experience", "contact"] as const;
 type Section = (typeof sections)[number];
@@ -105,6 +106,8 @@ export default function Portfolio() {
       <div
         className={`portfolio min-h-screen bg-background text-foreground font-sans transition-colors duration-500 selection:bg-foreground/20 ${darkMode ? "dark" : ""}`}
       >
+        <SculptureStage darkMode={darkMode} />
+        <ScrollProgress />
         <div className="nav-veil" aria-hidden="true" />
         <nav
           aria-label={language === "fr" ? "Navigation principale" : "Main navigation"}
@@ -191,12 +194,9 @@ export default function Portfolio() {
           </div>
         )}
         <main>
-          <div className="hero-stage">
-            <SculptureStage darkMode={darkMode} />
-            <section id="home" aria-label={t.nav.home}>
-              <Hero language={language} setCurrentPage={scrollToSection} darkMode={darkMode} />
-            </section>
-          </div>
+          <section id="home" aria-label={t.nav.home}>
+            <Hero language={language} setCurrentPage={scrollToSection} darkMode={darkMode} />
+          </section>
           <section id="about" aria-label={t.nav.about} className="border-t border-border">
             <About language={language} darkMode={darkMode} />
           </section>

@@ -83,6 +83,8 @@ export default function HeroScene({ darkMode }: { darkMode: boolean }) {
   if (!color) return null;
   return (
     <Canvas
+      // Measure with offsetWidth/Height: the parent is scaled with CSS transforms.
+      resize={{ offsetSize: true, scroll: false }}
       dpr={[1, 1.5]}
       camera={{ position: [0, 0, 8.3], fov: 36 }}
       gl={{ antialias: true, alpha: true }}

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { translations } from "../data/translations";
 import { skills } from "../data/skills";
+import Reveal from "./Reveal";
+import ScrollWords from "./ScrollWords";
 
 interface AboutProps {
   language: "fr" | "en";
@@ -25,19 +27,14 @@ export default function About({ language }: AboutProps) {
           <p className="section-index">
             01 <span className="opacity-40">/</span> {t.subtitle}
           </p>
-          <h2 className="section-title mt-6">{t.title}</h2>
+          <h2 className="section-title mt-6">
+            <Reveal>{t.title}</Reveal>
+          </h2>
+          <div id="ribbon-anchor" aria-hidden="true" className="mt-10 h-60 w-full max-w-72" />
         </div>
         <div className="about-copy space-y-7">
-          {paragraphs.map(([key, value], index) => (
-            <motion.p
-              key={key}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.7, delay: index * 0.04 }}
-            >
-              {String(value)}
-            </motion.p>
+          {paragraphs.map(([key, value]) => (
+            <ScrollWords key={key} text={String(value)} />
           ))}
         </div>
       </div>
@@ -72,7 +69,9 @@ export default function About({ language }: AboutProps) {
       </div>
 
       <div className="mt-20">
-        <h3 className="section-title text-[clamp(1.75rem,3.2vw,2.75rem)]">{t.skills_title}</h3>
+        <h3 className="section-title text-[clamp(1.75rem,3.2vw,2.75rem)]">
+          <Reveal>{t.skills_title}</Reveal>
+        </h3>
         <div className="mt-10">
           {skillGroups.map(([category, items], index) => (
             <motion.div

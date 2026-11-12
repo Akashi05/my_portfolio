@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { translations } from "../data/translations";
+import Reveal from "./Reveal";
 
 interface ExperienceProps {
   language: "fr" | "en";
@@ -15,7 +16,9 @@ export default function Experience({ language }: ExperienceProps) {
         <p className="section-index">
           03 <span className="opacity-40">/</span> {t.experience.subtitle}
         </p>
-        <h2 className="section-title mt-6">{t.experience.title}</h2>
+        <h2 className="section-title mt-6">
+          <Reveal>{t.experience.title}</Reveal>
+        </h2>
       </header>
 
       <div>
