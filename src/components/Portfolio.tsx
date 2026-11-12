@@ -10,6 +10,7 @@ import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import SculptureStage from "@/components/SculptureStage";
 import ScrollProgress from "@/components/ScrollProgress";
+import Reveal from "@/components/Reveal";
 
 const sections = ["home", "about", "projects", "experience", "contact"] as const;
 type Section = (typeof sections)[number];
@@ -216,6 +217,13 @@ export default function Portfolio() {
         </main>
         <footer className="py-12 border-t border-border">
           <div className="max-w-6xl mx-auto px-6 lg:px-12">
+            <p
+              aria-hidden="true"
+              className="mb-14 font-display font-black leading-[0.92] tracking-tight text-[clamp(3rem,12vw,10rem)]"
+            >
+              <Reveal>Bérenger</Reveal>
+              <Reveal delay={0.12}>SESSOU.</Reveal>
+            </p>
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 mb-12">
               <div className="lg:col-span-2 space-y-4">
                 <h3 className="text-2xl font-black">BS.</h3>

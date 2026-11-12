@@ -87,10 +87,18 @@ export default function About({ language }: AboutProps) {
                 {t.skill_cats[category]}
               </p>
               <div className="flex flex-wrap gap-x-7 gap-y-3">
-                {items.map((skill) => (
-                  <span key={skill} className="text-base font-medium">
+                {items.map((skill, i) => (
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, y: 14, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 + i * 0.05 }}
+                    whileHover={{ y: -3 }}
+                    className="text-base font-medium"
+                  >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>
