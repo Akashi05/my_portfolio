@@ -107,6 +107,7 @@ export default function Portfolio() {
         className={`portfolio min-h-screen bg-background text-foreground font-sans transition-colors duration-500 selection:bg-foreground/20 ${darkMode ? "dark" : ""}`}
       >
         <SculptureStage darkMode={darkMode} />
+        <ScrollProgress />
         <div className="nav-veil" aria-hidden="true" />
         <nav
           aria-label={language === "fr" ? "Navigation principale" : "Main navigation"}
@@ -167,7 +168,6 @@ export default function Portfolio() {
               </Button>
             </div>
           </div>
-          <ScrollProgress />
         </nav>
         {isMenuOpen && (
           <div
