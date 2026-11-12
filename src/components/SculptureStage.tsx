@@ -12,10 +12,10 @@ export default function SculptureStage({ darkMode }: { darkMode: boolean }) {
   const [mounted, setMounted] = useState(false);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target, offset: ["start start", "end start"] });
-  const x = useTransform(scrollYProgress, [0, 1], ["28%", "34%"]);
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["-6%", "-2%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["8%", "-28%"]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 82]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.08, 1.02]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 0.86, 0.82]);
   const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
   useEffect(() => setMounted(true), []);
   return (
