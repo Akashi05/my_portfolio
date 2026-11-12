@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Lightformer } from "@react-three/drei";
 import * as THREE from "three";
+import { ribbonInput } from "@/lib/ribbonInput";
 
 // A closed, thick Möbius ribbon: one continuous silhouette, no satellite objects.
 function makeRibbon() {
@@ -39,6 +40,7 @@ function Ribbon({ color, reducedMotion }: { color: string; reducedMotion: boolea
   const geometry = useMemo(makeRibbon, []);
   const phase = useRef(0);
   const ready = useRef(false);
+  const user = useRef({ x: 0, y: 0 });
   useEffect(() => () => geometry.dispose(), [geometry]);
   useFrame((state, delta) => {
     if (!ready.current) {
@@ -49,9 +51,34 @@ function Ribbon({ color, reducedMotion }: { color: string; reducedMotion: boolea
     const dt = Math.min(delta, 0.05);
     phase.current += dt * 0.14;
     const follow = 1 - Math.exp(-2.5 * dt);
-    mesh.current.rotation.x += (0.65 + state.pointer.y * 0.18 - mesh.current.rotation.x) * follow;
+    // Visitor interaction: drag spins the ribbon, release keeps the momentum, then it
+    // eases back to its own slow choreography.
+    const u = user.current;
+    u.x += ribbonInput.dragX;
+    u.y += ribbonInput.dragY;
+    ribbonInput.dragX = 0;
+    ribbonInput.dragY = 0;
+    if (!ribbonInput.dragging) {
+      u.x += ribbonInput.velX * dt;
+      u.y += ribbonInput.velY * dt;
+      const damp = Math.exp(-1.8 * dt);
+      ribbonInput.velX *= damp;
+      ribbonInput.velY *= damp;
+      if (Math.abs(ribbonInput.velX) + Math.abs(ribbonInput.velY) < 0.4) {
+        const wrap = (v: number) => v - Math.round(v / (Math.PI * 2)) * Math.PI * 2;
+        const relax = 1 - Math.exp(-0.9 * dt);
+        u.x = wrap(u.x) * (1 - relax);
+        u.y = wrap(u.y) * (1 - relax);
+      }
+    }
+    mesh.current.rotation.x +=
+      (0.65 + u.x + state.pointer.y * 0.18 - mesh.current.rotation.x) * follow;
     mesh.current.rotation.y +=
-      (-0.4 + Math.sin(phase.current) * 0.45 + state.pointer.x * 0.25 - mesh.current.rotation.y) *
+      (-0.4 +
+        u.y +
+        Math.sin(phase.current) * 0.45 +
+        state.pointer.x * 0.25 -
+        mesh.current.rotation.y) *
       follow;
     mesh.current.rotation.z = -0.48 + Math.sin(phase.current * 0.7) * 0.16;
     mesh.current.position.y = Math.sin(phase.current * 1.7) * 0.09;

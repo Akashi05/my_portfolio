@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import { ribbonInput } from "@/lib/ribbonInput";
 const HeroScene = lazy(() => import("./HeroScene"));
 
 const clamp = (v: number, min = 0, max = 1) => Math.min(max, Math.max(min, v));
@@ -16,6 +17,7 @@ export default function SculptureStage({ darkMode }: { darkMode: boolean }) {
   const box = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const reduced = useReducedMotion();
+  const hit = useRef({ x: 0, y: 0, r: 0, visible: false });
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
@@ -81,6 +83,7 @@ export default function SculptureStage({ darkMode }: { darkMode: boolean }) {
       el.style.transform = `translate3d(${cx - (left + px)}px, ${cy - (top + py)}px, 0) rotate(${rotate}deg) scale(${scale})`;
       el.style.opacity = String(opacity);
       el.style.visibility = opacity <= 0.01 ? "hidden" : "visible";
+      hit.current = { x: cx, y: cy, r: width * 0.62, visible: opacity > 0.3 };
     };
 
     const schedule = () => {
@@ -95,6 +98,87 @@ export default function SculptureStage({ darkMode }: { darkMode: boolean }) {
       if (raf) cancelAnimationFrame(raf);
     };
   }, [reduced, mounted]);
+
+  // Interaction: drag the ribbon to spin it (momentum on release), click or tap to
+  // give it a kick. Pointer events are read on the window because the ribbon sits
+  // behind the page content.
+  useEffect(() => {
+    if (reduced) return;
+    const interactive = "a,button,input,textarea,select,label,summary,[role='button']";
+    const onRibbon = (e: PointerEvent) => {
+      const h = hit.current;
+      if (!h.visible) return false;
+      const t = e.target as Element | null;
+      if (t?.closest(interactive)) return false;
+      return Math.hypot(e.clientX - h.x, e.clientY - h.y) < h.r;
+    };
+    let drag: { id: number; x: number; y: number; t: number; moved: number } | null = null;
+
+    const kick = () => {
+      ribbonInput.velY += (Math.random() < 0.5 ? -1 : 1) * 7;
+      ribbonInput.velX += (Math.random() - 0.5) * 3;
+    };
+    const onDown = (e: PointerEvent) => {
+      if (e.button !== 0 || !onRibbon(e)) return;
+      if (e.pointerType === "touch") {
+        drag = { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp, moved: 0 };
+        return;
+      }
+      e.preventDefault();
+      ribbonInput.dragging = true;
+      ribbonInput.velX = 0;
+      ribbonInput.velY = 0;
+      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp, moved: 0 };
+      document.body.style.cursor = "grabbing";
+    };
+    const onMove = (e: PointerEvent) => {
+      if (drag && ribbonInput.dragging && e.pointerId === drag.id) {
+        const dx = e.clientX - drag.x;
+        const dy = e.clientY - drag.y;
+        const dt = Math.max(0.008, (e.timeStamp - drag.t) / 1000);
+        drag.moved += Math.abs(dx) + Math.abs(dy);
+        ribbonInput.dragY += dx * 0.012;
+        ribbonInput.dragX += dy * 0.012;
+        const clampV = (v: number) => Math.max(-14, Math.min(14, v));
+        ribbonInput.velY = clampV(ribbonInput.velY * 0.6 + ((dx * 0.012) / dt) * 0.4);
+        ribbonInput.velX = clampV(ribbonInput.velX * 0.6 + ((dy * 0.012) / dt) * 0.4);
+        drag.x = e.clientX;
+        drag.y = e.clientY;
+        drag.t = e.timeStamp;
+        return;
+      }
+      if (e.pointerType === "mouse" && !drag) {
+        document.body.style.cursor = onRibbon(e) ? "grab" : "";
+      }
+    };
+    const onUp = (e: PointerEvent) => {
+      if (!drag || e.pointerId !== drag.id) return;
+      const wasDragging = ribbonInput.dragging;
+      if (wasDragging) {
+        ribbonInput.dragging = false;
+        document.body.style.cursor = onRibbon(e) ? "grab" : "";
+        if (drag.moved < 4) kick();
+      } else if (
+        e.pointerType === "touch" &&
+        Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 8
+      ) {
+        kick();
+      }
+      drag = null;
+    };
+    window.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    return () => {
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+      ribbonInput.dragging = false;
+      document.body.style.cursor = "";
+    };
+  }, [reduced]);
 
   return (
     <div className="ribbon-layer" aria-hidden="true">
