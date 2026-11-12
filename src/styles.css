@@ -329,18 +329,19 @@ h4 {
 .nav-veil {
   position: fixed;
   inset: 0 0 auto 0;
-  height: 6.5rem;
+  height: 7rem;
   z-index: 40;
   pointer-events: none;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   background: linear-gradient(
     to bottom,
-    color-mix(in oklab, var(--background) 80%, transparent),
-    transparent
+    var(--background) 0%,
+    color-mix(in oklab, var(--background) 92%, transparent) 55%,
+    transparent 100%
   );
-  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent);
-  mask-image: linear-gradient(to bottom, black 30%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent);
+  mask-image: linear-gradient(to bottom, black 62%, transparent);
 }
 .hero-top {
   display: flex;
