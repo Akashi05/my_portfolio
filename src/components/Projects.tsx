@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { translations } from "../data/translations";
 
@@ -143,11 +143,97 @@ const cardClass = "w-[82%] shrink-0 snap-start sm:w-[420px] lg:w-[460px]";
 export default function Projects({ language, setSelectedProject }: ProjectsProps) {
   const t = translations[language];
   const [showOthers, setShowOthers] = useState(false);
-  const projects = [...t.projects_data].sort((a, b) => b.date.localeCompare(a.date));
+  const byDate = (a: Project, b: Project) => b.date.localeCompare(a.date);
+  const featured = [...t.projects_data].sort(byDate);
+  const others = [...t.other_projects].sort(byDate);
   const nav = {
     prevLabel: language === "fr" ? "Projets précédents" : "Previous projects",
     nextLabel: language === "fr" ? "Projets suivants" : "Next projects",
   };
+
+  const expand = () => {
+    setShowOthers(true);
+    window.setTimeout(() => {
+      document
+        .getElementById("other-projects-start")
+        ?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    }, 60);
+  };
+
+  const collapse = () => {
+    setShowOthers(false);
+    document
+      .getElementById("projects-start")
+      ?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+  };
+
+  const renderCard = (project: Project, i: number, id?: string) => (
+    <li key={project.title} id={id} className={cardClass}>
+      <Button
+        variant="ghost"
+        onClick={() => setSelectedProject(project)}
+        aria-label={`${t.projects.view_details} : ${project.title}`}
+        className="project-image group relative flex aspect-[16/10] h-auto w-full overflow-hidden rounded-xl border border-border bg-secondary p-0"
+      >
+        {project.media ? (
+          <img
+            src={project.media}
+            alt={project.title}
+            loading="lazy"
+            className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.035]"
+          />
+        ) : (
+          <span className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-black tracking-tight text-foreground/80">
+            {project.title}
+          </span>
+        )}
+        <span className="absolute right-4 bottom-4 flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-500 group-hover:-rotate-45">
+          <ArrowUpRight size={20} />
+        </span>
+      </Button>
+
+      <div className="mt-5 flex items-start justify-between gap-4">
+        <div>
+          <p className="mb-2 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+            {String(i + 1).padStart(2, "0")} <span className="opacity-40">/</span>{" "}
+            {project.category}
+          </p>
+          <h3 className="text-2xl font-bold">
+            <Button
+              variant="link"
+              onClick={() => setSelectedProject(project)}
+              className="h-auto whitespace-normal p-0 text-left font-display text-inherit"
+            >
+              {project.title}
+            </Button>
+          </h3>
+        </div>
+        <p className="shrink-0 pt-1 text-xs text-muted-foreground">{project.date.split("-")[0]}</p>
+      </div>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+      <p className="mt-4 border-t border-border pt-3 text-xs leading-relaxed text-muted-foreground">
+        {project.tech.join(" · ")}
+      </p>
+    </li>
+  );
+
+  const endCard = (label: string, onClick: () => void, back = false) => (
+    <li className={cardClass}>
+      <button
+        type="button"
+        onClick={onClick}
+        aria-expanded={!back}
+        className="group flex aspect-[16/10] w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-foreground/40 text-center transition-colors hover:bg-secondary"
+      >
+        <span className="font-display text-2xl font-bold">{label}</span>
+        <span
+          className={`flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-500 ${back ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"}`}
+        >
+          {back ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
+        </span>
+      </button>
+    </li>
+  );
 
   return (
     <div className="editorial-section mx-auto max-w-7xl px-6 lg:px-12">
@@ -159,138 +245,27 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
           <h2 className="section-title mt-6">{t.projects.title}</h2>
         </div>
         <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground md:mb-2">
-          {t.projects.timeline} · {String(projects.length).padStart(2, "0")}
+          {t.projects.timeline} · {String(featured.length).padStart(2, "0")}
         </p>
       </header>
 
       <Carousel autoplay label={t.projects.title} {...nav}>
-        {projects.map((project, i) => (
-          <li key={project.title} className={cardClass}>
-            <Button
-              variant="ghost"
-              onClick={() => setSelectedProject(project)}
-              aria-label={`${t.projects.view_details} : ${project.title}`}
-              className="project-image group relative flex aspect-[16/10] h-auto w-full overflow-hidden rounded-xl border border-border bg-secondary p-0"
-            >
-              {project.media ? (
-                <img
-                  src={project.media}
-                  alt={project.title}
-                  loading="lazy"
-                  className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.035]"
-                />
-              ) : (
-                <span className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-black tracking-tight text-foreground/80">
-                  {project.title}
-                </span>
-              )}
-              <span className="absolute right-4 bottom-4 flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-500 group-hover:-rotate-45">
-                <ArrowUpRight size={20} />
-              </span>
-            </Button>
-
-            <div className="mt-5 flex items-start justify-between gap-4">
-              <div>
-                <p className="mb-2 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                  {String(i + 1).padStart(2, "0")} <span className="opacity-40">/</span>{" "}
-                  {project.category}
-                </p>
-                <h3 className="text-2xl font-bold">
-                  <Button
-                    variant="link"
-                    onClick={() => setSelectedProject(project)}
-                    className="h-auto whitespace-normal p-0 text-left font-display text-inherit"
-                  >
-                    {project.title}
-                  </Button>
-                </h3>
-              </div>
-              <p className="shrink-0 pt-1 text-xs text-muted-foreground">
-                {project.date.split("-")[0]}
-              </p>
-            </div>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              {project.description}
-            </p>
-            <p className="mt-4 border-t border-border pt-3 text-xs leading-relaxed text-muted-foreground">
-              {project.tech.join(" · ")}
-            </p>
-          </li>
-        ))}
-
-        <li className={cardClass}>
-          <button
-            type="button"
-            onClick={() => setShowOthers((v) => !v)}
-            aria-expanded={showOthers}
-            aria-controls="other-projects"
-            className="group flex aspect-[16/10] w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-foreground/40 text-center transition-colors hover:bg-secondary"
-          >
-            <span className="font-display text-2xl font-bold">
-              {showOthers ? t.projects.others_less : t.projects.others_more}
-            </span>
-            <span className="flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-500 group-hover:translate-x-1">
-              <ArrowRight size={20} className={showOthers ? "-rotate-90" : "rotate-90"} />
-            </span>
-          </button>
-        </li>
-      </Carousel>
-
-      <AnimatePresence initial={false}>
-        {showOthers && (
-          <motion.div
-            id="other-projects"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.45 }}
-            className="overflow-hidden"
-          >
-            <h3 className="section-title mt-16 mb-8 text-[clamp(1.75rem,3.2vw,2.75rem)]">
-              {t.projects.others_title}
-              <span className="ml-3 text-base font-normal text-muted-foreground">
-                {String(t.other_projects.length).padStart(2, "0")}
-              </span>
-            </h3>
-            <Carousel label={t.projects.others_title} {...nav}>
-              {t.other_projects.map((item) => (
-                <li key={item.title} className={cardClass}>
-                  <a
-                    href={item.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    tabIndex={-1}
-                    aria-hidden="true"
-                    className="flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl border border-border bg-secondary"
-                  >
-                    <img
-                      src={item.media}
-                      alt=""
-                      loading="lazy"
-                      className="h-full w-full object-contain"
-                    />
-                  </a>
-                  <p className="mt-5 text-xs text-muted-foreground">{item.period}</p>
-                  <h4 className="mt-1 text-xl font-bold">{item.title}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${t.projects.others_link} : ${item.title}`}
-                    className="mt-4 inline-flex items-center gap-1 text-xs uppercase tracking-[0.14em] transition-colors hover:text-muted-foreground"
-                  >
-                    {t.projects.others_link}
-                    <ArrowUpRight size={14} />
-                  </a>
-                </li>
-              ))}
-            </Carousel>
-          </motion.div>
+        {featured.map((project, i) =>
+          renderCard(project, i, i === 0 ? "projects-start" : undefined),
         )}
-      </AnimatePresence>
+        {showOthers
+          ? others.map((project, i) =>
+              renderCard(
+                project,
+                featured.length + i,
+                i === 0 ? "other-projects-start" : undefined,
+              ),
+            )
+          : null}
+        {showOthers
+          ? endCard(t.projects.others_less, collapse, true)
+          : endCard(t.projects.others_more, expand)}
+      </Carousel>
     </div>
   );
 }
