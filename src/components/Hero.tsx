@@ -138,12 +138,12 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
         <Button
           variant="ghost"
           onClick={() => setCurrentPage("about")}
-          className="h-auto gap-3 p-0 text-xs text-muted-foreground"
+          className="hidden sm:inline-flex h-auto gap-3 p-0 text-xs text-muted-foreground"
         >
           <ArrowDown size={16} />
           {language === "fr" ? "Découvrir mon univers" : "Explore my world"}
         </Button>
-        <span className="hidden sm:block">{t.location}</span>
+        <span>{t.location}</span>
         <div className="flex items-center gap-4">
           <a
             href="/CV_Bérenger_Sessou_FR.pdf"
