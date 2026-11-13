@@ -18,7 +18,7 @@ export const translations = {
       ],
       domains_static:
         "Développeur backend et systèmes, DevOps, prototypage de produit, sites et applications web",
-      location: "Cotonou, Bénin · À distance ou sur place",
+      location: "Cotonou, Bénin · Remote ou sur site",
       cta_projects: "Voir mes projets",
       cta_contact: "Me contacter",
       cv_fr: "Télécharger CV (FR)",
@@ -77,7 +77,7 @@ export const translations = {
       subtitle: "Contact",
       description:
         "Je suis ouvert aux missions freelance, au temps partiel et aux collaborations. N'hésitez pas à me contacter.",
-      location: "Cotonou, Bénin",
+      location: "Cotonou, Bénin · Remote ou sur site",
       form_name: "Nom",
       form_email: "Email",
       form_message: "Message",
@@ -489,7 +489,7 @@ export const translations = {
       subtitle: "Contact",
       description:
         "I'm open to freelance missions, part-time work and collaborations. Feel free to get in touch.",
-      location: "Cotonou, Benin",
+      location: "Cotonou, Benin · Remote or on-site",
       form_name: "Name",
       form_email: "Email",
       form_message: "Message",
