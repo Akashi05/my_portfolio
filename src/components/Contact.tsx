@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
 import { translations } from "../data/translations";
+import Reveal from "./Reveal";
 import { useForm, ValidationError } from "@formspree/react";
 
 interface ContactProps {
@@ -18,7 +19,7 @@ export default function Contact({ language }: ContactProps) {
       <motion.header
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.7 }}
         className="section-head grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end lg:gap-16"
       >
@@ -26,17 +27,12 @@ export default function Contact({ language }: ContactProps) {
           <p className="section-index">
             04 <span className="opacity-40">/</span> {t.contact.subtitle}
           </p>
-          <h2 className="section-title mt-6">{t.contact.title}</h2>
+          <h2 className="section-title mt-6">
+            <Reveal>{t.contact.title}</Reveal>
+          </h2>
         </div>
         <div>
           <p className="section-lede">{t.contact.description}</p>
-          <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-[0.6875rem] uppercase tracking-[0.14em] text-muted-foreground">
-            <span
-              aria-hidden="true"
-              className="inline-block size-1.5 rounded-full bg-foreground/60"
-            />
-            {t.hero.status.replace(/^[^\p{L}\p{N}]+/u, "")}
-          </p>
         </div>
       </motion.header>
 
@@ -79,7 +75,7 @@ export default function Contact({ language }: ContactProps) {
           </a>
 
           <div className="border-t border-border py-8 text-sm text-muted-foreground">
-            Cotonou, Bénin · EPITECH
+            {t.contact.location}
           </div>
         </div>
 

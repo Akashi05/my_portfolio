@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Portfolio from "@/components/Portfolio";
 
-const title = "Bérenger Sessou | Portfolio";
+const title = "Bérenger Sessou | Développeur backend et systèmes, DevOps";
 const description =
-  "Portfolio de Bérenger Sessou, étudiant en Ingénierie Logicielle à EPITECH. Développeur Fullstack, DevOps et Passionné par les systèmes bas-niveau.";
+  "Portfolio de Bérenger Sessou, développeur backend et systèmes à Cotonou, DevOps et prototypage de produit. Disponible pour missions freelance, temps partiel et collaborations.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

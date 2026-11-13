@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MotionConfig } from "framer-motion";
-import { Sun, Moon, Globe, Heart, X, ArrowRight, Menu } from "lucide-react";
+import { Sun, Moon, Globe, X, ArrowRight, Menu } from "lucide-react";
 import { translations } from "@/data/translations";
 import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero";
@@ -9,6 +9,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import SculptureStage from "@/components/SculptureStage";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const sections = ["home", "about", "projects", "experience", "contact"] as const;
 type Section = (typeof sections)[number];
@@ -21,6 +22,7 @@ export default function Portfolio() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const t = translations[language];
 
   useEffect(() => {
@@ -51,6 +53,24 @@ export default function Portfolio() {
     window.addEventListener("scroll", updateSection, { passive: true });
     updateSection();
     return () => window.removeEventListener("scroll", updateSection);
+  }, []);
+
+  // The nav stays put inside the hero. Further down it tucks away while scrolling
+  // down and comes back as soon as the visitor scrolls up.
+  useEffect(() => {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const hero = document.getElementById("home");
+      const heroEnd = hero ? hero.offsetTop + hero.offsetHeight - 120 : 0;
+      if (y < heroEnd) setNavHidden(false);
+      else if (y > last + 6) setNavHidden(true);
+      else if (y < last - 6) setNavHidden(false);
+      last = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -86,62 +106,67 @@ export default function Portfolio() {
       <div
         className={`portfolio min-h-screen bg-background text-foreground font-sans transition-colors duration-500 selection:bg-foreground/20 ${darkMode ? "dark" : ""}`}
       >
+        <SculptureStage darkMode={darkMode} />
+        <ScrollProgress />
+        <div className="nav-veil" aria-hidden="true" />
         <nav
           aria-label={language === "fr" ? "Navigation principale" : "Main navigation"}
-          className="floating-nav fixed top-4 left-1/2 -translate-x-1/2 z-50 flex justify-between items-center gap-3 w-[calc(100%-2rem)] max-w-5xl px-3 py-2 lg:px-4 lg:py-2.5 bg-background/85 border border-border rounded-full backdrop-blur-xl"
+          className={`fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-500 ease-out ${navHidden && !isMenuOpen ? "pointer-events-none -translate-y-full opacity-0" : "translate-y-0 opacity-100"}`}
         >
-          <Button
-            variant="ghost"
-            onClick={() => scrollToSection("home")}
-            className="px-0 font-display text-2xl font-black"
-            aria-label="Accueil"
-          >
-            BS.
-          </Button>
-          <div className="flex items-center gap-2 lg:gap-4">
-            <div className="hidden lg:flex items-center gap-2">
-              {sections.map((section) => (
-                <Button
-                  variant="ghost"
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  aria-current={currentSection === section ? "location" : undefined}
-                  className={`relative uppercase text-xs font-bold ${currentSection === section ? "text-foreground" : "text-muted-foreground"}`}
-                >
-                  {t.nav[section]}
-                  {currentSection === section && (
-                    <span className="absolute bottom-0 inset-x-4 h-px bg-foreground" />
-                  )}
-                </Button>
-              ))}
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-6 py-4 lg:px-12">
+            <Button
+              variant="ghost"
+              onClick={() => scrollToSection("home")}
+              className="px-0 font-display text-2xl font-black"
+              aria-label="Accueil"
+            >
+              BS.
+            </Button>
+            <div className="flex items-center gap-2 lg:gap-4">
+              <div className="hidden lg:flex items-center gap-2">
+                {sections.map((section) => (
+                  <Button
+                    variant="ghost"
+                    key={section}
+                    onClick={() => scrollToSection(section)}
+                    aria-current={currentSection === section ? "location" : undefined}
+                    className={`relative uppercase text-xs font-bold ${currentSection === section ? "text-foreground" : "text-muted-foreground"}`}
+                  >
+                    {t.nav[section]}
+                    {currentSection === section && (
+                      <span className="absolute bottom-0 inset-x-4 h-px bg-foreground" />
+                    )}
+                  </Button>
+                ))}
+              </div>
+              <Button
+                variant="ghost"
+                onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
+                aria-label={language === "fr" ? "Switch to English" : "Passer en français"}
+                className="px-2 text-xs font-bold"
+              >
+                <Globe /> {language.toUpperCase()}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setDarkMode(!darkMode)}
+                aria-label={darkMode ? "Mode clair" : "Mode sombre"}
+                title={darkMode ? "Mode clair" : "Mode sombre"}
+              >
+                {darkMode ? <Sun /> : <Moon />}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                aria-expanded={isMenuOpen}
+                className="lg:hidden"
+              >
+                {isMenuOpen ? <X /> : <Menu />}
+              </Button>
             </div>
-            <Button
-              variant="ghost"
-              onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
-              aria-label={language === "fr" ? "Switch to English" : "Passer en français"}
-              className="px-2 text-xs font-bold"
-            >
-              <Globe /> {language.toUpperCase()}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setDarkMode(!darkMode)}
-              aria-label={darkMode ? "Mode clair" : "Mode sombre"}
-              title={darkMode ? "Mode clair" : "Mode sombre"}
-            >
-              {darkMode ? <Sun /> : <Moon />}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-              aria-expanded={isMenuOpen}
-              className="lg:hidden"
-            >
-              {isMenuOpen ? <X /> : <Menu />}
-            </Button>
           </div>
         </nav>
         {isMenuOpen && (
@@ -152,7 +177,7 @@ export default function Portfolio() {
           />
         )}
         {isMenuOpen && (
-          <div className="fixed top-24 left-4 right-4 z-40 flex flex-col rounded-3xl border border-border bg-background p-3 shadow-2xl lg:hidden">
+          <div className="fixed top-20 left-4 right-4 z-40 flex flex-col rounded-3xl border border-border bg-background p-3 shadow-2xl lg:hidden">
             {sections.map((section, index) => (
               <Button
                 variant="ghost"
@@ -169,12 +194,9 @@ export default function Portfolio() {
           </div>
         )}
         <main>
-          <div className="hero-stage">
-            <SculptureStage darkMode={darkMode} />
-            <section id="home" aria-label={t.nav.home}>
-              <Hero language={language} setCurrentPage={scrollToSection} darkMode={darkMode} />
-            </section>
-          </div>
+          <section id="home" aria-label={t.nav.home}>
+            <Hero language={language} setCurrentPage={scrollToSection} darkMode={darkMode} />
+          </section>
           <section id="about" aria-label={t.nav.about} className="border-t border-border">
             <About language={language} darkMode={darkMode} />
           </section>
@@ -251,12 +273,9 @@ export default function Portfolio() {
                 </ul>
               </div>
             </div>
-            <div className="flex flex-col lg:flex-row justify-between gap-4 items-center pt-8 border-t border-border text-sm text-muted-foreground">
+            <div className="flex justify-center pt-8 border-t border-border text-sm text-muted-foreground">
               <p>
-                © {new Date().getFullYear()} Bérenger SESSOU. {t.footer.rights}
-              </p>
-              <p className="flex items-center gap-1">
-                {t.footer.designed} <Heart size={14} />
+                © {new Date().getFullYear()} · {t.footer.credit}
               </p>
             </div>
           </div>
@@ -284,11 +303,15 @@ export default function Portfolio() {
                 <X />
               </Button>
               <div className="lg:w-1/2 h-64 lg:h-auto bg-secondary flex items-center justify-center p-4">
-                <img
-                  src={selectedProject.media}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-contain rounded-lg"
-                />
+                {selectedProject.media ? (
+                  <img
+                    src={selectedProject.media}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-contain rounded-lg"
+                  />
+                ) : (
+                  <span className="font-display text-5xl font-black">{selectedProject.title}</span>
+                )}
               </div>
               <div className="lg:w-1/2 p-6 lg:p-12">
                 <p className="text-muted-foreground font-bold uppercase mb-4">

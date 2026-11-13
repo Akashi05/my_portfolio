@@ -239,10 +239,6 @@ h4 {
 .portfolio section {
   scroll-margin-top: 96px;
 }
-/* The nav floats as a pill: it never touches the screen edges and keeps a soft token-driven shadow. */
-.floating-nav {
-  box-shadow: 0 12px 40px -16px color-mix(in oklab, var(--foreground) 35%, transparent);
-}
 .portfolio h2 {
   overflow-wrap: anywhere;
 }
@@ -265,6 +261,10 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor,
+  .cta-blink {
+    animation: none;
+  }
   html {
     scroll-behavior: auto;
   }
@@ -280,40 +280,26 @@ h4 {
  * Sculptural editorial layout
  * ------------------------------------------------------------------ */
 
-/* The ribbon belongs to the hero stage only, so it can never sit on top of
-   the body copy of the sections that follow. */
-.hero-stage {
+/* The ribbon sits on a fixed layer behind the content (sections are lifted above it). */
+.portfolio {
   position: relative;
   isolation: isolate;
 }
-.sculpture-stage {
-  position: absolute;
+.portfolio main section,
+.portfolio footer {
+  position: relative;
+  z-index: 1;
+}
+.ribbon-layer {
+  position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-}
-.sculpture-sticky {
-  position: sticky;
-  top: 0;
-  height: 100svh;
   overflow: hidden;
 }
-.sculpture-canvas {
-  width: 100%;
-  height: 100%;
-  will-change: transform, opacity;
-}
-/* The pinned canvas is clipped by the end of the hero stage. This wash sits
-   above the ribbon and fades it into the page background right at that edge,
-   so the ribbon dissolves instead of ending on a hard line. */
-.hero-stage::after {
-  content: "";
+.ribbon-box {
   position: absolute;
-  inset: auto 0 0 0;
-  height: 24vh;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(to bottom, transparent 0%, var(--background) 88%);
+  will-change: transform, opacity;
 }
 
 .hero-editorial {
@@ -324,21 +310,83 @@ h4 {
   flex-direction: column;
   padding-top: clamp(7.5rem, 10vw, 9.5rem);
 }
+/* Soft veil under the nav: content scrolling up dissolves into blur and fades
+   into the background instead of sliding under hard-edged text. */
+.nav-veil {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 7rem;
+  z-index: 40;
+  pointer-events: none;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: linear-gradient(
+    to bottom,
+    var(--background) 0%,
+    color-mix(in oklab, var(--background) 92%, transparent) 55%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent);
+  mask-image: linear-gradient(to bottom, black 62%, transparent);
+}
+.hero-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+.hero-greeting {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
 .hero-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
   padding-bottom: clamp(2rem, 5vh, 3.5rem);
 }
 .hero-name {
-  font-size: clamp(3.25rem, 8.4vw, 8.25rem);
+  font-size: clamp(3rem, 6vw, 6rem);
   line-height: 0.94;
   letter-spacing: -0.02em;
 }
 .hero-caption {
-  max-width: 30rem;
-  margin-top: clamp(1.5rem, 3vh, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 34rem;
+  margin-top: clamp(1.25rem, 3vh, 2rem);
+}
+.cta-blink {
+  animation: cta-blink 2.2s ease-in-out infinite;
+}
+.cta-blink:hover,
+.cta-blink:focus-visible {
+  animation: none;
+  opacity: 1;
+}
+@keyframes cta-blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  background: currentColor;
+  animation: cursor-blink 1s steps(1) infinite;
+}
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
 }
 .hero-bottom {
   position: relative;
@@ -406,17 +454,6 @@ h4 {
   .hero-name {
     font-size: clamp(3.25rem, 11vw, 6rem);
   }
-  .sculpture-stage {
-    height: min(58svh, 520px);
-  }
-  .sculpture-canvas {
-    width: 62%;
-    margin-left: 38%;
-  }
-  .sculpture-sticky {
-    position: relative;
-    height: 100%;
-  }
   .about-rail {
     position: static;
   }
@@ -430,31 +467,61 @@ h4 {
   .hero-content {
     flex: 0 0 auto;
     justify-content: flex-start;
-    padding-top: 14rem;
+    align-items: flex-start;
+    text-align: left;
+    padding-top: 15rem;
     padding-bottom: 2.5rem;
   }
   .hero-name {
     font-size: clamp(2.75rem, 14vw, 3.5rem);
   }
   .hero-caption {
+    align-items: flex-start;
     margin-top: 1rem;
-  }
-  .sculpture-stage {
-    top: 4.75rem;
-    height: 19rem;
-  }
-  .sculpture-sticky {
-    height: 19rem;
-  }
-  .sculpture-canvas {
-    width: 100%;
-    margin-left: 0;
-    transform: none !important;
   }
   .editorial-section {
     padding-block: 4rem;
   }
   .portfolio .section-title {
     font-size: clamp(2.25rem, 9vw, 2.75rem);
+  }
+}
+
+/* Spotlight lists (skills, experience): the row under the cursor lights up, its
+   numbering glows and its text firms up, while the other rows step back. */
+.hover-dim,
+.hover-glow,
+.hover-strong {
+  transition:
+    opacity 0.35s ease,
+    color 0.35s ease,
+    font-weight 0.35s ease,
+    text-shadow 0.35s ease;
+}
+@media (hover: hover) {
+  .hover-list:hover .hover-row:not(:hover) .hover-dim {
+    opacity: 0.32;
+  }
+  .hover-row:hover .hover-glow {
+    opacity: 1;
+    color: var(--foreground);
+    text-shadow: 0 0 16px color-mix(in oklab, var(--foreground) 65%, transparent);
+  }
+  .hover-row:hover .hover-strong {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+}
+
+/* Light theme: the glow becomes a dark halo so the highlighted number stays readable. */
+@media (hover: hover) {
+  html:not(.dark) .hover-row:hover .hover-glow {
+    color: #000;
+    text-shadow:
+      0 0 1px rgba(0, 0, 0, 0.6),
+      0 0 14px rgba(0, 0, 0, 0.45);
+  }
+  html:not(.dark) .hover-row:hover .hover-strong {
+    color: #000;
   }
 }
