@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Github, Linkedin, ArrowDown, ArrowUpRight, Download } from "lucide-react";
 import { translations } from "../data/translations";
 import { Button } from "@/components/ui/button";
@@ -59,6 +59,8 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
   const t = translations[language].hero;
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  // Replay the entrance every time the hero comes back into view.
+  const inView = useInView(ref, { amount: 0.3 });
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -72]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.72, 1], [1, 1, 0.15]);
@@ -70,7 +72,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
           <motion.span
             className="block"
             initial={{ y: "115%" }}
-            animate={{ y: 0 }}
+            animate={inView ? { y: 0 } : { y: "115%" }}
             transition={{ duration: 1.1, delay: 0.25, ease }}
           >
             {t.greeting}
@@ -78,7 +80,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
         </p>
         <motion.div
           initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.9, delay: 0.9, ease }}
           className="flex flex-wrap items-center gap-3"
         >
@@ -106,7 +108,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
             <motion.span
               className="block text-[0.45em] font-bold text-muted-foreground"
               initial={{ y: "115%" }}
-              animate={{ y: 0 }}
+              animate={inView ? { y: 0 } : { y: "115%" }}
               transition={{ duration: 1.1, delay: 0.5, ease }}
             >
               {t.intro_pre}
@@ -117,7 +119,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
               <motion.span
                 className="block"
                 initial={{ y: "115%" }}
-                animate={{ y: 0 }}
+                animate={inView ? { y: 0 } : { y: "115%" }}
                 transition={{ duration: 1.1, delay: 0.65 + i * 0.15, ease }}
               >
                 {name}
@@ -127,7 +129,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
         </h1>
         <motion.div
           initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.9, delay: 1.1, ease }}
           className="hero-caption"
         >

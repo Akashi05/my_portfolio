@@ -8,7 +8,7 @@ export default function Reveal({ children, delay = 0 }: { children: ReactNode; d
   // Observe the (unclipped) wrapper: the moving child is hidden by the mask and
   // would never count as visible.
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const inView = useInView(ref, { amount: 0.6 });
   return (
     <span ref={ref} className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
       <motion.span

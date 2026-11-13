@@ -27,7 +27,7 @@ export default function Experience({ language }: ExperienceProps) {
             key={exp.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ amount: 0.15 }}
             transition={{ duration: 0.6 }}
             className="exp-row relative grid gap-5 py-10 md:grid-cols-[240px_1fr] md:gap-10 md:py-12"
           >
@@ -35,7 +35,7 @@ export default function Experience({ language }: ExperienceProps) {
               aria-hidden="true"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ amount: 0.15 }}
               transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-x-0 top-0 h-px origin-left bg-border"
             />
@@ -53,7 +53,7 @@ export default function Experience({ language }: ExperienceProps) {
                     key={achievement}
                     initial={{ opacity: 0, x: -14 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.4 }}
+                    viewport={{ amount: 0.4 }}
                     transition={{ duration: 0.7, delay: 0.25 + i * 0.15 }}
                     className="flex gap-4"
                   >

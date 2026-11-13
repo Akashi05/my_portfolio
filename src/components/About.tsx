@@ -78,7 +78,7 @@ export default function About({ language }: AboutProps) {
               key={category}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.5 }}
               className="grid gap-3 border-t border-border py-7 md:grid-cols-[240px_1fr] md:gap-8"
             >
@@ -92,7 +92,7 @@ export default function About({ language }: AboutProps) {
                     key={skill}
                     initial={{ opacity: 0, y: 14, filter: "blur(8px)" }}
                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.2 }}
                     transition={{ duration: 0.6, delay: 0.1 + i * 0.05 }}
                     whileHover={{ y: -3 }}
                     className="text-base font-medium"
