@@ -113,7 +113,7 @@ export const translations = {
         period: "Depuis 2026",
         date: "2026-10",
         github: "https://istorya.site",
-        media: "",
+        media: "/istorya.png",
       },
       {
         title: "ArbitraChain",
@@ -525,7 +525,7 @@ export const translations = {
         period: "Since 2026",
         date: "2026-10",
         github: "https://istorya.site",
-        media: "",
+        media: "/istorya.png",
       },
       {
         title: "ArbitraChain",
