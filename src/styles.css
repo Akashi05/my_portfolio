@@ -512,3 +512,16 @@ h4 {
     font-weight: 600;
   }
 }
+
+/* Light theme: the glow becomes a dark halo so the highlighted number stays readable. */
+@media (hover: hover) {
+  html:not(.dark) .hover-row:hover .hover-glow {
+    color: #000;
+    text-shadow:
+      0 0 1px rgba(0, 0, 0, 0.6),
+      0 0 14px rgba(0, 0, 0, 0.45);
+  }
+  html:not(.dark) .hover-row:hover .hover-strong {
+    color: #000;
+  }
+}
