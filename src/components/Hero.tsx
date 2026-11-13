@@ -76,6 +76,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
             transition={{ duration: 1.1, delay: 0.25, ease }}
           >
             {t.greeting}
+            <span className="text-muted-foreground">,</span>
           </motion.span>
         </p>
         <motion.div

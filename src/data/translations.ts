@@ -8,7 +8,7 @@ export const translations = {
       contact: "Contact",
     },
     hero: {
-      greeting: "Bonjour à toi.",
+      greeting: "Bonjour à toi",
       intro_pre: "Je suis",
       domains: [
         "Développeur backend et systèmes",
@@ -420,7 +420,7 @@ export const translations = {
       contact: "Contact",
     },
     hero: {
-      greeting: "Hello you.",
+      greeting: "Hello you",
       intro_pre: "I'm",
       domains: [
         "Backend & Systems Developer",
