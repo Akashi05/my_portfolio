@@ -35,7 +35,15 @@ function makeRibbon() {
   return geometry;
 }
 
-function Ribbon({ color, reducedMotion }: { color: string; reducedMotion: boolean }) {
+function Ribbon({
+  color,
+  reducedMotion,
+  lightTheme,
+}: {
+  color: string;
+  reducedMotion: boolean;
+  lightTheme: boolean;
+}) {
   const mesh = useRef<THREE.Mesh>(null);
   const geometry = useMemo(makeRibbon, []);
   const phase = useRef(0);
@@ -87,8 +95,8 @@ function Ribbon({ color, reducedMotion }: { color: string; reducedMotion: boolea
     <mesh ref={mesh} geometry={geometry} rotation={[0.65, -0.4, -0.48]}>
       <meshStandardMaterial
         color={color}
-        metalness={0.32}
-        roughness={0.38}
+        metalness={lightTheme ? 0.5 : 0.32}
+        roughness={lightTheme ? 0.34 : 0.38}
         side={THREE.DoubleSide}
       />
     </mesh>
@@ -100,7 +108,9 @@ export default function HeroScene({ darkMode }: { darkMode: boolean }) {
   const [reducedMotion, setReducedMotion] = useState(false);
   useEffect(() => {
     const css = getComputedStyle(document.documentElement);
-    setColor(css.getPropertyValue(darkMode ? "--scene-light" : "--scene-dark").trim());
+    // Light theme: a pure charcoal base only reflects black, so use a lighter graphite and
+    // let the studio lights bring out the highlights (as the ivory ribbon does in dark).
+    setColor(darkMode ? css.getPropertyValue("--scene-light").trim() : "#aaa2a7");
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setReducedMotion(media.matches);
     update();
@@ -116,13 +126,17 @@ export default function HeroScene({ darkMode }: { darkMode: boolean }) {
       camera={{ position: [0, 0, 8.3], fov: 36 }}
       gl={{ antialias: true, alpha: true }}
     >
-      <ambientLight intensity={0.65} />
-      <directionalLight color={color} position={[3, 5, 4]} intensity={2.4} />
-      <Ribbon color={color} reducedMotion={reducedMotion} />
+      <ambientLight intensity={darkMode ? 0.65 : 0.9} />
+      <directionalLight
+        color={darkMode ? color : "#ffffff"}
+        position={[3, 5, 4]}
+        intensity={darkMode ? 2.4 : 2.8}
+      />
+      <Ribbon color={color} reducedMotion={reducedMotion} lightTheme={!darkMode} />
       <Environment resolution={128}>
-        <Lightformer intensity={3} position={[0, 5, 2]} scale={[8, 3, 1]} />
+        <Lightformer intensity={darkMode ? 3 : 5} position={[0, 5, 2]} scale={[8, 3, 1]} />
         <Lightformer
-          intensity={2}
+          intensity={darkMode ? 2 : 3.5}
           position={[-5, 0, 2]}
           rotation-y={Math.PI / 2}
           scale={[8, 4, 1]}
