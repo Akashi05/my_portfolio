@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { translations } from "../data/translations";
-import { skills } from "../data/skills";
+import { skills, type Skill } from "../data/skills";
 import Reveal from "./Reveal";
 import ScrollWords from "./ScrollWords";
 
@@ -14,7 +14,7 @@ export default function About({ language }: AboutProps) {
   const paragraphs = Object.entries(t)
     .filter(([key]) => key.startsWith("description"))
     .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }));
-  const skillGroups: [keyof typeof t.skill_cats, readonly string[]][] = [
+  const skillGroups: [keyof typeof t.skill_cats, readonly Skill[]][] = [
     ["autonomy", skills.autonomy],
     ["practiced", skills.practiced],
     ["ai", [t.ai_item]],
@@ -72,7 +72,7 @@ export default function About({ language }: AboutProps) {
         <h3 className="section-title text-[clamp(1.75rem,3.2vw,2.75rem)]">
           <Reveal>{t.skills_title}</Reveal>
         </h3>
-        <div className="mt-10">
+        <div className="hover-list mt-10">
           {skillGroups.map(([category, items], index) => (
             <motion.div
               key={category}
@@ -80,24 +80,23 @@ export default function About({ language }: AboutProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.5 }}
-              className="grid gap-3 border-t border-border py-7 md:grid-cols-[240px_1fr] md:gap-8"
+              className="hover-row grid gap-3 border-t border-border py-7 md:grid-cols-[240px_1fr] md:gap-8"
             >
-              <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                <span className="mr-4 opacity-50">0{index + 1}</span>
+              <p className="hover-dim text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                <span className="hover-glow mr-4 opacity-50">0{index + 1}</span>
                 {t.skill_cats[category]}
               </p>
-              <div className="flex flex-wrap gap-x-7 gap-y-3">
+              <div className="hover-dim hover-strong flex flex-wrap gap-x-7 gap-y-3 text-base font-medium">
                 {items.map((skill, i) => (
                   <motion.span
-                    key={skill}
+                    key={typeof skill === "string" ? skill : skill.en}
                     initial={{ opacity: 0, y: 14, filter: "blur(8px)" }}
                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     viewport={{ once: false, amount: 0.2 }}
                     transition={{ duration: 0.6, delay: 0.1 + i * 0.05 }}
                     whileHover={{ y: -3 }}
-                    className="text-base font-medium"
                   >
-                    {skill}
+                    {typeof skill === "string" ? skill : skill[language]}
                   </motion.span>
                 ))}
               </div>

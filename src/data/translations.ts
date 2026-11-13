@@ -10,8 +10,14 @@ export const translations = {
     hero: {
       greeting: "Bonjour à toi.",
       intro_pre: "Je suis",
-      domains: ["Développeur backend et systèmes", "DevOps", "Prototypage de produit"],
-      domains_static: "Développeur backend et systèmes, DevOps, prototypage de produit",
+      domains: [
+        "Développeur backend et systèmes",
+        "DevOps",
+        "Prototypage de produit",
+        "Sites et applications web",
+      ],
+      domains_static:
+        "Développeur backend et systèmes, DevOps, prototypage de produit, sites et applications web",
       location: "Cotonou, Bénin · À distance ou sur place",
       cta_projects: "Voir mes projets",
       cta_contact: "Me contacter",
@@ -417,8 +423,14 @@ export const translations = {
     hero: {
       greeting: "Hello you.",
       intro_pre: "I'm",
-      domains: ["Backend & Systems Developer", "DevOps", "Product prototyping"],
-      domains_static: "Backend & Systems Developer, DevOps, product prototyping",
+      domains: [
+        "Backend & Systems Developer",
+        "DevOps",
+        "Product prototyping",
+        "Websites & web apps",
+      ],
+      domains_static:
+        "Backend & Systems Developer, DevOps, product prototyping, websites & web apps",
       location: "Cotonou, Benin · Remote or on-site",
       cta_projects: "View my projects",
       cta_contact: "Get in touch",

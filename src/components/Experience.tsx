@@ -21,7 +21,7 @@ export default function Experience({ language }: ExperienceProps) {
         </h2>
       </header>
 
-      <div>
+      <div className="hover-list">
         {t.experience_data.map((exp, index) => (
           <motion.article
             key={exp.title}
@@ -29,7 +29,7 @@ export default function Experience({ language }: ExperienceProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.15 }}
             transition={{ duration: 0.6 }}
-            className="exp-row relative grid gap-5 py-10 md:grid-cols-[240px_1fr] md:gap-10 md:py-12"
+            className="exp-row hover-row relative grid gap-5 py-10 md:grid-cols-[240px_1fr] md:gap-10 md:py-12"
           >
             <motion.span
               aria-hidden="true"
@@ -39,15 +39,15 @@ export default function Experience({ language }: ExperienceProps) {
               transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-x-0 top-0 h-px origin-left bg-border"
             />
-            <div className="flex items-start justify-between gap-6 text-sm text-muted-foreground md:block">
-              <p className="text-xs tabular-nums opacity-60">0{index + 1}</p>
+            <div className="hover-dim flex items-start justify-between gap-6 text-sm text-muted-foreground md:block">
+              <p className="hover-glow text-xs tabular-nums opacity-60">0{index + 1}</p>
               <p className="md:mt-5">{exp.period}</p>
               <p className="md:mt-2">{exp.location}</p>
             </div>
-            <div>
+            <div className="hover-dim">
               <h3 className="text-2xl font-bold sm:text-3xl">{exp.title}</h3>
               <p className="mt-2 text-base text-muted-foreground">{exp.company}</p>
-              <ul className="mt-6 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <ul className="hover-strong mt-6 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
                 {exp.achievements.map((achievement, i) => (
                   <motion.li
                     key={achievement}

@@ -486,3 +486,29 @@ h4 {
     font-size: clamp(2.25rem, 9vw, 2.75rem);
   }
 }
+
+/* Spotlight lists (skills, experience): the row under the cursor lights up, its
+   numbering glows and its text firms up, while the other rows step back. */
+.hover-dim,
+.hover-glow,
+.hover-strong {
+  transition:
+    opacity 0.35s ease,
+    color 0.35s ease,
+    font-weight 0.35s ease,
+    text-shadow 0.35s ease;
+}
+@media (hover: hover) {
+  .hover-list:hover .hover-row:not(:hover) .hover-dim {
+    opacity: 0.32;
+  }
+  .hover-row:hover .hover-glow {
+    opacity: 1;
+    color: var(--foreground);
+    text-shadow: 0 0 16px color-mix(in oklab, var(--foreground) 65%, transparent);
+  }
+  .hover-row:hover .hover-strong {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+}
