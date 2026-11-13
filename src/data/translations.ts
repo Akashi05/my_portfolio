@@ -53,7 +53,7 @@ export const translations = {
       lang_fr: "Français",
       lang_en: "Anglais",
       lang_native: "Natif",
-      lang_intermediate: "Intermédiaire",
+      lang_intermediate: "Professionnel",
       skill_cats: {
         autonomy: "En autonomie",
         practiced: "Déjà pratiqué",
@@ -465,7 +465,7 @@ export const translations = {
       lang_fr: "French",
       lang_en: "English",
       lang_native: "Native",
-      lang_intermediate: "Intermediate",
+      lang_intermediate: "Professional",
       skill_cats: {
         autonomy: "Comfortable with",
         practiced: "Also worked with",
