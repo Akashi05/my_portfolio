@@ -22,7 +22,7 @@ export const translations = {
       title: "Qui suis-je ?",
       subtitle: "À propos",
       description1:
-        "Je suis développeur backend et systèmes à Cotonou. Je conçois des API REST, j'ai déjà automatisé des déploiements (Docker, Jenkins, Kubernetes) et j'ai l'habitude du bas niveau en C/C++. J'ai travaillé avec plusieurs langages et frameworks (Python, JavaScript, Haskell, Django...), donc je prends vite en main ce dont un projet a besoin.",
+        "Je suis développeur backend et systèmes à Cotonou. Je conçois des API REST, des sites et des applications web, j'ai déjà automatisé des déploiements (Docker, Jenkins, Kubernetes) et j'ai l'habitude du bas niveau en C/C++. J'ai travaillé avec plusieurs langages et frameworks (Python, JavaScript, Haskell, Django...), donc je prends vite en main ce dont un projet a besoin.",
       description2:
         "Depuis octobre 2026, je suis en incubation chez Future Studio, où je travaille sur Istorya, une application de contes personnalisés par IA. Je suis ouvert aux missions freelance, au temps partiel et aux collaborations, et je peux aider à construire un produit de l'idée à une première version.",
       formation: "Formation",
@@ -429,7 +429,7 @@ export const translations = {
       title: "Who am I?",
       subtitle: "About",
       description1:
-        "I'm a backend and systems developer based in Cotonou. I design REST APIs, I've automated deployments before (Docker, Jenkins, Kubernetes) and I'm comfortable with low-level C/C++. I've worked with several languages and frameworks (Python, JavaScript, Haskell, Django...), so I pick up whatever a project needs quickly.",
+        "I'm a backend and systems developer based in Cotonou. I design REST APIs, websites and web apps, I've automated deployments before (Docker, Jenkins, Kubernetes) and I'm comfortable with low-level C/C++. I've worked with several languages and frameworks (Python, JavaScript, Haskell, Django...), so I pick up whatever a project needs quickly.",
       description2:
         "Since October 2026, I've been in the Future Studio incubator, working on Istorya, an AI-powered app for personalized children's stories. I'm open to freelance missions, part-time work and collaborations, and I can help build a product from the first idea to a working first version.",
       formation: "Education",
