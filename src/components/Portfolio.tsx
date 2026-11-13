@@ -10,6 +10,7 @@ import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import SculptureStage from "@/components/SculptureStage";
 import ScrollProgress from "@/components/ScrollProgress";
+import MagnetCursor from "@/components/MagnetCursor";
 
 const sections = ["home", "about", "projects", "experience", "contact"] as const;
 type Section = (typeof sections)[number];
@@ -108,6 +109,7 @@ export default function Portfolio() {
       >
         <SculptureStage darkMode={darkMode} />
         <ScrollProgress />
+        <MagnetCursor />
         <div className="nav-veil" aria-hidden="true" />
         <nav
           aria-label={language === "fr" ? "Navigation principale" : "Main navigation"}

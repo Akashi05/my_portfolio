@@ -526,3 +526,49 @@ h4 {
     color: var(--gold);
   }
 }
+
+/* Magnet cursor (fine pointers only): the ring snaps onto links, buttons and cards. */
+.magnet-ring,
+.magnet-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.magnet-ring {
+  border: 1.5px solid var(--gold);
+  background: color-mix(in oklab, var(--gold) 0%, transparent);
+  transition:
+    opacity 0.2s ease,
+    background-color 0.25s ease,
+    width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.28s ease;
+}
+.magnet-ring[data-locked="1"] {
+  background: color-mix(in oklab, var(--gold) 14%, transparent);
+}
+.magnet-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+html.magnet-cursor,
+html.magnet-cursor * {
+  cursor: none !important;
+}
+html.magnet-cursor input,
+html.magnet-cursor textarea,
+html.magnet-cursor select,
+html.magnet-cursor [contenteditable="true"] {
+  cursor: text !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .magnet-ring {
+    transition: none;
+  }
+}
