@@ -100,8 +100,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        {/* Dark is the default theme: it is applied before first paint (no light flash).
+            Only an explicit "light" choice saved by the visitor overrides it. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'try{if(localStorage.getItem("darkMode")==="false")document.documentElement.classList.remove("dark")}catch(e){}',
+          }}
+        />
         <HeadContent />
       </head>
       <body className="antialiased">
