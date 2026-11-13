@@ -44,6 +44,7 @@
   --color-ivory: oklch(0.95498682 0.01237502 91.5192686);
   --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Satoshi", ui-sans-serif, sans-serif;
+  --color-gold: var(--gold);
   --color-neon-primary: var(--neon-primary);
   --color-neon-glow: var(--neon-glow);
 }
@@ -178,6 +179,7 @@ h4 {
 :root {
   --identity-charcoal: oklch(0.27156323 0.010301 332.55804154);
   --identity-ivory: oklch(0.95498682 0.01237502 91.5192686);
+  --gold: #9a6700;
   --background: var(--identity-ivory);
   --foreground: var(--identity-charcoal);
   --primary: var(--foreground);
@@ -195,8 +197,8 @@ h4 {
   --border: color-mix(in oklab, var(--foreground) 20%, var(--background));
   --input: var(--border);
   --ring: var(--foreground);
-  --neon-primary: var(--foreground);
-  --neon-glow: color-mix(in oklab, var(--foreground) 12%, transparent);
+  --neon-primary: var(--gold);
+  --neon-glow: color-mix(in oklab, var(--gold) 28%, transparent);
   --glass-bg: var(--card);
   --glass-border: var(--border);
   --overlay: color-mix(in oklab, var(--identity-charcoal) 85%, transparent);
@@ -205,6 +207,7 @@ h4 {
   --radius: 0.5rem;
 }
 .dark {
+  --gold: #f5c542;
   --background: var(--identity-charcoal);
   --foreground: var(--identity-ivory);
   --primary: var(--foreground);
@@ -222,8 +225,8 @@ h4 {
   --border: color-mix(in oklab, var(--foreground) 20%, var(--background));
   --input: var(--border);
   --ring: var(--foreground);
-  --neon-primary: var(--foreground);
-  --neon-glow: color-mix(in oklab, var(--foreground) 12%, transparent);
+  --neon-primary: var(--gold);
+  --neon-glow: color-mix(in oklab, var(--gold) 28%, transparent);
   --glass-bg: var(--card);
   --glass-border: var(--border);
 }
@@ -380,7 +383,7 @@ h4 {
   height: 1.1em;
   margin-left: 3px;
   vertical-align: -0.15em;
-  background: currentColor;
+  background: var(--gold);
   animation: cursor-blink 1s steps(1) infinite;
 }
 @keyframes cursor-blink {
@@ -504,24 +507,22 @@ h4 {
   }
   .hover-row:hover .hover-glow {
     opacity: 1;
-    color: var(--foreground);
-    text-shadow: 0 0 16px color-mix(in oklab, var(--foreground) 65%, transparent);
+    color: var(--gold);
+    text-shadow: 0 0 16px color-mix(in oklab, var(--gold) 60%, transparent);
   }
   .hover-row:hover .hover-strong {
-    color: var(--foreground);
+    color: var(--gold);
     font-weight: 600;
   }
 }
 
-/* Light theme: the glow becomes a dark halo so the highlighted number stays readable. */
+/* Light theme: the gold is darker (ochre) so the highlighted number stays readable. */
 @media (hover: hover) {
   html:not(.dark) .hover-row:hover .hover-glow {
-    color: #000;
-    text-shadow:
-      0 0 1px rgba(0, 0, 0, 0.6),
-      0 0 14px rgba(0, 0, 0, 0.45);
+    color: var(--gold);
+    text-shadow: 0 0 12px color-mix(in oklab, var(--gold) 35%, transparent);
   }
   html:not(.dark) .hover-row:hover .hover-strong {
-    color: #000;
+    color: var(--gold);
   }
 }
