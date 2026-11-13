@@ -102,10 +102,10 @@ export const translations = {
         title: "Istorya",
         role: "Produit et développement",
         description:
-          "Co-fondateur et CTO d'Istorya, application de contes personnalisés par IA pour enfants, en français, avec voix parentales clonées. Conception du produit, développement assisté par IA et lancement. Phase actuelle : acquisition des premiers utilisateurs.",
+          "Une histoire illustrée faite rien que pour eux, façonnée par les valeurs que vous voulez transmettre. Co-fondateur et CTO : conception du produit et lancement. Phase actuelle : acquisition des premiers utilisateurs.",
         highlights: [
           "Application en français avec voix parentales clonées",
-          "Conception du produit et développement assisté par IA",
+          "Conception du produit",
           "Lancement (comptes et contenu sur les réseaux, prospection des premiers utilisateurs)",
         ],
         tech: ["Développement assisté par IA"],
@@ -514,10 +514,10 @@ export const translations = {
         title: "Istorya",
         role: "Product and development",
         description:
-          "Co-founder and CTO of Istorya, an AI-powered app for personalized children's stories in French, using cloned parental voices. Product design, AI-assisted development and launch. Current phase: acquiring the first users.",
+          "An illustrated story made just for them, shaped by the values you want to pass on. Co-founder and CTO: product design and launch. Current phase: acquiring the first users.",
         highlights: [
           "French-language app with cloned parental voices",
-          "Product design and AI-assisted development",
+          "Product design",
           "Launch (social accounts and content, outreach to first users)",
         ],
         tech: ["AI-assisted development"],
