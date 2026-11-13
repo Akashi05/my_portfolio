@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MotionConfig } from "framer-motion";
-import { Sun, Moon, Globe, Heart, X, ArrowRight, Menu } from "lucide-react";
+import { Sun, Moon, Globe, X, ArrowRight, Menu } from "lucide-react";
 import { translations } from "@/data/translations";
 import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero";
@@ -273,12 +273,9 @@ export default function Portfolio() {
                 </ul>
               </div>
             </div>
-            <div className="flex flex-col lg:flex-row justify-between gap-4 items-center pt-8 border-t border-border text-sm text-muted-foreground">
+            <div className="flex justify-center pt-8 border-t border-border text-sm text-muted-foreground">
               <p>
-                © {new Date().getFullYear()} Bérenger SESSOU. {t.footer.rights}
-              </p>
-              <p className="flex items-center gap-1">
-                {t.footer.designed} <Heart size={14} />
+                © {new Date().getFullYear()} · {t.footer.credit}
               </p>
             </div>
           </div>

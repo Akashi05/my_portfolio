@@ -95,8 +95,7 @@ export const translations = {
       socials: "Réseaux",
       contact: "Contact",
       cta: "Me contacter",
-      rights: "Tous droits réservés.",
-      designed: "Conçu avec",
+      credit: "Designé et conçu par Bérenger SESSOU",
     },
     projects_data: [
       {
@@ -508,8 +507,7 @@ export const translations = {
       socials: "Socials",
       contact: "Contact",
       cta: "Get in touch",
-      rights: "All rights reserved.",
-      designed: "Designed with",
+      credit: "Designed and built by Bérenger SESSOU",
     },
     projects_data: [
       {
