@@ -104,7 +104,7 @@ export const translations = {
         description:
           "Une histoire illustrée faite rien que pour eux, façonnée par les valeurs que vous voulez transmettre. Co-fondateur et CTO : conception du produit et lancement. Phase actuelle : acquisition des premiers utilisateurs.",
         highlights: [
-          "Application en français avec voix parentales clonées",
+          "Histoires générées en plusieurs langues, avec voix parentales clonées",
           "Conception du produit",
           "Lancement (comptes et contenu sur les réseaux, prospection des premiers utilisateurs)",
         ],
@@ -376,7 +376,7 @@ export const translations = {
         location: "Cotonou, Bénin",
         period: "Octobre 2026 à aujourd'hui",
         achievements: [
-          "Co-fondateur et CTO d'Istorya (istorya.site), application de contes personnalisés par IA pour enfants, en français, avec voix parentales clonées. Conception du produit, développement assisté par IA et lancement. Phase actuelle : acquisition des premiers utilisateurs.",
+          "Co-fondateur et CTO d'Istorya (istorya.site), application de contes personnalisés par IA pour enfants, dans plusieurs langues, avec voix parentales clonées. Conception du produit, développement assisté par IA et lancement. Phase actuelle : acquisition des premiers utilisateurs.",
         ],
       },
       {
@@ -516,7 +516,7 @@ export const translations = {
         description:
           "An illustrated story made just for them, shaped by the values you want to pass on. Co-founder and CTO: product design and launch. Current phase: acquiring the first users.",
         highlights: [
-          "French-language app with cloned parental voices",
+          "Stories generated in several languages, with cloned parental voices",
           "Product design",
           "Launch (social accounts and content, outreach to first users)",
         ],
@@ -787,7 +787,7 @@ export const translations = {
         location: "Cotonou, Benin",
         period: "October 2026 to present",
         achievements: [
-          "Co-founder and CTO of Istorya (istorya.site), an AI-powered app for personalized children's stories in French, using cloned parental voices. Product design, AI-assisted development and launch. Current phase: acquiring the first users.",
+          "Co-founder and CTO of Istorya (istorya.site), an AI-powered app for personalized children's stories in several languages, using cloned parental voices. Product design, AI-assisted development and launch. Current phase: acquiring the first users.",
         ],
       },
       {
