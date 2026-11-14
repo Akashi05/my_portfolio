@@ -446,13 +446,6 @@ h4 {
   color: var(--muted-foreground);
 }
 
-.exp-row {
-  transition: background-color 0.4s ease;
-}
-.exp-row:hover {
-  background-color: color-mix(in oklab, var(--foreground) 3%, transparent);
-}
-
 @media (max-width: 1023px) {
   .hero-name {
     font-size: clamp(3.25rem, 11vw, 6rem);

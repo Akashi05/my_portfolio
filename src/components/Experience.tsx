@@ -29,7 +29,7 @@ export default function Experience({ language }: ExperienceProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.15 }}
             transition={{ duration: 0.6 }}
-            className="exp-row hover-row relative grid gap-5 py-10 md:grid-cols-[240px_1fr] md:gap-10 md:py-12"
+            className="hover-row relative grid gap-5 py-10 md:grid-cols-[240px_1fr] md:gap-10 md:py-12"
           >
             <motion.span
               aria-hidden="true"
