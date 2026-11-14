@@ -494,7 +494,6 @@ h4 {
    numbering glows and its text firms up, while the other rows step back. */
 .hover-dim,
 .hover-glow,
-.hover-halo,
 .hover-firm,
 .hover-strong {
   transition:
@@ -510,19 +509,17 @@ h4 {
   .hover-row:hover .hover-glow {
     opacity: 1;
     color: var(--gold);
-    text-shadow: 0 0 16px color-mix(in oklab, var(--gold) 60%, transparent);
+    font-weight: 600;
+    text-shadow:
+      0 0 10px color-mix(in oklab, var(--gold) 95%, transparent),
+      0 0 26px color-mix(in oklab, var(--gold) 70%, transparent),
+      0 0 52px color-mix(in oklab, var(--gold) 40%, transparent);
   }
   .hover-row:hover .hover-strong {
-    color: var(--gold);
+    color: var(--foreground);
     font-weight: 600;
   }
-  /* Experience: the text keeps its color; a gold halo lights up around the titles. */
-  .hover-row:hover .hover-halo {
-    opacity: 1;
-    text-shadow:
-      0 0 14px color-mix(in oklab, var(--gold) 70%, transparent),
-      0 0 38px color-mix(in oklab, var(--gold) 38%, transparent);
-  }
+  /* Experience bullets firm up without changing color. */
   .hover-row:hover .hover-firm {
     color: var(--foreground);
   }
@@ -532,15 +529,13 @@ h4 {
 @media (hover: hover) {
   html:not(.dark) .hover-row:hover .hover-glow {
     color: var(--gold);
-    text-shadow: 0 0 12px color-mix(in oklab, var(--gold) 35%, transparent);
+    text-shadow:
+      0 0 10px color-mix(in oklab, #f5b800 95%, transparent),
+      0 0 26px color-mix(in oklab, #f5b800 70%, transparent),
+      0 0 52px color-mix(in oklab, #f5b800 40%, transparent);
   }
   html:not(.dark) .hover-row:hover .hover-strong {
-    color: var(--gold);
-  }
-  html:not(.dark) .hover-row:hover .hover-halo {
-    text-shadow:
-      0 0 14px color-mix(in oklab, #f5b800 85%, transparent),
-      0 0 36px color-mix(in oklab, #f5b800 55%, transparent);
+    color: var(--foreground);
   }
 }
 
