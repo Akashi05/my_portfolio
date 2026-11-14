@@ -115,7 +115,7 @@ function Carousel({ children, autoplay = false, label, prevLabel, nextLabel }: C
           onClick={() => step(-1)}
           aria-label={prevLabel}
           tabIndex={edges.start ? -1 : 0}
-          className="pointer-events-auto ml-2 size-11 rounded-full bg-background/80"
+          className="pointer-events-auto ml-2 size-11 rounded-full border-gold bg-background/80 text-gold hover:bg-gold hover:text-white dark:hover:text-black"
         >
           <ChevronLeft />
         </Button>
@@ -130,7 +130,7 @@ function Carousel({ children, autoplay = false, label, prevLabel, nextLabel }: C
           onClick={() => step(1)}
           aria-label={nextLabel}
           tabIndex={edges.end ? -1 : 0}
-          className="pointer-events-auto mr-2 size-11 rounded-full bg-background/80"
+          className="pointer-events-auto mr-2 size-11 rounded-full border-gold bg-background/80 text-gold hover:bg-gold hover:text-white dark:hover:text-black"
         >
           <ChevronRight />
         </Button>
@@ -188,7 +188,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
             {project.title}
           </span>
         )}
-        <span className="absolute right-4 bottom-4 flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-500 group-hover:-rotate-45">
+        <span className="absolute right-4 bottom-4 flex size-11 items-center justify-center rounded-full bg-gold text-white shadow-[0_0_22px_color-mix(in_oklab,var(--gold)_55%,transparent)] transition-transform duration-500 dark:text-black group-hover:-rotate-45">
           <ArrowUpRight size={20} />
         </span>
       </Button>
@@ -224,11 +224,11 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
         type="button"
         onClick={onClick}
         aria-expanded={!back}
-        className="group flex aspect-[16/10] w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-foreground/40 text-center transition-colors hover:bg-secondary"
+        className="group flex aspect-[16/10] w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-gold/60 text-center transition-colors hover:bg-secondary"
       >
         <span className="font-display text-2xl font-bold">{label}</span>
         <span
-          className={`flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-500 ${back ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"}`}
+          className={`flex size-11 items-center justify-center rounded-full bg-gold text-white shadow-[0_0_22px_color-mix(in_oklab,var(--gold)_55%,transparent)] transition-transform duration-500 dark:text-black ${back ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"}`}
         >
           {back ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
         </span>
