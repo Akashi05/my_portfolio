@@ -132,16 +132,16 @@ export default function Contact({ language }: ContactProps) {
           </div>
           <Button
             type="submit"
-            variant="ghost"
+            variant="outline"
             disabled={state.submitting}
-            className="h-12 px-3 disabled:opacity-50"
+            className="group h-12 rounded-full border-gold bg-gold px-6 text-white hover:bg-gold/85 hover:text-white disabled:opacity-50 dark:text-black dark:hover:text-black"
           >
             {state.succeeded
               ? language === "fr"
                 ? "Message envoyé !"
                 : "Message sent!"
               : t.contact.form_send}
-            <ArrowUpRight />
+            <ArrowUpRight className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Button>
         </form>
       </div>
