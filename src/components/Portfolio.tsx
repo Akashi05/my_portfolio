@@ -10,6 +10,7 @@ import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import SculptureStage from "@/components/SculptureStage";
 import ScrollProgress from "@/components/ScrollProgress";
+import MagnetCursor from "@/components/MagnetCursor";
 
 const sections = ["home", "about", "projects", "experience", "contact"] as const;
 type Section = (typeof sections)[number];
@@ -108,6 +109,7 @@ export default function Portfolio() {
       >
         <SculptureStage darkMode={darkMode} />
         <ScrollProgress />
+        <MagnetCursor />
         <div className="nav-veil" aria-hidden="true" />
         <nav
           aria-label={language === "fr" ? "Navigation principale" : "Main navigation"}
@@ -327,7 +329,7 @@ export default function Portfolio() {
                 <ul className="space-y-3 mb-8">
                   {selectedProject.highlights.map((highlight, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 shrink-0 bg-foreground rounded-full mt-2.5" />
+                      <span className="w-1.5 h-1.5 shrink-0 bg-gold rounded-full mt-2.5" />
                       <span className="text-muted-foreground">{highlight}</span>
                     </li>
                   ))}
@@ -336,7 +338,7 @@ export default function Portfolio() {
                   {selectedProject.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-2 bg-secondary border border-border rounded-md text-muted-foreground text-sm"
+                      className="px-3 py-2 bg-secondary border border-gold/40 rounded-md text-muted-foreground text-sm"
                     >
                       {tech}
                     </span>

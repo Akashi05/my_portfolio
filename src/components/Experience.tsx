@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useScrollLit } from "@/hooks/use-scroll-lit";
 import { translations } from "../data/translations";
 import Reveal from "./Reveal";
 
@@ -9,6 +10,7 @@ interface ExperienceProps {
 
 export default function Experience({ language }: ExperienceProps) {
   const t = translations[language];
+  const listRef = useScrollLit<HTMLDivElement>();
 
   return (
     <div className="editorial-section mx-auto max-w-7xl px-6 lg:px-12">
@@ -21,7 +23,7 @@ export default function Experience({ language }: ExperienceProps) {
         </h2>
       </header>
 
-      <div className="hover-list">
+      <div ref={listRef} className="hover-list">
         {t.experience_data.map((exp, index) => (
           <motion.article
             key={exp.title}
@@ -29,7 +31,7 @@ export default function Experience({ language }: ExperienceProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.15 }}
             transition={{ duration: 0.6 }}
-            className="exp-row hover-row relative grid gap-5 py-10 md:grid-cols-[240px_1fr] md:gap-10 md:py-12"
+            className="hover-row relative grid gap-5 py-10 md:grid-cols-[240px_1fr] md:gap-10 md:py-12"
           >
             <motion.span
               aria-hidden="true"
@@ -47,7 +49,7 @@ export default function Experience({ language }: ExperienceProps) {
             <div className="hover-dim">
               <h3 className="text-2xl font-bold sm:text-3xl">{exp.title}</h3>
               <p className="mt-2 text-base text-muted-foreground">{exp.company}</p>
-              <ul className="hover-strong mt-6 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <ul className="hover-firm mt-6 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
                 {exp.achievements.map((achievement, i) => (
                   <motion.li
                     key={achievement}

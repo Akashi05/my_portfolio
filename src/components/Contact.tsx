@@ -133,7 +133,7 @@ export default function Contact({ language }: ContactProps) {
           <Button
             type="submit"
             disabled={state.submitting}
-            className="h-14 w-full rounded-full font-bold uppercase tracking-[0.1em] transition-transform hover:scale-[1.01] disabled:opacity-50"
+            className="h-14 w-full rounded-full bg-gold font-bold uppercase tracking-[0.1em] text-white transition-transform hover:scale-[1.01] hover:bg-gold/90 disabled:opacity-50 dark:text-black"
           >
             {state.succeeded
               ? language === "fr"

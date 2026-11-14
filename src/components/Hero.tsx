@@ -76,7 +76,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
             transition={{ duration: 1.1, delay: 0.25, ease }}
           >
             {t.greeting}
-            <span className="text-muted-foreground">,</span>
+            <span className="text-gold">,</span>
           </motion.span>
         </p>
         <motion.div
@@ -88,7 +88,7 @@ export default function Hero({ language, setCurrentPage }: HeroProps) {
           <Button
             onClick={() => setCurrentPage("projects")}
             variant="outline"
-            className="group h-12 rounded-full border-foreground/40 bg-background/60 px-6 backdrop-blur-sm"
+            className="group h-12 rounded-full border-gold bg-gold px-6 text-white hover:bg-gold/85 hover:text-white dark:text-black dark:hover:text-black"
           >
             {t.cta_projects}
             <ArrowUpRight className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
