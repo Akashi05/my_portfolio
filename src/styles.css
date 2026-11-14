@@ -494,6 +494,8 @@ h4 {
    numbering glows and its text firms up, while the other rows step back. */
 .hover-dim,
 .hover-glow,
+.hover-halo,
+.hover-firm,
 .hover-strong {
   transition:
     opacity 0.35s ease,
@@ -514,6 +516,16 @@ h4 {
     color: var(--gold);
     font-weight: 600;
   }
+  /* Experience: the text keeps its color; a gold halo lights up around the titles. */
+  .hover-row:hover .hover-halo {
+    opacity: 1;
+    text-shadow:
+      0 0 14px color-mix(in oklab, var(--gold) 70%, transparent),
+      0 0 38px color-mix(in oklab, var(--gold) 38%, transparent);
+  }
+  .hover-row:hover .hover-firm {
+    color: var(--foreground);
+  }
 }
 
 /* Light theme: the gold is darker (ochre) so the highlighted number stays readable. */
@@ -524,6 +536,11 @@ h4 {
   }
   html:not(.dark) .hover-row:hover .hover-strong {
     color: var(--gold);
+  }
+  html:not(.dark) .hover-row:hover .hover-halo {
+    text-shadow:
+      0 0 14px color-mix(in oklab, #f5b800 85%, transparent),
+      0 0 36px color-mix(in oklab, #f5b800 55%, transparent);
   }
 }
 
