@@ -84,31 +84,6 @@ Tout le texte éditorial vit dans `src/data/translations.ts`, en français (`fr`
 
 Les conventions de structure (sections rendues ensemble sous les identifiants `home`, `about`, `projects`, `experience`, `contact`) sont détaillées dans `AGENTS.md`.
 
-## Synchronisation des dépôts
-
-Le même code vit dans deux dépôts qui partagent la même histoire :
-
-| remote | dépôt | usage |
-| --- | --- | --- |
-| `origin` | [Akashi05/my_portfolio](https://github.com/Akashi05/my_portfolio) | déploiement Vercel |
-| `lovable` | [Akashi05/project-migration-studio](https://github.com/Akashi05/project-migration-studio) | éditeur Lovable |
-
-Chaque modification doit être poussée vers les deux, sinon ils divergent :
-
-```bash
-git remote add lovable https://github.com/Akashi05/project-migration-studio.git  # une seule fois
-git push origin main
-git push lovable main
-```
-
-Si Lovable a produit des commits en premier, les récupérer puis repousser partout :
-
-```bash
-git pull lovable main
-git push origin main
-git push lovable main
-```
-
 ## Notes
 
 - Les ponctuations de Colasta ne sont dessinées que dans la graisse Bold ; les autres graisses déclarent un `unicode-range` restreint pour retomber sur Satoshi (`src/styles.css`).
