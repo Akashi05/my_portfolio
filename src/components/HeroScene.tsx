@@ -110,7 +110,7 @@ export default function HeroScene({ darkMode }: { darkMode: boolean }) {
     const css = getComputedStyle(document.documentElement);
     // Light theme: a pure charcoal base only reflects black, so use a lighter graphite and
     // let the studio lights bring out the highlights (as the ivory ribbon does in dark).
-    setColor(darkMode ? css.getPropertyValue("--scene-light").trim() : "#aaa2a7");
+    setColor(darkMode ? css.getPropertyValue("--scene-light").trim() : "#a8937f");
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setReducedMotion(media.matches);
     update();
@@ -133,7 +133,7 @@ export default function HeroScene({ darkMode }: { darkMode: boolean }) {
         intensity={darkMode ? 2.4 : 2.8}
       />
       <pointLight
-        color={darkMode ? "#f5c542" : "#d9a21b"}
+        color={darkMode ? "#2dd4bf" : "#14b8a6"}
         position={[-4, -2, 3]}
         intensity={darkMode ? 55 : 40}
         distance={14}
