@@ -372,9 +372,18 @@ h4 {
   animation: none;
   opacity: 1;
 }
+/* The links breathe: dim and plain, then lit in gold with a soft halo. */
 @keyframes cta-blink {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
   50% {
-    opacity: 0.35;
+    opacity: 1;
+    color: var(--gold);
+    text-shadow:
+      0 0 8px color-mix(in oklab, var(--gold) 80%, transparent),
+      0 0 20px color-mix(in oklab, var(--gold) 45%, transparent);
   }
 }
 .typewriter-cursor {
