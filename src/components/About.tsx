@@ -30,7 +30,16 @@ export default function About({ language }: AboutProps) {
             01 <span className="opacity-40">/</span> {t.subtitle}
           </p>
           <h2 className="section-title mt-6">
-            <Reveal>{t.title}</Reveal>
+            <Reveal>
+              {t.title.endsWith("?") ? (
+                <>
+                  {t.title.slice(0, -1)}
+                  <span className="text-gold">?</span>
+                </>
+              ) : (
+                t.title
+              )}
+            </Reveal>
           </h2>
           <div id="ribbon-anchor" aria-hidden="true" className="mt-10 h-60 w-full max-w-72" />
         </div>
