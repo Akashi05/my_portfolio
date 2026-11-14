@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { translations } from "../data/translations";
 import Reveal from "./Reveal";
 import { useForm, ValidationError } from "@formspree/react";
@@ -132,16 +132,14 @@ export default function Contact({ language }: ContactProps) {
           </div>
           <Button
             type="submit"
-            variant="outline"
             disabled={state.submitting}
-            className="group h-12 rounded-full border-gold bg-gold px-6 text-white hover:bg-gold/85 hover:text-white disabled:opacity-50 dark:text-black dark:hover:text-black"
+            className="h-14 w-full rounded-full bg-gold font-bold uppercase tracking-[0.1em] text-white transition-transform hover:scale-[1.01] hover:bg-gold/90 disabled:opacity-50 dark:text-black"
           >
             {state.succeeded
               ? language === "fr"
                 ? "Message envoyé !"
                 : "Message sent!"
               : t.contact.form_send}
-            <ArrowUpRight className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Button>
         </form>
       </div>
