@@ -179,7 +179,7 @@ h4 {
 :root {
   --identity-charcoal: oklch(0.27156323 0.010301 332.55804154);
   --identity-ivory: oklch(0.95498682 0.01237502 91.5192686);
-  --gold: #9a6700;
+  --gold: #0f766e;
   --background: var(--identity-ivory);
   --foreground: var(--identity-charcoal);
   --primary: var(--foreground);
@@ -207,7 +207,7 @@ h4 {
   --radius: 0.5rem;
 }
 .dark {
-  --gold: #f5c542;
+  --gold: #2dd4bf;
   --background: var(--identity-charcoal);
   --foreground: var(--identity-ivory);
   --primary: var(--foreground);
@@ -523,9 +523,9 @@ h4 {
   html:not(.dark) .hover-row:hover .hover-glow {
     color: var(--gold);
     text-shadow:
-      0 0 10px color-mix(in oklab, #f5b800 95%, transparent),
-      0 0 26px color-mix(in oklab, #f5b800 70%, transparent),
-      0 0 52px color-mix(in oklab, #f5b800 40%, transparent);
+      0 0 10px color-mix(in oklab, #14b8a6 95%, transparent),
+      0 0 26px color-mix(in oklab, #14b8a6 70%, transparent),
+      0 0 52px color-mix(in oklab, #14b8a6 40%, transparent);
   }
   html:not(.dark) .hover-row:hover .hover-strong {
     color: var(--foreground);
