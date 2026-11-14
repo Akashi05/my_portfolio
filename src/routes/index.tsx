@@ -6,7 +6,7 @@ import Portfolio from "@/components/Portfolio";
 const SITE_URL = "https://berenger-sessou.vercel.app";
 const title = "Bérenger SESSOU | Développeur backend et systèmes, DevOps à Cotonou, Bénin";
 const description =
-  "Portfolio de Bérenger SESSOU, développeur backend et systèmes à Cotonou (Bénin). DevOps, prototypage de produit, création de sites et d'applications web. Disponible en freelance, temps partiel et collaborations.";
+  "Bérenger SESSOU, développeur backend et systèmes à Cotonou (Bénin). Co-fondateur et CTO d'Istorya, incubé chez Future Studio, contributeur sur ArbitraChain. DevOps, sites et applications web. Disponible en freelance et collaborations.";
 const image = `${SITE_URL}/og-image.jpg`;
 
 const jsonLd = {
@@ -19,7 +19,9 @@ const jsonLd = {
       alternateName: ["Bérenger Sessou", "Berenger Sessou"],
       url: SITE_URL,
       image: `${SITE_URL}/profil.jpeg`,
-      jobTitle: "Développeur backend et systèmes",
+      jobTitle: "Développeur backend et systèmes, co-fondateur et CTO d'Istorya",
+      worksFor: { "@id": `${SITE_URL}/#istorya` },
+      affiliation: [{ "@id": `${SITE_URL}/#istorya` }, { "@id": `${SITE_URL}/#future-studio` }],
       description,
       address: {
         "@type": "PostalAddress",
@@ -31,6 +33,9 @@ const jsonLd = {
         "Développement backend",
         "DevOps",
         "Programmation système",
+        "Istorya",
+        "Future Studio",
+        "ArbitraChain",
         "Création de sites web",
         "Applications web",
         "Python",
@@ -43,6 +48,32 @@ const jsonLd = {
         "https://github.com/Akashi05",
         "https://www.linkedin.com/in/b%C3%A9renger-sessou-b36ab1314/",
       ],
+    },
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#istorya`,
+      name: "Istorya",
+      url: "https://istorya.site",
+      description:
+        "Contes illustrés personnalisés pour enfants, générés par IA en plusieurs langues.",
+      founder: { "@id": `${SITE_URL}/#person` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#future-studio`,
+      name: "Future Studio",
+      description: "Studio et incubateur de startups à Cotonou, Bénin.",
+      location: {
+        "@type": "Place",
+        address: { "@type": "PostalAddress", addressLocality: "Cotonou", addressCountry: "BJ" },
+      },
+    },
+    {
+      "@type": "WebApplication",
+      "@id": `${SITE_URL}/#arbitrachain`,
+      name: "ArbitraChain",
+      url: "https://arbitrachain.com",
+      contributor: { "@id": `${SITE_URL}/#person` },
     },
     {
       "@type": "WebSite",
