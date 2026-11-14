@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useScrollLit } from "@/hooks/use-scroll-lit";
 import { translations } from "../data/translations";
 import Reveal from "./Reveal";
 
@@ -9,6 +10,7 @@ interface ExperienceProps {
 
 export default function Experience({ language }: ExperienceProps) {
   const t = translations[language];
+  const listRef = useScrollLit<HTMLDivElement>();
 
   return (
     <div className="editorial-section mx-auto max-w-7xl px-6 lg:px-12">
@@ -21,7 +23,7 @@ export default function Experience({ language }: ExperienceProps) {
         </h2>
       </header>
 
-      <div className="hover-list">
+      <div ref={listRef} className="hover-list">
         {t.experience_data.map((exp, index) => (
           <motion.article
             key={exp.title}
