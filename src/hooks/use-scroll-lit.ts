@@ -10,7 +10,7 @@ export function useScrollLit<T extends HTMLElement>() {
 
   useEffect(() => {
     const list = ref.current;
-    if (!list || !window.matchMedia("(hover: none)").matches) return;
+    if (!list || !window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
     const rows = Array.from(list.querySelectorAll<HTMLElement>(".hover-row"));
     const observer = new IntersectionObserver(
       (entries) => {
