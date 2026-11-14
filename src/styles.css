@@ -518,6 +518,25 @@ h4 {
   }
 }
 
+/* Touch screens: no hover, so the row crossing the middle of the screen lights up. */
+@media (hover: none) {
+  .hover-row.is-lit .hover-glow {
+    opacity: 1;
+    color: var(--gold);
+    font-weight: 600;
+    text-shadow:
+      0 0 10px color-mix(in oklab, var(--gold) 95%, transparent),
+      0 0 26px color-mix(in oklab, var(--gold) 70%, transparent),
+      0 0 52px color-mix(in oklab, var(--gold) 40%, transparent);
+  }
+  html:not(.dark) .hover-row.is-lit .hover-glow {
+    text-shadow:
+      0 0 10px color-mix(in oklab, #3d6bff 95%, transparent),
+      0 0 26px color-mix(in oklab, #3d6bff 70%, transparent),
+      0 0 52px color-mix(in oklab, #3d6bff 40%, transparent);
+  }
+}
+
 /* Light theme: the gold is darker (ochre) so the highlighted number stays readable. */
 @media (hover: hover) {
   html:not(.dark) .hover-row:hover .hover-glow {

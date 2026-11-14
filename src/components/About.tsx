@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useScrollLit } from "@/hooks/use-scroll-lit";
 import { translations } from "../data/translations";
 import { skills, type Skill } from "../data/skills";
 import Reveal from "./Reveal";
@@ -11,6 +12,7 @@ interface AboutProps {
 
 export default function About({ language }: AboutProps) {
   const t = translations[language].about;
+  const listRef = useScrollLit<HTMLDivElement>();
   const paragraphs = Object.entries(t)
     .filter(([key]) => key.startsWith("description"))
     .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }));
@@ -72,7 +74,7 @@ export default function About({ language }: AboutProps) {
         <h3 className="section-title text-[clamp(1.75rem,3.2vw,2.75rem)]">
           <Reveal>{t.skills_title}</Reveal>
         </h3>
-        <div className="hover-list mt-10">
+        <div ref={listRef} className="hover-list mt-10">
           {skillGroups.map(([category, items], index) => (
             <motion.div
               key={category}
