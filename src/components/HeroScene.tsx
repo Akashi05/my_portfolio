@@ -133,7 +133,7 @@ export default function HeroScene({ darkMode }: { darkMode: boolean }) {
         intensity={darkMode ? 2.4 : 2.8}
       />
       <pointLight
-        color={darkMode ? "#f5c542" : "#d9a21b"}
+        color={darkMode ? "#c98b5a" : "#8a4b25"}
         position={[-4, -2, 3]}
         intensity={darkMode ? 55 : 40}
         distance={14}
